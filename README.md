@@ -9,3 +9,8 @@ Colors can do the following:
 *   Get the complementary value of an RGB color.
 *   Named color to an RGB object, HSV object or Hexadecimal string. 
 *   Get a random color in RGB or Hexadecimal.
+
+[Usage instructions][1]
+
+ [1]: http://matthewbjordan.me/colors
+ 
