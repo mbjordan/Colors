@@ -1,5 +1,5 @@
 /*
-JS Colors Library v0.2
+JS Colors Library v0.2 rev 1
 Copyright 2011 Matthew B. Jordan
 Licensed under a Creative Commons Attribution-ShareAlike 3.0 Unported License. (http://creativecommons.org/licenses/by-sa/3.0/)
 http://matthewbjordan.me/colors
@@ -394,21 +394,30 @@ var Colors = {
             'V': icn,
             'HSV': icn,
             'a': icn
-        }
+        };
     },
-    complement: function (c, t) {
-        if (typeof c == 'string' && t == 'hex') {
+    complement: function (c, g, b) {
+        if (typeof c == 'string' && /(#([A-Fa-f0-9]){3}(([A-Fa-f0-9]){3})?)/.test(c)) {
             c = c.replace('#', '');
             return '#' + this.rgb2hex(255 - this.hex2rgb(c.substr(0, 2))) + this.rgb2hex(255 - this.hex2rgb(c.substr(2, 2))) + this.rgb2hex(255 - this.hex2rgb(c.substr(4, 2)))
         }
-        if (t == 'rgb') {
+        if (c != undefined && g != undefined && b != undefined) {
+            return {
+                'R': 255 - c,
+                'G': 255 - g,
+                'B': 255 - b,
+                'RGB': (255 - c) + ' ' + (255 - g) + ' ' + (255 - b),
+                'a': [(255 - c), (255 - g), (255 - b)]
+            };
+        }
+        if (typeof c == 'object') {
             return {
                 'R': 255 - c[0],
                 'G': 255 - c[1],
                 'B': 255 - c[2],
                 'RGB': (255 - c[0]) + ' ' + (255 - c[1]) + ' ' + (255 - c[2]),
                 'a': [(255 - c[0]), (255 - c[1]), (255 - c[2])]
-            }
+            };
         }
     },
     rand: function (mode) {
