@@ -1,6 +1,6 @@
 /*
-JS Colors Library v0.2 rev 1
-Copyright 2011 Matthew B. Jordan
+Colors JS Library v1.0
+Copyright 2012 Matthew B. Jordan
 Licensed under a Creative Commons Attribution-ShareAlike 3.0 Unported License. (http://creativecommons.org/licenses/by-sa/3.0/)
 http://matthewbjordan.me/colors
 */
@@ -399,7 +399,18 @@ var Colors = {
     complement: function (c, g, b) {
         if (typeof c == 'string' && /(#([A-Fa-f0-9]){3}(([A-Fa-f0-9]){3})?)/.test(c)) {
             c = c.replace('#', '');
-            return '#' + this.rgb2hex(255 - this.hex2rgb(c.substr(0, 2))) + this.rgb2hex(255 - this.hex2rgb(c.substr(2, 2))) + this.rgb2hex(255 - this.hex2rgb(c.substr(4, 2)))
+            var rtn = '#';
+            if (c.length === 6) {
+                rtn += this.rgb2hex(255 - this.hex2rgb(c.substr(0, 2)));
+                rtn += this.rgb2hex(255 - this.hex2rgb(c.substr(2, 2)));
+                rtn += this.rgb2hex(255 - this.hex2rgb(c.substr(4, 2)));
+            }
+            if (c.length === 3) {
+                rtn += this.rgb2hex(255 - this.hex2rgb(c.substr(0, 1) + c.substr(0, 1)));
+                rtn += this.rgb2hex(255 - this.hex2rgb(c.substr(1, 1) + c.substr(1, 1)));
+                rtn += this.rgb2hex(255 - this.hex2rgb(c.substr(2, 1) + c.substr(2, 1)));
+            }
+            return rtn;
         }
         if (c != undefined && g != undefined && b != undefined) {
             return {

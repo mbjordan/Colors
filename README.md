@@ -1,3 +1,5 @@
+# Colors.js
+
 Colors is a simple JS library that converts one color model to another. It supports hexadecimal, RGB, HSV and even HTML named color values.
 
 Colors can do the following:
@@ -10,7 +12,10 @@ Colors can do the following:
 *   Named color to an RGB object, HSV object or Hexadecimal string. 
 *   Get a random color in RGB or Hexadecimal.
 
-[Usage instructions][1]
+For usage instructions, go to http://matthewbjordan.me/colors
 
- [1]: http://matthewbjordan.me/colors
- 
+* * *
+
+This work is licensed under a [Creative Commons Attribution-ShareAlike 3.0 Unported License][1].
+
+ [1]: http://creativecommons.org/licenses/by-sa/3.0/
