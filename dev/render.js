@@ -1,6 +1,6 @@
 /**
- New render function to reduce filesize.
-	280 bytes minified (201 bytes min & gzipped)
+    New render function to reduce filesize.
+    280 bytes minified (201 bytes min & gzipped)
 */
 
 render: function (map, type) { // Internal Function
@@ -21,7 +21,7 @@ render: function (map, type) { // Internal Function
     rtn[k[1]] = r[1];
     rtn[k[2]] = r[2];
     rtn[k[3]] = r[0] + ' ' + r[1] + ' ' + r[2];
-    rtn['a'] = [r[0], r[1], r[1]];
+    rtn['a'] = [r[0], r[1], r[1]]; // Need a better way to do this.
     return rtn;
 }
 

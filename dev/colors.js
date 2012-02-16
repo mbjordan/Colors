@@ -31,7 +31,7 @@ var Colors = {
         rtn[k[1]] = r[1];
         rtn[k[2]] = r[2];
         rtn[k[3]] = r[0] + ' ' + r[1] + ' ' + r[2];
-        rtn['a'] = [r[0], r[1], r[1]];
+        rtn['a'] = [r[0], r[1], r[1]]; // Need a better way to do this.
         return rtn;
     },
     rgb2hex: function (rgbv) {
