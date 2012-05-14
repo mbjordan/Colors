@@ -1,14 +1,9 @@
 /*
+
 Colors JS Library v1.1 (development)
 Copyright 2012 Matthew B. Jordan
 Licensed under a Creative Commons Attribution-ShareAlike 3.0 Unported License. (http://creativecommons.org/licenses/by-sa/3.0/)
 http://matthewbjordan.me/colors
-
-----
-
-Dev Goals:
-
-1. Minimize this script as much as possible, by moving repeated methods into one function.
 
 */
 var Colors = {
@@ -34,27 +29,33 @@ var Colors = {
         rtn['a'] = [r[0], r[1], r[1]]; // Need a better way to do this.
         return rtn;
     },
-    rgb2hex: function (rgbv) {
-        if (typeof rgbv == 'object') {
-            var h = '#';
-            for (x in rgbv) {
-                var hex = rgbv[x].toString(16);
-                if (hex.length == 1) hex = '0' + hex;
-                h = h + hex
+    rgb2hex: function (r, g, b) {
+        if (g === undefined && b === undefined) {
+            var value = r.toString(16);
+            var hex = '#' + value + value + value;
+            if (hex.length == 1) {
+                hex = '0' + hex;
             }
-            return h
+            return hex;
         } else {
-            var hex = rgbv.toString(16);
-            if (hex.length == 1) hex = '0' + hex;
-            return hex
+            var rgbv = [r, g, b],
+                h = '#';
+            for (var x = 0; x < rgbv.length; x++) {
+                var hex = rgbv[x].toString(16);
+                if (hex.length == 1) {
+                    hex = '0' + hex;
+                }
+                h = h + hex;
+            }
+            return h;
         }
     },
     hex2rgb: function (h) {
         h = h.replace('#', '');
         if (h.length === 6) {
-            this.render([parseInt(h.substr(0, 2), 16), parseInt(h.substr(2, 2), 16), parseInt(h.substr(4, 2), 16), ], 'rgb');
+            this.render([parseInt(h.substr(0, 2), 16), parseInt(h.substr(2, 2), 16), parseInt(h.substr(4, 2), 16)], 'rgb');
         } else {
-            return parseInt(h, 16)
+            return parseInt(h, 16);
         }
     },
     hex2hsv: function (h) {
@@ -71,19 +72,27 @@ var Colors = {
             maxVal = Math.max(r, g, b),
             delta = (maxVal - minVal);
         result.v = maxVal;
-        if (delta == 0) {
+        if (delta === 0) {
             result.h = 0;
-            result.s = 0
+            result.s = 0;
         } else {
             result.s = delta / maxVal;
             var del_R = (((maxVal - r) / 6) + (delta / 2)) / delta;
             var del_G = (((maxVal - g) / 6) + (delta / 2)) / delta;
             var del_B = (((maxVal - b) / 6) + (delta / 2)) / delta;
-            if (r == maxVal) result.h = del_B - del_G;
-            else if (g == maxVal) result.h = (1 / 3) + del_R - del_B;
-            else if (b == maxVal) result.h = (2 / 3) + del_G - del_R;
-            if (result.h < 0) result.h += 1;
-            if (result.h > 1) result.h -= 1
+            if (r == maxVal) {
+                result.h = del_B - del_G;
+            } else if (g == maxVal) {
+                result.h = (1 / 3) + del_R - del_B;
+            } else if (b == maxVal) {
+                result.h = (2 / 3) + del_G - del_R;
+            }
+            if (result.h < 0) {
+                result.h += 1;
+            }
+            if (result.h > 1) {
+                result.h -= 1;
+            }
         }
         this.render([Math.round(result.h * 360), Math.round(result.s * 100), Math.round(result.v * 100)], 'hsv');
     },
