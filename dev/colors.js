@@ -26,28 +26,27 @@ var Colors = {
         rtn[k[1]] = r[1];
         rtn[k[2]] = r[2];
         rtn[k[3]] = r[0] + ' ' + r[1] + ' ' + r[2];
-        rtn['a'] = [r[0], r[1], r[1]]; // Need a better way to do this.
+        rtn['a'] = [r[0], r[1], r[1]];
         return rtn;
     },
     rgb2hex: function (r, g, b) {
         if (g === undefined && b === undefined) {
             var value = r.toString(16);
-            var hex = '#' + value + value + value;
-            if (hex.length == 1) {
-                hex = '0' + hex;
+            if (value.length == 1) {
+                value = '0' + value;
             }
-            return hex;
+            return '#' + value + value + value;
         } else {
             var rgbv = [r, g, b],
-                h = '#';
+                h = '';
             for (var x = 0; x < rgbv.length; x++) {
                 var hex = rgbv[x].toString(16);
                 if (hex.length == 1) {
                     hex = '0' + hex;
                 }
-                h = h + hex;
+                h += hex;
             }
-            return h;
+            return '#' + h;
         }
     },
     hex2rgb: function (h) {
