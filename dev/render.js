@@ -1,27 +1,27 @@
 /**
     New render function to reduce filesize.
-    280 bytes minified (201 bytes min & gzipped)
+    244 bytes minified (177 bytes min & gzipped)
 */
 
-render: function (map, type) { // Internal Function
-    var r = [map[0], map[1], map[2]], rtn = [];
+function render(map, type) { // Internal Function
+    var rtn = [],
+        k;
     if (typeof map != 'object') {
         return;
     }
-    if (type == 'rgb') {
-        var k = ['R', 'G', 'B', 'RGB'];
+    if (type === 'rgb') {
+        k = ['R', 'G', 'B', 'RGB'];
     }
-    if (type == 'hsv') {
-        var k = ['H', 'S', 'V', 'HSV'];
+    if (type === 'hsv') {
+        k = ['H', 'S', 'V', 'HSV'];
     }
-    if (type == 'hsl') {
-        var k = ['H', 'S', 'L', 'HSL'];
+    if (type === 'hsl') {
+        k = ['H', 'S', 'L', 'HSL'];
     }
-    rtn[k[0]] = r[0];
-    rtn[k[1]] = r[1];
-    rtn[k[2]] = r[2];
-    rtn[k[3]] = r[0] + ' ' + r[1] + ' ' + r[2];
-    rtn['a'] = [r[0], r[1], r[1]]; // Need a better way to do this.
+    rtn[k[0]] = map[0];
+    rtn[k[1]] = map[1];
+    rtn[k[2]] = map[2];
+    rtn[k[3]] = map[0] + ' ' + map[1] + ' ' + map[2];
+    rtn.a = map;
     return rtn;
 }
-
