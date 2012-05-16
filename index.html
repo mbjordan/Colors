@@ -1,55 +1,427 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Colors by matthewbj</title>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="description" content="JavaScript color library for easy manipulation of colors, their values and their types.">
+<title>Colors.js - JavaScript Color Library</title>
+<link href="http://fonts.googleapis.com/css?family=Kaushan+Script&amp;text=-.abCcdeiJjLlmnoprSstuvy" rel="stylesheet" type="text/css">
+<style>body{font-family:Arial,Helvetica,sans-serif;font-size:16px;color:#333;background:#f5f5f5 url(http://cds.matthewbjordan.me/assets/images/body-bg.jpg) repeat;overflow-y:scroll}p{margin:13px 0;line-height:1.2em}a{color:#069;text-decoration:none}.title-box{margin:0 auto;padding:8px;min-width:750px;max-width:1100px;width:expression(document.body.clientWidth < 750? "750px":document.body.clientWidth>1100? "1100px":"auto")}h1,h2{font-family:Kaushan Script,Arial,Helvetica,sans-serif;color:#09c;color:rgba(0,153,204,0.8);text-shadow:1px 4px 6px #f5f5f5,0 0 0 #333,1px 4px 6px #f5f5f5}section{margin:0 auto;background-color:#fff;padding:8px;min-width:750px;max-width:1100px;width:expression(document.body.clientWidth < 750? "750px":document.body.clientWidth>1100? "1100px":"auto");border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;behavior:url(/PIE.htc)}#filebox{text-align:right;float:right;font-size:small;margin:0 0 0 8px;background-color:#eefbff;border:1px solid #bef;padding:3px 8px;border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;behavior:url(/pie.htc)}#filebox p{padding:0;margin:3px 0}footer{margin:0 auto;color:#999;text-align:right;margin-top:75px;font-size:x-small;padding:8px;min-width:750px;max-width:1100px;width:expression(document.body.clientWidth < 750? "750px":document.body.clientWidth>1100? "1100px":"auto")}li{margin:3px 35px}.cboxes{padding:95px 0;width:225px;text-align:center;border:1px solid #666;background-color:#f0f0f0;margin:15px}#newcolor{width:250px;padding:3px;font-size:1.1em;vertical-align:baseline}.fblock{border:1px dashed #999;padding:5px;margin:25px 0}.fblock pre{background-color:#f5f5f5;display:block;padding:5px}.ftitle{font-weight:bold;font-family:"Courier New",Courier,monospace}.fdat td{padding:5px 16px}#commentBox{width:80%;margin:40px auto 0 auto}</style>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="colors.min.js"></script>
+<!--[if lt IE 9]><script>document.createElement('header');document.createElement('nav');document.createElement('section');document.createElement('article');document.createElement('figure');document.createElement('figcaption');</script><![endif]-->
+</head>
+<body>
+<div class="title-box">
+  <h1 style="font-size:3.2em;margin:12px 0">Colors.js - JavaScript Color Library</h1>
+  <h2 style="font-size:2em;font-weight:normal;margin:10px 0">Color manipulation made easy peasy</h2>
+</div>
+<section>
+  <div id="filebox">
+    <p> Current Version: <strong>1.0</strong></p>
+    <p>
+      <a target="_blank" href="https://github.com/matthewbj/Colors">View Source</a>
+      or
+      <a href="https://github.com/downloads/matthewbj/Colors/Colors.1.0.zip">Download Zip</a>
+    </p>
+    <p> Minified: 6.76KB (2.68KB gzipped) </p>
+  </div>
+  <p> The goal of Colors is to have an easy to use color manipulation library that is lightweight and very functional. I have plans for adding more functions in the future. Check out the
+    <a href="#todo">to do list</a>
+    and
+    <a href="#comments">let me know</a>
+    what you think. </p>
+  <p style="clear:both">Colors can do the following:</p>
+  <ul>
+    <li>
+      <a href="#rgb2hex" class="scroll">Change RGB to a Hexadecimal color.</a>
+    </li>
+    <li>
+      <a href="#hex2rgb" class="scroll">Change Hexadecimal to an RGB color.</a>
+    </li>
+    <li>
+      <a href="#hex2hsv" class="scroll">Change Hexadecimal to an HSV color.</a>
+    </li>
+    <li>
+      <a href="#complement" class="scroll">Get the complementary value of a Hexadecimal color.</a>
+    </li>
+    <li>
+      <a href="#complement-rgb" class="scroll">Get the complementary value of an RGB color.</a>
+    </li>
+    <li>
+      <a href="#name2hex" class="scroll">Named color to an RGB object, HSV object or Hexadecimal string. </a>
+    </li>
+    <li>
+      <a href="#rand" class="scroll">Get a random color in RGB or Hexadecimal.</a>
+    </li>
+  </ul>
+  <p>
+    <a href="http://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="license">
+      <img src="http://i.creativecommons.org/l/by-sa/3.0/88x31.png" width="88" height="31" style="border:0;margin-top:25px" alt="License"></a>
+  </p>
+  <br>
+  <p>Example of complementary hexadecimal color.</p>
+  <table style="text-align:center">
+    <tr>
+      <td><strong>Input Color</strong>
+        <div class="cboxes" id="color"></div></td>
+      <td><strong>Complementary Color</strong>
+        <div class="cboxes" id="compr"></div></td>
+    </tr>
+  </table>
+  <br>
+  <h3>Try it!</h3>
+  <p class="a_button">
+    <span style="font-size:1.1em">Color:</span>
+    <input type="text" name="newcolor" id="newcolor" data-placeholder="#77ff33">
+    <a href="#" id="cchange">Complement</a>
+  </p>
+  <br>
+  <p>How to use!</p>
+  <div class="fblock" id="rgb2hex">
+    <p class="ftitle">Function: <span style="color:#00C">rgb2hex</span>( <em>[object R,G,B] or [int R, G or B]</em> )</p>
+    <table class="fdat">
+      <tr>
+        <td><strong>Description:</strong> Change an RGB object to a Hexadecimal color.</td>
+      </tr>
+      <tr>
+        <td><strong>Parameters:</strong> 1. <em>(required)</em> Either an Object of [R, G, B] or a single Integer of R, G, <em>or</em> B.</td>
+      </tr>
+      <tr>
+        <td><strong>Return Values:</strong> Returns a six-digit hexadecimal color representation of the RGB value with the hash mark '#'.</td>
+      </tr>
+      <tr>
+        <td><strong>Examples:</strong>
+          <pre>
+Colors.rgb2hex([153 ,153, 153]) // returns: #999999
+Colors.rgb2hex(153)             // returns: 99 (No hash mark)</pre>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>Changes:</strong><br>
+          <strong>0.1:</strong> Added</td>
+      </tr>
+    </table>
+  </div>
+  <div class="fblock" id="hex2rgb">
+    <p class="ftitle">Function: <span style="color:#00C">hex2rgb</span>( <em>'hex color string'</em> ).[obj R, G, B, RGB or a]</p>
+    <table class="fdat">
+      <tr>
+        <td><strong>Description:</strong> Change a hexadecimal color string to an RGB color object.</td>
+      </tr>
+      <tr>
+        <td><strong>Parameters:</strong> 1. <em>(required)</em> Hexadecimal string, with or without the hash mark '#'.</td>
+      </tr>
+      <tr>
+        <td><strong>Return Values:</strong> Returns an object with 5 properties. <br>
+          <strong>R, G &amp; B</strong> - A single integer value for any given primary.<br>
+          <strong>RGB</strong> - A string with all primaries with spaces, ex. 255 255 255.<br>
+          <strong>a</strong> - an object of the integer values for R, G &amp; B. </td>
+      </tr>
+      <tr>
+        <td><strong>Examples:</strong>
+          <pre>
+Colors.hex2rgb('#ffffff').R   // returns: 255
+Colors.hex2rgb('#ffffff').RGB // returns: 255 255 255
+Colors.hex2rgb('#ffffff').a   // returns: [255, 255, 255] as object.
+</pre></td>
+      </tr>
+      <tr>
+        <td><strong>Changes:</strong><br>
+          <strong>0.1:</strong> Added</td>
+      </tr>
+    </table>
+  </div>
+  <div class="fblock" id="hex2hsv">
+    <p class="ftitle">Function: <span style="color:#00C">hex2hsv</span> ( <em>'hex color string'</em> ).[obj H, S, V, HSV or a]</p>
+    <table class="fdat">
+      <tr>
+        <td><strong>Description:</strong> Change a hexadecimal color string to an HSV color object.</td>
+      </tr>
+      <tr>
+        <td><strong>Parameters:</strong> 1. <em>(required)</em> Hexadecimal string, with or without the hash mark '#'.</td>
+      </tr>
+      <tr>
+        <td><strong>Return Values:</strong> Returns an object with 5 properties. <br>
+          <strong>H, S &amp; V</strong> - A single integer value for any given property.<br>
+          <strong>HSV</strong> - A string with all properties with spaces, ex. 210 51 85.<br>
+          <strong>a</strong> - an object of the integer values for H, S &amp; V. </td>
+      </tr>
+      <tr>
+        <td><strong>Examples:</strong>
+          <pre>
+Colors.hex2hsv('#ffffff').H   // returns: 0
+Colors.hex2hsv('#ffffff').HSV // returns: 0 0 100
+Colors.hex2hsv('#ffffff').a   // returns: [0, 0, 100] as object.
+</pre></td>
+      </tr>
+      <tr>
+        <td><strong>Changes:</strong><br>
+          <strong>0.1:</strong> Added</td>
+      </tr>
+    </table>
+  </div>
+  <div class="fblock" id="hsv2rgb">
+    <p class="ftitle">Function: <span style="color:#00C">hsv2rgb</span> (<em>[obj H, S, V] or [int H, S, V]</em>).[obj R, G, B, RGB or a]</p>
+    <table class="fdat">
+      <tr>
+        <td><strong>Description:</strong> Change an HSV color object or int string to an RGB color object.</td>
+      </tr>
+      <tr>
+        <td><p><strong>Parameters:</strong><br>
+            1. <em>(required)</em> Either an Object of [H, S, V] or an Integer of H.<br>
+            2. <em>(optional)</em> an Integer of S.<br>
+            3. <em>(optional)</em> an Integer of V.</p></td>
+      </tr>
+      <tr>
+        <td><strong>Return Values:</strong> Returns an object with 5 properties. <br>
+          <strong>R, G or B</strong> - A single integer value for any given property.<br>
+          <strong>RBG</strong> - A string with all properties with spaces, ex. 210 51 85.<br>
+          <strong>a</strong> - an object of the integer values for H, S &amp; V. </td>
+      </tr>
+      <tr>
+        <td><strong>Examples:</strong>
+          <pre>
+Colors.hsv2rgb(130, 123, 132).R   // returns: X as R in RGB
+Colors.hsv2rg(130, 123, 132).RGB  // returns: X X X as RGB in RGB
+Colors.hsv2rg(130, 123, 132).a    // returns: [X, X, X] as R, G, B as an object in RGB.
+</pre></td>
+      </tr>
+      <tr>
+        <td><strong>Changes:</strong><br>
+          <strong>0.1:</strong> Added</td>
+      </tr>
+    </table>
+  </div>
+  <div class="fblock" id="complement">
+    <p class="ftitle">Function: <span style="color:#00C">complement</span> ( <em>'#ffffff'</em> )</p>
+    <table class="fdat">
+      <tr>
+        <td><strong>Description:</strong> Get the complementary value of a hexadecimal color.</td>
+      </tr>
+      <tr>
+        <td><strong>Parameters:</strong> 1. <em>(required)</em> A valid, 3 or 6 digit hexadecimal color with hash mark.</td>
+      </tr>
+      <tr>
+        <td><strong>Return Values:</strong> Returns the complimentary value (string) of the provided color. E.g. #000000</td>
+      </tr>
+      <tr>
+        <td><strong>Examples:</strong>
+          <pre>Colors.complement('#ffffff')  // returns: #000000)</pre></td>
+      </tr>
+      <tr>
+        <td><strong>Changes:</strong><br>
+          <strong>0.1:</strong> Added<br>
+          <strong>0.2:</strong> Updated with a regex match to better tell the diff between hex and rgb.<br>
+          <strong>1.0:</strong> Now supports 3 digit hex colors (#000).</td>
+      </tr>
+    </table>
+  </div>
+  <div class="fblock" id="complement-rgb">
+    <p class="ftitle">Function: <span style="color:#00C">complement</span> ( <em>[obj R, G, B] or R, G, B</em> )</p>
+    <table class="fdat">
+      <tr>
+        <td><strong>Description:</strong> Get the complementary value of an RGB color.</td>
+      </tr>
+      <tr>
+        <td><strong>Parameters:</strong> 1. <em>(required)</em> A valid RGB color either as an [object] or as properties.</td>
+      </tr>
+      <tr>
+        <td><strong>Return Values:</strong> Returns an object with 5 properties. <br>
+          <strong>R, G &amp; B</strong> - A single integer complimentary value for any given primary.<br>
+          <strong>RGB</strong> - A string with all primaries with spaces, ex. 255 255 255.<br>
+          <strong>a</strong> - an object of the complimentary integer values for R, G &amp; B. </td>
+      </tr>
+      <tr>
+        <td><strong>Examples:</strong>
+          <pre>
+Colors.complement([0, 0, 0]).R   // returns: 255
+Colors.complement( 0, 0, 0 ).RGB // returns: 255 255 255
+Colors.complement([0, 0, 0]).a   // returns: [255, 255, 255] as object.
+</pre></td>
+      </tr>
+      <tr>
+        <td><strong>Changes:</strong><br>
+          <strong>0.1:</strong> Added<br>
+          <strong>0.2:</strong> Updated with a regex match to better tell the diff between hex and rgb.</td>
+      </tr>
+    </table>
+  </div>
+  <div class="fblock" id="name2hex">
+    <p class="ftitle">Function: <span style="color:#00C">name2hex</span> ( <em>'color name'</em> )</p>
+    <table class="fdat">
+      <tr>
+        <td><strong>Description:</strong> Get the hexadecimal value of an HTML color name. Must be one of the 176 HTML color names as defined by the HTML &amp; CSS standards.</td>
+      </tr>
+      <tr>
+        <td><strong>Parameters:</strong> 1. <em>(required)</em> A valid HTML color name as defined by the HTML &amp; CSS standards.</td>
+      </tr>
+      <tr>
+        <td><strong>Return Values:</strong> Returns a hexadecimal color value for the given name.</td>
+      </tr>
+      <tr>
+        <td><strong>Examples:</strong>
+          <pre>Colors.name2hex('red')  // returns: '#ff0000'</pre></td>
+      </tr>
+      <tr>
+        <td><strong>Changes:</strong><br>
+          <strong>0.1:</strong> Added</td>
+      </tr>
+    </table>
+  </div>
+  <div class="fblock" id="name2rgb">
+    <p class="ftitle">Function: <span style="color:#00C">name2rgb</span> ( <em>'color name'</em> )</p>
+    <table class="fdat">
+      <tr>
+        <td><strong>Description:</strong> Get an RGB object value of an HTML named color.</td>
+      </tr>
+      <tr>
+        <td><strong>Parameters:</strong> 1. <em>(required)</em> A valid HTML color name as defined by the HTML &amp; CSS standards.</td>
+      </tr>
+      <tr>
+        <td><strong>Return Values:</strong> Returns a given HTML name in an RGB object.</td>
+      </tr>
+      <tr>
+        <td><strong>Examples:</strong>
+          <pre>
+Colors.name2rgb('red').R   // returns: 255
+Colors.name2rgb('red').RGB // returns: 255 0 0
+Colors.name2rgb('red').a   // returns: [255, 0, 0]
+</pre></td>
+      </tr>
+      <tr>
+        <td><strong>Changes:</strong><br>
+          <strong>0.1:</strong> Added</td>
+      </tr>
+    </table>
+  </div>
+  <div class="fblock" id="name2hsv">
+    <p class="ftitle">Function: <span style="color:#00C">name2hsv</span> ( <em>'color name'</em> )</p>
+    <table class="fdat">
+      <tr>
+        <td><strong>Description:</strong> Get an HSV object value of an HTML named color.</td>
+      </tr>
+      <tr>
+        <td><strong>Parameters:</strong> 1. <em>(required)</em> A valid HTML color name as defined by the HTML &amp; CSS standards.</td>
+      </tr>
+      <tr>
+        <td><strong>Return Values:</strong> Returns a given HTML name as an HSV object.</td>
+      </tr>
+      <tr>
+        <td><strong>Examples:</strong>
+          <pre>
+Colors.name2hsv('red').R   // returns: 255
+Colors.name2hsv('red').RGB // returns: 255 0 0
+Colors.name2hsv('red').a   // returns: [255, 0, 0]
+</pre></td>
+      </tr>
+      <tr>
+        <td><strong>Changes:</strong><br>
+          <strong>0.1:</strong> Added</td>
+      </tr>
+    </table>
+  </div>
+  <div class="fblock" id="rand">
+    <p class="ftitle">Function: <span style="color:#00C">rand</span> ( <em>color mode</em> )</p>
+    <table class="fdat">
+      <tr>
+        <td><strong>Description:</strong> Get a random color in either hexadecimal or RGB color modes.</td>
+      </tr>
+      <tr>
+        <td><strong>Parameters:</strong> 1. (optional, string) Can be either 'hex' or 'rgb'. Hex is default.</td>
+      </tr>
+      <tr>
+        <td><strong>Return Values:</strong> Returns a random color either in a hexadecimal string or an RGB object.</td>
+      </tr>
+      <tr>
+        <td><strong>Examples:</strong>
+          <pre>
+Colors.rand()          // returns: '#xxxxxx'
+Colors.rand('hex')     // returns: '#xxxxxx'
+Colors.rand('rgb').R   // returns: XXX
+Colors.rand('rgb').RGB // returns: XXX XXX XXX
+Colors.rand('rgb').a   // returns: [XXX, XXX, XXX]
+      </pre></td>
+      </tr>
+      <tr>
+        <td><strong>Changes:</strong><br>
+          <strong>0.2:</strong> Added</td>
+      </tr>
+    </table>
+  </div>
+  <div class="fblock">
+    <p class="ftitle" id="todo"> To Do: </p>
+    <p><span style="text-decoration:line-through">Add support for three digit short hex colors on complement function.</span> Done - 2/14/12</p>
+    <p>Add more color wheel functions: Analogous, Triadic, Tetrads, Split-analogous and Split-complementary</p>
+  </div>
+  <p>
+    <a href="http://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="license">
+      <img src="http://i.creativecommons.org/l/by-sa/3.0/88x31.png" width="88" height="31" style="border:0;margin-top:25px" alt="License"></a>
+  </p>
+  <hr>
+  <div id="commentBox">
+    <h3 id="comments">Comments</h3>
+    <br>
+    <noscript>
+    Please enable JavaScript to view the comments!<br>
+    </noscript>
+    <div id="disqus_thread"></div>
+  </div>
+  <script>
+/* Minimal Placeholder Plugin V1.4 * Copyright 2011, Matthew B. Jordan * Released under the CC BY 3.0 License (http://creativecommons.org/licenses/by/3.0/) * matthewbjordan.me/mph */
+(function(a){a.fn.placeHolder=function(b){"undefined"==typeof b&&(b="mph-blur",a("head").append('<style type="text/css">.mph-blur{color:#999!important}</style>'));return!a(this).is("input")||!a(this).is("textarea")?this.each(function(){a(this).addClass(b).val(a(this).data("placeholder")).bind({focus:function(){var c=a(this).val(),d=a(this).data("placeholder");c===d&&a(this).val("").removeClass(b)},blur:function(){var c=a(this).val(),d=a(this).data("placeholder");""===c&&a(this).val(d).addClass(b)}})}):
+!1}})(jQuery);
+/* Page Script */
+function colors(color) {
+    var c_color = Colors.complement(color, 'hex');
+    $('#color').css({
+        'background-color': color,
+        'color': c_color
+    }).text(color);
+    $('#compr').css({
+        'background-color': c_color,
+        'color': color
+    }).text(c_color)
+}
+$(document).ready(function () {
+    $('#newcolor').placeHolder();
+    colors('#77ff33');
+    $('#cchange').bind('click', function (e) {
+        e.preventDefault();
+        var hexcheck = /(#([A-Fa-f0-9]){3}(([A-Fa-f0-9]){3})?)/i;
+        var hexcolor = $('#newcolor').val();
+        if (hexcheck.test(hexcolor)) colors(hexcolor);
+        else alert("Color must be a valid hexadecimal color.\n\nThe pound symbol is required.")
+    });
+    $("a.scroll").on('click', function (e) {
+        e.preventDefault();
+        $('html,body').animate({
+            scrollTop: ($(this.hash).offset().top - 25)
+        }, 900);
+    });
+});
+(function () {
+    var dsqLoaded = false;
 
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-  </head>
-  <body>
-    <div class="wrapper">
-      <header>
-        <h1>Colors</h1>
-        <p>A simple color manipulation javascript library.</p>
-        <p class="view"><a href="https://github.com/matthewbj/Colors">View the Project on GitHub <small>matthewbj/Colors</small></a></p>
-        <ul>
-          <li><a href="https://github.com/matthewbj/Colors/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/matthewbj/Colors/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/matthewbj/Colors">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
-        <h1>Colors.js</h1>
-
-<p>Colors is a simple JS library that converts one color model to another. It supports hexadecimal, RGB, HSV and even HTML named color values.</p>
-
-<p>Colors can do the following:</p>
-
-<ul>
-<li>Change RGB to a Hexadecimal color.</li>
-<li>Change Hexadecimal to an RGB color.</li>
-<li>Change Hexadecimal to an HSV color.</li>
-<li>Get the complementary value of a Hexadecimal color.</li>
-<li>Get the complementary value of an RGB color.</li>
-<li>Named color to an RGB object, HSV object or Hexadecimal string.</li>
-<li>Get a random color in RGB or Hexadecimal.</li>
-<li>Plus a whole lot more... </li>
-</ul><p>For usage instructions, go to <a href="http://matthewbjordan.me/colors">http://matthewbjordan.me/colors</a></p>
-
-<hr><p>This work is licensed under a <a href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.</p>
-      </section>
-      <footer>
-        <p>This project is maintained by <a href="https://github.com/matthewbj">matthewbj</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-      </footer>
-    </div>
-    <script src="javascripts/scale.fix.js"></script>
-    
-  </body>
+    function load_dsq() {
+        var cboxTop = $("#commentBox").offset().top;
+        if (!dsqLoaded && $(window).scrollTop() + $(window).height() > cboxTop) {
+            var disqus_identifier = 'mbj.me.5487';
+            var disqus_url = '';
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = 'http://matthewjordan.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            dsqLoaded = true
+        }
+    };
+    $(window).scroll(load_dsq);
+    load_dsq();
+})();
+</script>
+</section>
+<footer> Created by
+  <a href="http://twitter.com/matthewbjordan">@matthewbjordan</a>
+</footer>
+</body>
 </html>
