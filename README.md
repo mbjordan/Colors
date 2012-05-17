@@ -1,6 +1,6 @@
 # Colors.js
 
-Colors is a simple JS library that converts one color model to another. It supports hexadecimal, RGB, HSV and even HTML named color values.
+Colors aims to be an easy to use color manipulation library that is lightweight and very functional.
 
 Colors can do the following:
 
@@ -13,7 +13,7 @@ Colors can do the following:
 * Get a random color in RGB or Hexadecimal.
 * Plus a whole lot more... 
 
-For usage instructions, go to http://matthewbjordan.me/colors
+For usage instructions, go to http://matthewbj.github.com/Colors/
 
 * * *
 
