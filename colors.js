@@ -1,37 +1,44 @@
 /*
-Colors JS Library v1.0
+Colors JS Library v1.1
 Copyright 2012 Matthew B. Jordan
 Licensed under a Creative Commons Attribution-ShareAlike 3.0 Unported License. (http://creativecommons.org/licenses/by-sa/3.0/)
 http://matthewbjordan.me/colors
 */
 var Colors = {
-    rgb2hex: function (rgbv) {
-        if (typeof rgbv == 'object') {
-            var h = '#';
-            for (x in rgbv) {
-                var hex = rgbv[x].toString(16);
-                if (hex.length == 1) hex = '0' + hex;
-                h = h + hex
-            }
-            return h
-        } else {
-            var hex = rgbv.toString(16);
-            if (hex.length == 1) hex = '0' + hex;
-            return hex
+    render: function (map, type) { // Internal Function
+        var rtn = [],
+            k;
+        if (typeof map != 'object') {
+            return;
         }
+        if (type === 'rgb') {
+            k = ['R', 'G', 'B', 'RGB'];
+        }
+        if (type === 'hsv') {
+            k = ['H', 'S', 'V', 'HSV'];
+        }
+        if (type === 'hsl') {
+            k = ['H', 'S', 'L', 'HSL'];
+        }
+        rtn[k[0]] = map[0];
+        rtn[k[1]] = map[1];
+        rtn[k[2]] = map[2];
+        rtn[k[3]] = map[0] + ' ' + map[1] + ' ' + map[2];
+        rtn.a = map;
+        return rtn;
+    },
+    rgb2hex: function (r, g, b) {
+        r = (r < 10 ? '0' : '') + r.toString(16);
+        g = (g !== undefined) ? (g < 10 ? '0' : '') + g.toString(16) : r;
+        b = (b !== undefined) ? (b < 10 ? '0' : '') + b.toString(16) : r;
+        return '#' + r + g + b;
     },
     hex2rgb: function (h) {
         h = h.replace('#', '');
         if (h.length === 6) {
-            return {
-                'R': parseInt(h.substr(0, 2), 16),
-                'G': parseInt(h.substr(2, 2), 16),
-                'B': parseInt(h.substr(4, 2), 16),
-                'RGB': parseInt(h.substr(0, 2), 16) + ' ' + parseInt(h.substr(2, 2), 16) + ' ' + parseInt(h.substr(4, 2), 16),
-                'a': [parseInt(h.substr(0, 2), 16), parseInt(h.substr(2, 2), 16), parseInt(h.substr(4, 2), 16)]
-            }
+            return this.render([parseInt(h.substr(0, 2), 16), parseInt(h.substr(2, 2), 16), parseInt(h.substr(4, 2), 16)], 'rgb');
         } else {
-            return parseInt(h, 16)
+            return parseInt(h, 16);
         }
     },
     hex2hsv: function (h) {
@@ -48,30 +55,29 @@ var Colors = {
             maxVal = Math.max(r, g, b),
             delta = (maxVal - minVal);
         result.v = maxVal;
-        if (delta == 0) {
+        if (delta === 0) {
             result.h = 0;
-            result.s = 0
+            result.s = 0;
         } else {
             result.s = delta / maxVal;
             var del_R = (((maxVal - r) / 6) + (delta / 2)) / delta;
             var del_G = (((maxVal - g) / 6) + (delta / 2)) / delta;
             var del_B = (((maxVal - b) / 6) + (delta / 2)) / delta;
-            if (r == maxVal) result.h = del_B - del_G;
-            else if (g == maxVal) result.h = (1 / 3) + del_R - del_B;
-            else if (b == maxVal) result.h = (2 / 3) + del_G - del_R;
-            if (result.h < 0) result.h += 1;
-            if (result.h > 1) result.h -= 1
+            if (r == maxVal) {
+                result.h = del_B - del_G;
+            } else if (g == maxVal) {
+                result.h = (1 / 3) + del_R - del_B;
+            } else if (b == maxVal) {
+                result.h = (2 / 3) + del_G - del_R;
+            }
+            if (result.h < 0) {
+                result.h += 1;
+            }
+            if (result.h > 1) {
+                result.h -= 1;
+            }
         }
-        var rh = Math.round(result.h * 360),
-            rs = Math.round(result.s * 100),
-            rv = Math.round(result.v * 100);
-        return {
-            'H': rh,
-            'S': rs,
-            'V': rv,
-            'HSV': rh + ' ' + rs + ' ' + rv,
-            'a': [rh, rs, rv]
-        }
+        return this.render([Math.round(result.h * 360), Math.round(result.s * 100), Math.round(result.v * 100)], 'hsv');
     },
     hsv2rgb: function (HSV, S, V) {
         if (typeof HSV == 'object') {
@@ -111,16 +117,7 @@ var Colors = {
             rgb = [v, p, q];
             break
         }
-        var r = Math.min(255, Math.floor(rgb[0] * 256)),
-            g = Math.min(255, Math.floor(rgb[1] * 256)),
-            b = Math.min(255, Math.floor(rgb[2] * 256));
-        return {
-            'R': r,
-            'G': g,
-            'B': b,
-            'RGB': r + ' ' + g + ' ' + b,
-            'a': [r, g, b]
-        }
+        return this.render([Math.min(255, Math.floor(rgb[0] * 256)), Math.min(255, Math.floor(rgb[1] * 256)), Math.min(255, Math.floor(rgb[2] * 256))], 'rgb');
     },
     rgb2hsl: function (RGB, G, B) {
         if (typeof RGB == 'object') {
@@ -154,16 +151,7 @@ var Colors = {
             }
             h /= 6
         }
-        var H = Math.floor(h * 360),
-            S = Math.floor(s * 100),
-            L = Math.floor(l * 100);
-        return {
-            'H': H,
-            'S': S,
-            'L': L,
-            'HSL': H + ' ' + S + ' ' + L,
-            'a': [H, S, L]
-        }
+        return this.render([Math.floor(h * 360), Math.floor(s * 100), Math.floor(l * 100)], 'hsl');
     },
     hsv2hsl: function (HSV, S, V) {
         if (typeof HSV == 'object') {
@@ -204,13 +192,7 @@ var Colors = {
         if (H < 0) {
             H += 360
         }
-        return {
-            'H': Math.floor(H),
-            'S': Math.floor(S),
-            'L': Math.floor(L),
-            'HSL': Math.floor(H) + ' ' + Math.floor(S) + ' ' + Math.floor(L),
-            'a': [Math.floor(H), Math.floor(S), Math.floor(V)]
-        }
+        return this.render([Math.floor(H), Math.floor(S), Math.floor(V)], 'hsl');
     },
     name2hex: function (n) {
         n = n.toLowerCase();
@@ -364,39 +346,34 @@ var Colors = {
             'yellowgreen': '#9acd32'
         };
         var r = nar[n];
-        if (r == undefined) return 'Invalid Color Name';
-        else
-        return r
+        if (r === undefined) {
+            return 'Invalid Color Name';
+        } else {
+            return r;
+        }
     },
     name2rgb: function (n) {
         var v = this.name2hex(n),
             t = /^[a-fA-F0-9#]{7}$/,
             icn = 'Invalid Color Name';
-        if (t.test(v)) return this.hex2rgb(v);
-        else
-        return {
-            'R': icn,
-            'G': icn,
-            'B': icn,
-            'RGB': icn,
-            'a': icn
+        if (t.test(v)) {
+            return this.hex2rgb(v);
+        } else {
+            return this.render([icn, icn, icn], 'rgb');
         }
     },
     name2hsv: function (n) {
         var v = this.name2hex(n),
             t = /^[a-fA-F0-9#]{7}$/,
             icn = 'Invalid Color Name';
-        if (t.test(v)) return this.hex2hsv(v);
-        else
-        return {
-            'H': icn,
-            'S': icn,
-            'V': icn,
-            'HSV': icn,
-            'a': icn
-        };
+        if (t.test(v)) {
+            return this.hex2hsv(v);
+        } else {
+            return this.render([icn, icn, icn], 'hsv');
+        }
     },
     complement: function (c, g, b) {
+        var cval;
         if (typeof c == 'string' && /(#([A-Fa-f0-9]){3}(([A-Fa-f0-9]){3})?)/.test(c)) {
             c = c.replace('#', '');
             var rtn = '#';
@@ -413,23 +390,12 @@ var Colors = {
             return rtn;
         }
         if (c != undefined && g != undefined && b != undefined) {
-            return {
-                'R': 255 - c,
-                'G': 255 - g,
-                'B': 255 - b,
-                'RGB': (255 - c) + ' ' + (255 - g) + ' ' + (255 - b),
-                'a': [(255 - c), (255 - g), (255 - b)]
-            };
+            cval = [(255 - c), (255 - g), (255 - b)];
         }
         if (typeof c == 'object') {
-            return {
-                'R': 255 - c[0],
-                'G': 255 - c[1],
-                'B': 255 - c[2],
-                'RGB': (255 - c[0]) + ' ' + (255 - c[1]) + ' ' + (255 - c[2]),
-                'a': [(255 - c[0]), (255 - c[1]), (255 - c[2])]
-            };
+            cval = [(255 - c[0]), (255 - c[1]), (255 - c[2])];
         }
+        return this.render(cval, 'rgb');
     },
     rand: function (mode) {
         if (mode == 'hex' || mode == undefined) {
@@ -445,13 +411,7 @@ var Colors = {
             var minx = 0,
                 maxx = 255;
             R = Math.floor(Math.random() * (minx - maxx + 1) + maxx), G = Math.floor(Math.random() * (minx - maxx + 1) + maxx), B = Math.floor(Math.random() * (minx - maxx + 1) + maxx);
-            return {
-                'R': R,
-                'G': G,
-                'B': B,
-                'RGB': R + ' ' + G + ' ' + B,
-                'a': [R, G, B]
-            }
+            return this.render([R, G, B], 'rgb');
         }
     }
 };
