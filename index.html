@@ -272,19 +272,15 @@ Colors.rand('rgb').a   // returns: [XXX, XXX, XXX]
       </tr>
     </table>
   </div>
-  <div class="fblock">
-    <p style="font-weight:bold" id="todo"> To do list for version 1.1: </p>
-    <div id="todo_data"></div>
-  </div>
+  <div class="fblock" id="todo_data"></div>
   <p> <a href="http://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="license"> <img src="http://i.creativecommons.org/l/by-sa/3.0/88x31.png" width="88" height="31" style="border:0;margin-top:25px" alt="License"></a> </p>
   <script>
 /* Minimal Placeholder Plugin V1.4 * Copyright 2011, Matthew B. Jordan * Released under the CC BY 3.0 License (http://creativecommons.org/licenses/by/3.0/) * matthewbjordan.me/mph */
 (function(a){a.fn.placeHolder=function(b){"undefined"==typeof b&&(b="mph-blur",a("head").append('<style type="text/css">.mph-blur{color:#999!important}</style>'));return!a(this).is("input")||!a(this).is("textarea")?this.each(function(){a(this).addClass(b).val(a(this).data("placeholder")).bind({focus:function(){var c=a(this).val(),d=a(this).data("placeholder");c===d&&a(this).val("").removeClass(b)},blur:function(){var c=a(this).val(),d=a(this).data("placeholder");""===c&&a(this).val(d).addClass(b)}})}):
 !1}})(jQuery);
 function addTodo(a){$("#todo_data").html(a.data)}function colors(a){var b=Colors.complement(a,"hex");$("#color").css({"background-color":a,color:b}).text(a);$("#compr").css({"background-color":b,color:a}).text(b)}
-$(document).ready(function(){$("#newcolor").placeHolder();colors("#77ff33");$("#cchange").bind("click",function(a){a.preventDefault();a=$("#newcolor").val();/(#([A-Fa-f0-9]){3}(([A-Fa-f0-9]){3})?)/i.test(a)?colors(a):alert("Color must be a valid hexadecimal color.\n\nThe pound symbol is required.")});$("a.scroll").on("click",function(a){a.preventDefault();$("html,body").animate({scrollTop:$(this.hash).offset().top-25},900)});$.ajax({url:"http://matthewbjordan.me/colors.todo.php",dataType:"jsonp",
-jsonp:"callback",jsonpCallback:"addTodo"})});
-</script>
+$(document).ready(function(){$("#newcolor").placeHolder();colors("#77ff33");$("#cchange").bind("click",function(a){a.preventDefault();a=$("#newcolor").val();/(#([A-Fa-f0-9]){3}(([A-Fa-f0-9]){3})?)/i.test(a)?colors(a):alert("Color must be a valid hexadecimal color.\n\nThe pound symbol is required.")});$("a.scroll").on("click",function(a){a.preventDefault();$("html,body").animate({scrollTop:$(this.hash).offset().top-25},900)});$.ajax({url:"http://matthewbjordan.me/colors-todo-list",dataType:"jsonp",
+jsonp:"callback",jsonpCallback:"addTodo"})});var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-10456811-7"]);_gaq.push(["_trackPageview"]);(function(){var a=document.createElement("script");a.type="text/javascript";a.async=!0;a.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var b=document.getElementsByTagName("script")[0];b.parentNode.insertBefore(a,b)})();</script>
 </section>
 <footer> Created by <a href="http://twitter.com/matthewbjordan">@matthewbjordan</a> </footer>
 </body>
