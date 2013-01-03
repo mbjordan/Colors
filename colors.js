@@ -1,11 +1,11 @@
 /*
-Colors JS Library v1.1
+Colors JS Library v1.1r2
 Copyright 2012 Matthew B. Jordan
 Licensed under a Creative Commons Attribution-ShareAlike 3.0 Unported License. (http://creativecommons.org/licenses/by-sa/3.0/)
 http://matthewbjordan.me/colors
 */
 var Colors = {
-    render: function (map, type) { // Internal Function
+    render: function(map, type) { // Internal Function
         var rtn = [],
             k;
         if (typeof map != 'object') {
@@ -27,13 +27,19 @@ var Colors = {
         rtn.a = map;
         return rtn;
     },
-    rgb2hex: function (r, g, b) {
-        r = (r < 10 ? '0' : '') + r.toString(16);
-        g = (g !== undefined) ? (g < 10 ? '0' : '') + g.toString(16) : r;
-        b = (b !== undefined) ? (b < 10 ? '0' : '') + b.toString(16) : r;
-        return '#' + r + g + b;
+    rgb2hex: function(r, g, b) {
+        if (typeof g == 'boolean' && g === true) {
+            var hex = r.toString(16);
+            if (hex.length == 1) hex = '0' + hex;
+            return hex;
+        } else {
+            r = (r < 10 ? '0' : '') + r.toString(16);
+            g = (g !== undefined) ? (g < 10 ? '0' : '') + g.toString(16) : r;
+            b = (b !== undefined) ? (b < 10 ? '0' : '') + b.toString(16) : r;
+            return '#' + r + g + b;
+        }
     },
-    hex2rgb: function (h) {
+    hex2rgb: function(h) {
         h = h.replace('#', '');
         if (h.length === 6) {
             return this.render([parseInt(h.substr(0, 2), 16), parseInt(h.substr(2, 2), 16), parseInt(h.substr(4, 2), 16)], 'rgb');
@@ -41,7 +47,7 @@ var Colors = {
             return parseInt(h, 16);
         }
     },
-    hex2hsv: function (h) {
+    hex2hsv: function(h) {
         h = (h.charAt(0) == "#") ? h.substring(1, 7) : h;
         var r = parseInt(h.substring(0, 2), 16) / 255,
             g = parseInt(h.substring(2, 4), 16) / 255,
@@ -79,7 +85,7 @@ var Colors = {
         }
         return this.render([Math.round(result.h * 360), Math.round(result.s * 100), Math.round(result.v * 100)], 'hsv');
     },
-    hsv2rgb: function (HSV, S, V) {
+    hsv2rgb: function(HSV, S, V) {
         if (typeof HSV == 'object') {
             var h = HSV[0],
                 s = HSV[1],
@@ -119,7 +125,7 @@ var Colors = {
         }
         return this.render([Math.min(255, Math.floor(rgb[0] * 256)), Math.min(255, Math.floor(rgb[1] * 256)), Math.min(255, Math.floor(rgb[2] * 256))], 'rgb');
     },
-    rgb2hsl: function (RGB, G, B) {
+    rgb2hsl: function(RGB, G, B) {
         if (typeof RGB == 'object') {
             var r = RGB[0],
                 g = RGB[1],
@@ -153,7 +159,7 @@ var Colors = {
         }
         return this.render([Math.floor(h * 360), Math.floor(s * 100), Math.floor(l * 100)], 'hsl');
     },
-    hsv2hsl: function (HSV, S, V) {
+    hsv2hsl: function(HSV, S, V) {
         if (typeof HSV == 'object') {
             var h = HSV[0],
                 s = HSV[1],
@@ -194,7 +200,7 @@ var Colors = {
         }
         return this.render([Math.floor(H), Math.floor(S), Math.floor(V)], 'hsl');
     },
-    name2hex: function (n) {
+    name2hex: function(n) {
         n = n.toLowerCase();
         var nar = {
             'aliceblue': '#f0f8ff',
@@ -352,7 +358,7 @@ var Colors = {
             return r;
         }
     },
-    name2rgb: function (n) {
+    name2rgb: function(n) {
         var v = this.name2hex(n),
             t = /^[a-fA-F0-9#]{7}$/,
             icn = 'Invalid Color Name';
@@ -362,7 +368,7 @@ var Colors = {
             return this.render([icn, icn, icn], 'rgb');
         }
     },
-    name2hsv: function (n) {
+    name2hsv: function(n) {
         var v = this.name2hex(n),
             t = /^[a-fA-F0-9#]{7}$/,
             icn = 'Invalid Color Name';
@@ -372,20 +378,20 @@ var Colors = {
             return this.render([icn, icn, icn], 'hsv');
         }
     },
-    complement: function (c, g, b) {
+    complement: function(c, g, b) {
         var cval;
-        if (typeof c == 'string' && /(#([A-Fa-f0-9]){3}(([A-Fa-f0-9]){3})?)/.test(c)) {
+        if (typeof c == 'string' && /(#?([A-Fa-f0-9]){3}(([A-Fa-f0-9]){3})?)/.test(c)) {
             c = c.replace('#', '');
             var rtn = '#';
             if (c.length === 6) {
-                rtn += this.rgb2hex(255 - this.hex2rgb(c.substr(0, 2)));
-                rtn += this.rgb2hex(255 - this.hex2rgb(c.substr(2, 2)));
-                rtn += this.rgb2hex(255 - this.hex2rgb(c.substr(4, 2)));
+                rtn += this.rgb2hex(255 - this.hex2rgb(c.substr(0, 2)), true);
+                rtn += this.rgb2hex(255 - this.hex2rgb(c.substr(2, 2)), true);
+                rtn += this.rgb2hex(255 - this.hex2rgb(c.substr(4, 2)), true);
             }
             if (c.length === 3) {
-                rtn += this.rgb2hex(255 - this.hex2rgb(c.substr(0, 1) + c.substr(0, 1)));
-                rtn += this.rgb2hex(255 - this.hex2rgb(c.substr(1, 1) + c.substr(1, 1)));
-                rtn += this.rgb2hex(255 - this.hex2rgb(c.substr(2, 1) + c.substr(2, 1)));
+                rtn += this.rgb2hex(255 - this.hex2rgb(c.substr(0, 1) + c.substr(0, 1)), true);
+                rtn += this.rgb2hex(255 - this.hex2rgb(c.substr(1, 1) + c.substr(1, 1)), true);
+                rtn += this.rgb2hex(255 - this.hex2rgb(c.substr(2, 1) + c.substr(2, 1)), true);
             }
             return rtn;
         }
@@ -397,7 +403,7 @@ var Colors = {
         }
         return this.render(cval, 'rgb');
     },
-    rand: function (mode) {
+    rand: function(mode) {
         if (mode == 'hex' || mode == undefined) {
             var chars = '0123456789abcdef',
                 string_length = 6,
