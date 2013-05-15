@@ -1,5 +1,165 @@
-<!DOCTYPE html> <html> <head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta name="description" content="JavaScript color library for easy manipulation of colors, their values and their types."> <title>Colors.js - JavaScript Color Library</title> <link href="http://cds.matthewbjordan.me/favicon.ico" rel="shortcut icon"><style>body{font-family:Arial,Helvetica,sans-serif;font-size:16px;color:#333;background:#f5f5f5 url(http://cds.matthewbjordan.me/assets/images/body-bg.jpg) repeat;overflow-y:scroll}p{margin:13px 0;line-height:1.2em}a{color:#069;text-decoration:none}.title-box{margin:0 auto;padding:8px;min-width:750px;max-width:1100px;width:expression(document.body.clientWidth < 750? "750px":document.body.clientWidth>1100? "1100px":"auto")}h1,h2{color:#09c;color:rgba(0,153,204,0.8);text-shadow:1px 4px 6px #f5f5f5,0 0 0 #333,1px 4px 6px #f5f5f5}.wf-loading h1,.wf-loading h2{font-family:Arial,Helvetica,sans-serif}.wf-active h1,.wf-active h2,.wf-inactive{font-family:Kaushan Script,Arial,Helvetica,sans-serif}section{margin:0 auto;background-color:#fff;padding:8px;min-width:750px;max-width:1100px;width:expression(document.body.clientWidth < 750? "750px":document.body.clientWidth>1100? "1100px":"auto");border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;behavior:url(/PIE.htc)}#filebox{text-align:right;float:right;font-size:small;margin:0 0 0 8px;background-color:#eefbff;border:1px solid #bef;padding:3px 8px;border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;behavior:url(/pie.htc)}#filebox p{padding:0;margin:3px 0}footer{margin:0 auto;color:#999;text-align:right;margin-top:75px;font-size:x-small;padding:8px;min-width:750px;max-width:1100px;width:expression(document.body.clientWidth < 750? "750px":document.body.clientWidth>1100? "1100px":"auto")}li{margin:3px 35px}.cboxes{padding:95px 0;width:225px;text-align:center;border:1px solid #666;background-color:#f0f0f0;margin:15px}#newcolor{width:250px;padding:3px;font-size:1.1em;vertical-align:baseline}.fblock{border:1px dashed #999;padding:5px;margin:25px 0}.fblock pre{background-color:#f5f5f5;display:block;padding:5px}.ftitle{font-weight:bold;font-family:"Courier New",Courier,monospace}.fdat td{padding:5px 16px}</style><script>WebFontConfig={google:{families:["Kaushan Script"]}};(function(){var a=document.createElement("script");a.src="http://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js";a.type="text/javascript";a.async="true";var b=document.getElementsByTagName("script")[0];b.parentNode.insertBefore(a,b)})();</script> <script>(function(){var a=document.createElement("script"),b=document.getElementsByTagName("script")[0];a.type="text/javascript";a.async=!0;a.src="http://api.flattr.com/js/0.6/load.js?mode=auto";b.parentNode.insertBefore(a,b)})();</script><script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script> <script src="colors.min.js"></script> </head>
-<body> <div class="title-box"> <h1 style="font-size:3.2em;margin:12px 0">Colors.js - JavaScript Color Library</h1> <h2 style="font-size:2em;font-weight:normal;margin:10px 0">Color manipulation made easy peasy</h2> </div> <section> <div id="filebox"> <p> Current Version: <strong>1.1</strong></p> <p> <a target="_blank" href="https://github.com/matthewbj/Colors">View Source</a> or <a href="https://github.com/downloads/matthewbj/Colors/Colors.1.1.zip">Download Zip</a> </p> <p> Minified: 6.46KB (2.57KB gzipped)</p> </div> <p> Colors aims to be an easy to use color manipulation library that is lightweight and very functional. Check out the <a href="#todo" class="scroll">to do list</a> to see what's in store for the future.. </p> <p style="clear:both">Colors can do the following:</p> <ul> <li> <a href="#rgb2hex" class="scroll">Change RGB to a Hexadecimal color.</a> </li> <li> <a href="#hex2rgb" class="scroll">Change Hexadecimal to an RGB color.</a> </li> <li> <a href="#hex2hsv" class="scroll">Change Hexadecimal to an HSV color.</a> </li> <li> <a href="#complement" class="scroll">Get the complementary value of a Hexadecimal color.</a> </li> <li> <a href="#complement-rgb" class="scroll">Get the complementary value of an RGB color.</a> </li> <li> <a href="#name2hex" class="scroll">Named color to an RGB object, HSV object or Hexadecimal string. </a> </li> <li> <a href="#rand" class="scroll">Get a random color in RGB or Hexadecimal.</a> </li> </ul> <p> <a href="http://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="license"> <img src="http://i.creativecommons.org/l/by-sa/3.0/88x31.png" width="88" height="31" style="border:0;margin-top:25px" alt="License"></a> &nbsp; <a class="FlattrButton" style="display:none;" rev="flattr;button:compact;" href="http://matthewbj.github.com/Colors/"></a><noscript><a href="http://flattr.com/thing/1036001/Colors-js-JavaScript-Color-Library" target="_blank"><img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0" /></a></noscript></p> <br> <p>Example of complementary hexadecimal color.</p> <table style="text-align:center"> <tr> <td><strong>Input Color</strong> <div class="cboxes" id="color"></div></td> <td><strong>Complementary Color</strong> <div class="cboxes" id="compr"></div></td> </tr> </table> <br> <h3>Try it!</h3> <p class="a_button"> <span style="font-size:1.1em">Color:</span> <input type="text" name="newcolor" id="newcolor" data-placeholder="#77ff33"> <a href="#" id="cchange">Complement</a> </p> <br> <p>How to use!</p>
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="description" content="JavaScript color library for easy manipulation of colors, their values and their types.">
+<title>Colors.js - JavaScript Color Library</title>
+<link href="http://cds.matthewbjordan.me/favicon.ico" rel="shortcut icon">
+<style>
+body {
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:16px;
+	color:#333;
+	background:#f5f5f5 url(http://cds.matthewbjordan.me/assets/images/body-bg.jpg) repeat;
+	overflow-y:scroll
+}
+p {
+	margin:13px 0;
+	line-height:1.2em
+}
+a {
+	color:#069;
+	text-decoration:none
+}
+.title-box {
+	margin:0 auto;
+	padding:8px;
+	min-width:750px;
+	max-width:1100px;
+width:expression(document.body.clientWidth < 750? "750px":document.body.clientWidth>1100? "1100px":"auto")
+}
+h1, h2 {
+	color:#09c;
+	color:rgba(0,153,204,0.8);
+	text-shadow:1px 4px 6px #f5f5f5, 0 0 0 #333, 1px 4px 6px #f5f5f5
+}
+.wf-loading h1, .wf-loading h2 {
+	font-family:Arial, Helvetica, sans-serif
+}
+.wf-active h1, .wf-active h2, .wf-inactive {
+	font-family:Kaushan Script, Arial, Helvetica, sans-serif
+}
+section {
+	margin:0 auto;
+	background-color:#fff;
+	padding:8px;
+	min-width:750px;
+	max-width:1100px;
+width:expression(document.body.clientWidth < 750? "750px":document.body.clientWidth>1100? "1100px":"auto");
+	border-radius:5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	behavior:url(/PIE.htc)
+}
+#filebox {
+	text-align:right;
+	float:right;
+	font-size:small;
+	margin:0 0 0 8px;
+	background-color:#eefbff;
+	border:1px solid #bef;
+	padding:3px 8px;
+	border-radius:5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	behavior:url(/pie.htc)
+}
+#filebox p {
+	padding:0;
+	margin:3px 0
+}
+footer {
+	margin:0 auto;
+	color:#999;
+	text-align:right;
+	margin-top:75px;
+	font-size:x-small;
+	padding:8px;
+	min-width:750px;
+	max-width:1100px;
+width:expression(document.body.clientWidth < 750? "750px":document.body.clientWidth>1100? "1100px":"auto")
+}
+li {
+	margin:3px 35px
+}
+.cboxes {
+	padding:95px 0;
+	width:225px;
+	text-align:center;
+	border:1px solid #666;
+	background-color:#f0f0f0;
+	margin:15px
+}
+#newcolor {
+	width:250px;
+	padding:3px;
+	font-size:1.1em;
+	vertical-align:baseline
+}
+.fblock {
+	border:1px dashed #999;
+	padding:5px;
+	margin:25px 0
+}
+.fblock pre {
+	background-color:#f5f5f5;
+	display:block;
+	padding:5px
+}
+.ftitle {
+	font-weight:bold;
+	font-family:"Courier New", Courier, monospace
+}
+.fdat td {
+	padding:5px 16px
+}
+</style>
+<script>WebFontConfig={google:{families:["Kaushan Script"]}};(function(){var a=document.createElement("script");a.src="http://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js";a.type="text/javascript";a.async="true";var b=document.getElementsByTagName("script")[0];b.parentNode.insertBefore(a,b)})();</script><script>(function(){var a=document.createElement("script"),b=document.getElementsByTagName("script")[0];a.type="text/javascript";a.async=!0;a.src="http://api.flattr.com/js/0.6/load.js?mode=auto";b.parentNode.insertBefore(a,b)})();</script><script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script><script src="colors.min.js"></script>
+</head>
+<body>
+<div class="title-box">
+  <h1 style="font-size:3.2em;margin:12px 0">Colors.js - JavaScript Color Library</h1>
+  <h2 style="font-size:2em;font-weight:normal;margin:10px 0">Color manipulation made easy peasy</h2>
+</div>
+<section>
+  <div id="filebox">
+    <p> Current Version: <strong>1.2 RC1</strong></p>
+    <p> <a href="https://github.com/matthewbj/Colors">View Source</a> or <a href="https://github.com/downloads/matthewbj/Colors/Colors.1.1.zip">Download Zip</a> </p>
+    <p> Minified: 6.46KB (2.57KB gzipped)</p>
+  </div>
+  <p> Colors aims to be an easy to use color manipulation library that is lightweight and very functional. Check out the <a href="#todo" class="scroll">to do list</a> to see what's in store for the future.. </p>
+  <p style="clear:both">Colors can do the following:</p>
+  <ul>
+    <li> <a href="#rgb2hex" class="scroll">Change RGB to a Hexadecimal color.</a> </li>
+    <li> <a href="#hex2rgb" class="scroll">Change Hexadecimal to an RGB color.</a> </li>
+    <li> <a href="#hex2hsv" class="scroll">Change Hexadecimal to an HSV color.</a> </li>
+    <li> <a href="#complement" class="scroll">Get the complementary value of a Hexadecimal color.</a> </li>
+    <li> <a href="#complement-rgb" class="scroll">Get the complementary value of an RGB color.</a> </li>
+    <li> <a href="#name2hex" class="scroll">Named color to an RGB object, HSV object or Hexadecimal string. </a> </li>
+    <li> <a href="#rand" class="scroll">Get a random color in RGB or Hexadecimal.</a> </li>
+  </ul>
+  <p> <a href="http://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="license"> <img src="http://i.creativecommons.org/l/by-sa/3.0/88x31.png" width="88" height="31" style="border:0;margin-top:25px" alt="License"></a> &nbsp; <a class="FlattrButton" style="display:none;" rev="flattr;button:compact;" href="http://matthewbj.github.com/Colors/"></a>
+    <noscript>
+    <a href="http://flattr.com/thing/1036001/Colors-js-JavaScript-Color-Library" target="_blank"><img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0" /></a>
+    </noscript>
+  </p>
+  <br>
+  <p>Example of complementary hexadecimal color.</p>
+  <table style="text-align:center">
+    <tr>
+      <td><strong>Input Color</strong>
+        <div class="cboxes" id="color"></div></td>
+      <td><strong>Complementary Color</strong>
+        <div class="cboxes" id="compr"></div></td>
+    </tr>
+  </table>
+  <br>
+  <h3>Try it!</h3>
+  <p class="a_button"> <span style="font-size:1.1em">Color:</span>
+    <input type="text" name="newcolor" id="newcolor" data-placeholder="#77ff33">
+    <a href="#" id="cchange">Complement</a> </p>
+  <br>
+  <p>How to use!</p>
   <div class="fblock" id="rgb2hex">
     <p class="ftitle">Function: <span style="color:#00C">rgb2hex</span>( <em>[multiple Ints: R,G,B] or [single Int: COLOR]</em> )</p>
     <table class="fdat">
@@ -16,8 +176,7 @@
         <td><strong>Examples:</strong>
           <pre>
 Colors.rgb2hex(153 ,153, 153) // multiple Ints, returns: #999999
-Colors.rgb2hex(153)           // single Int, returns: #999999</pre>
-        </td>
+Colors.rgb2hex(153)           // single Int, returns: #999999</pre></td>
       </tr>
       <tr>
         <td><strong>Changes:</strong><br>
@@ -280,7 +439,7 @@ Colors.rand('rgb').a   // returns: [XXX, XXX, XXX]
 !1}})(jQuery);
 function addTodo(a){$("#todo_data").html(a.data)}function colors(a){var b=Colors.complement(a,"hex");$("#color").css({"background-color":a,color:b}).text(a);$("#compr").css({"background-color":b,color:a}).text(b)}
 $(document).ready(function(){$("#newcolor").placeHolder();colors("#77ff33");$("#cchange").bind("click",function(a){a.preventDefault();a=$("#newcolor").val();/(#([A-Fa-f0-9]){3}(([A-Fa-f0-9]){3})?)/i.test(a)?colors(a):alert("Color must be a valid hexadecimal color.\n\nThe pound symbol is required.")});$("a.scroll").on("click",function(a){a.preventDefault();$("html,body").animate({scrollTop:$(this.hash).offset().top-25},900)});$.ajax({url:"http://matthewbjordan.me/colors-todo-list",cache:!0,dataType:"jsonp",
-jsonp:"callback",jsonpCallback:"addTodo"})});var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-10456811-7"]);_gaq.push(["_trackPageview"]);(function(){var a=document.createElement("script");a.type="text/javascript";a.async=!0;a.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var b=document.getElementsByTagName("script")[0];b.parentNode.insertBefore(a,b)})();</script>
+jsonp:"callback",jsonpCallback:"addTodo"})});var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-10456811-7"]);_gaq.push(["_trackPageview"]);(function(){var a=document.createElement("script");a.type="text/javascript";a.async=!0;a.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var b=document.getElementsByTagName("script")[0];b.parentNode.insertBefore(a,b)})();</script> 
 </section>
 <footer> Created by <a href="http://twitter.com/matthewbjordan">@matthewbjordan</a> </footer>
 </body>
