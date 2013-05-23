@@ -13,7 +13,7 @@ Colors can do the following:
 * Get a random color in RGB or Hexadecimal.
 * Plus a whole lot more... 
 
-For usage instructions, go to http://matthewbj.github.com/Colors/
+For usage instructions, go to http://mbjordan.github.com/Colors/
 
 * * *
 
