@@ -2,6 +2,8 @@
 
 Colors aims to be an easy to use color manipulation library that is lightweight and very functional.
 
+[![endorse](https://api.coderwall.com/matthewbj/endorsecount.png)](https://coderwall.com/matthewbj)
+
 Colors can do the following:
 
 * Change RGB to a Hexadecimal color.
