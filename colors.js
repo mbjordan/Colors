@@ -6,7 +6,7 @@ http://matthewbj.github.com/Colors/
 */
 var Colors = {
     render: function (map, type) { // Internal Function
-        var rtn = [],
+        var rtn = {},
             k;
         if (typeof map != 'object') {
             return;
