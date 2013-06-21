@@ -380,18 +380,18 @@ var Colors = {
         var cval;
         if (typeof c == 'string' && /(#([A-Fa-f0-9]){3}(([A-Fa-f0-9]){3})?)/.test(c)) {
             c = c.replace('#', '');
-            var rtn = '#';
+            var r, g, b;
             if (c.length === 6) {
-                rtn += this.rgb2hex(255 - this.hex2rgb(c.substr(0, 2)));
-                rtn += this.rgb2hex(255 - this.hex2rgb(c.substr(2, 2)));
-                rtn += this.rgb2hex(255 - this.hex2rgb(c.substr(4, 2)));
+                r = 255 - this.hex2rgb(c.substr(0, 2));
+                g = 255 - this.hex2rgb(c.substr(2, 2));
+                b = 255 - this.hex2rgb(c.substr(4, 2));
             }
             if (c.length === 3) {
-                rtn += this.rgb2hex(255 - this.hex2rgb(c.substr(0, 1) + c.substr(0, 1)));
-                rtn += this.rgb2hex(255 - this.hex2rgb(c.substr(1, 1) + c.substr(1, 1)));
-                rtn += this.rgb2hex(255 - this.hex2rgb(c.substr(2, 1) + c.substr(2, 1)));
+                r = 255 - this.hex2rgb(c.substr(0, 1) + c.substr(0, 1));
+                g = 255 - this.hex2rgb(c.substr(1, 1) + c.substr(1, 1));
+                b = 255 - this.hex2rgb(c.substr(2, 1) + c.substr(2, 1));
             }
-            return rtn;
+            return this.rgb2hex(r, g, b);
         }
         if (c != undefined && g != undefined && b != undefined) {
             cval = [(255 - c), (255 - g), (255 - b)];
