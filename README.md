@@ -1,6 +1,6 @@
 # Colors.js
 
-Colors aims to be an easy to use color manipulation library that is lightweight and very functional.
+Colors is an easy to use color manipulation library that is lightweight and very functional.
 
 [![endorse](https://api.coderwall.com/matthewbj/endorsecount.png)](https://coderwall.com/matthewbj)
 
