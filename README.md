@@ -2,6 +2,8 @@
 
 Colors is an easy to use color manipulation library that is lightweight and very functional.
 
+CDN Hosted: //cdnjs.cloudflare.com/ajax/libs/Colors.js/1.2/colors.min.js
+
 [![endorse](https://api.coderwall.com/matthewbj/endorsecount.png)](https://coderwall.com/matthewbj)
 
 Colors can do the following:
