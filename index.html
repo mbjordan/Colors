@@ -123,9 +123,9 @@ li {
 </div>
 <section>
   <div id="filebox">
-    <p> Current Version: <strong>1.2 RC1</strong></p>
-    <p> <a href="https://github.com/mbjordan/Colors">View Source</a> or <a href="https://github.com/downloads/mbjordan/Colors/Colors.1.1.zip">Download Zip</a> </p>
-    <p> Minified: 6.46KB (2.57KB gzipped)</p>
+    <p> Current Version: <strong>1.2.1</strong></p>
+    <p> <a href="https://github.com/mbjordan/Colors">View Source</a> or <a href="https://raw.github.com/mbjordan/Colors/master/colors.min.js">Download Zip</a> </p>
+    <p> Minified: 6.66kb (2.75kb gzipped)</p>
   </div>
   <p> Colors aims to be an easy to use color manipulation library that is lightweight and very functional. Check out the <a href="#todo" class="scroll">to do list</a> to see what's in store for the future.. </p>
   <p style="clear:both">Colors can do the following:</p>
@@ -265,8 +265,8 @@ Colors.hex2hsv('#ffffff').a   // returns: [0, 0, 100] as object.
         <td><strong>Examples:</strong>
           <pre>
 Colors.hsv2rgb(130, 123, 132).R   // returns: X as R in RGB
-Colors.hsv2rg(130, 123, 132).RGB  // returns: X X X as RGB in RGB
-Colors.hsv2rg(130, 123, 132).a    // returns: [X, X, X] as R, G, B as an object in RGB.
+Colors.hsv2rgb(130, 123, 132).RGB  // returns: X X X as RGB in RGB
+Colors.hsv2rgb(130, 123, 132).a    // returns: [X, X, X] as R, G, B as an object in RGB.
 </pre></td>
       </tr>
       <tr>
@@ -392,9 +392,9 @@ Colors.name2rgb('red').a   // returns: [255, 0, 0]
       <tr>
         <td><strong>Examples:</strong>
           <pre>
-Colors.name2hsv('red').R   // returns: 255
-Colors.name2hsv('red').RGB // returns: 255 0 0
-Colors.name2hsv('red').a   // returns: [255, 0, 0]
+Colors.name2hsv('red').H   // returns: 0
+Colors.name2hsv('red').HSV // returns: 0 100 100
+Colors.name2hsv('red').a   // returns: [0, 100, 100]
 </pre></td>
       </tr>
       <tr>
