@@ -1,13 +1,19 @@
 /**
- * @license Colors JS Library v1.2.1
+ * @license Colors JS Library v1.2.2
  * Copyright 2012 Matt Jordan
  * Licensed under Creative Commons Attribution-ShareAlike 3.0 Unported. (http://creativecommons.org/licenses/by-sa/3.0/)
  * http://matthewbj.github.com/Colors/
 */
 (function (window) {
 
-    // Utility functions
+    // ## Utility Functions
+    // Internal
     var Utils = {
+        // ###Render Function
+        //
+        // `render(map, type)`
+        //
+        // `map` is an object of data to render, `type` can be RGB, HSV or HSL
         render: function (map, type) {
             var rtn = {},
                 k;
@@ -31,15 +37,24 @@
             return rtn;
         },
 
+        // ### Padded Hex function
+        //
+        // `paddedHex(number)`
+        //
+        // Creates a hexadecimal number, and adds a zero to the beginning if its only one digit.
         paddedHex: function (n) {
             var hex = ((n < 10) ? '0' : '') + n.toString(16);
             return (hex.length === 1) ? '0' + hex : hex;
         }
     },
 
-        // Colors Lib
+        // ## Colors Public Functions
         Colors = {
-
+            // ## rgb2hex function
+            //
+            // Change 3 RGB Ints or a single Int to a Hexadecimal color.
+            //
+            // `rgb2hex( [multiple Ints: R,G,B] or [single Int: COLOR] )`
             rgb2hex: function (r, g, b) {
                 r = Utils.paddedHex(r);
                 g = (g !== undefined) ? Utils.paddedHex(g) : r;
@@ -47,6 +62,11 @@
                 return '#' + r + g + b;
             },
 
+            // ## hex2rgb function
+            //
+            // Change a hexadecimal color string to an RGB color object.
+            //
+            // `hex2rgb( 'hex color string' ).[obj R, G, B, RGB or a]`
             hex2rgb: function (h) {
                 h = h.replace('#', '');
                 if (h.length === 6) {
@@ -56,6 +76,11 @@
                 }
             },
 
+            // ## hex2hsv function
+            //
+            // Change a hexadecimal color string to an HSV color object.
+            //
+            // `hex2hsv ( 'hex color string' ).[obj H, S, V, HSV or a]`
             hex2hsv: function (h) {
                 h = (h.charAt(0) == "#") ? h.substring(1, 7) : h;
                 var r = parseInt(h.substring(0, 2), 16) / 255,
@@ -69,7 +94,10 @@
                     minVal = Math.min(r, g, b),
                     maxVal = Math.max(r, g, b),
                     delta = (maxVal - minVal),
-                    del_R, del_G, del_B;
+                    del_R,
+                    del_G,
+                    del_B;
+
                 result.v = maxVal;
                 if (delta === 0) {
                     result.h = 0;
@@ -96,9 +124,22 @@
                 return Utils.render([Math.round(result.h * 360), Math.round(result.s * 100), Math.round(result.v * 100)], 'hsv');
             },
 
+            // ## hsv2rgb function
+            //
+            // Change an HSV color object or Int string to an RGB color object.
+            //
+            // `hsv2rgb ([obj H, S, V] or [Int H, S, V]).[obj R, G, B, RGB or a]`
             hsv2rgb: function (HSV, S, V) {
                 var rgb = [],
-                    h, s, v, hi, f, p, q, t;
+                    h,
+                    s,
+                    v,
+                    hi,
+                    f,
+                    p,
+                    q,
+                    t;
+
                 if (typeof HSV == 'object') {
                     h = HSV[0];
                     s = HSV[1];
@@ -137,9 +178,22 @@
                 return Utils.render([Math.min(255, Math.floor(rgb[0] * 256)), Math.min(255, Math.floor(rgb[1] * 256)), Math.min(255, Math.floor(rgb[2] * 256))], 'rgb');
             },
 
+            // ## rgb2hsl function
+            //
+            // Change RGB to an HSL object.
+            //
+            // `rgb2hsl(RGB[, G, B])`
             rgb2hsl: function (RGB, G, B) {
-                var r, g, b, min, max, h, s, l = (max + min) / 2,
+                var r,
+                    g,
+                    b,
+                    min,
+                    max,
+                    h,
+                    s,
+                    l = (max + min) / 2,
                     d;
+
                 if (typeof RGB == 'object') {
                     r = RGB[0];
                     g = RGB[1];
@@ -171,8 +225,26 @@
                 }
                 return Utils.render([Math.floor(h * 360), Math.floor(s * 100), Math.floor(l * 100)], 'hsl');
             },
+
+            // ## hsv2hsl function
+            //
+            // Change HSV to an HSL object
+            //
+            // `hsv2hsl(HSV[, S, V])`
             hsv2hsl: function (HSV, S, V) {
-                var h, s, l, _H, _S, _L, hsv, r1, g1, b1, maxColor, minColor;
+                var h,
+                    s,
+                    l,
+                    _H,
+                    _S,
+                    _L,
+                    hsv,
+                    r1,
+                    g1,
+                    b1,
+                    maxColor,
+                    minColor;
+
                 if (typeof HSV == 'object') {
                     h = HSV[0];
                     s = HSV[1];
@@ -214,6 +286,12 @@
                 }
                 return Utils.render([Math.floor(H), Math.floor(S), Math.floor(V)], 'hsl');
             },
+
+            // ## name2hex function
+            //
+            // Get the hexadecimal value of an HTML color name. Must be one of the 176 HTML color names as defined by the HTML & CSS standards.
+            //
+            // `name2hex ( 'color name' )`
             name2hex: function (n) {
                 n = n.toLowerCase();
                 var nar = {
@@ -373,6 +451,11 @@
                 }
             },
 
+            // ## name2rgb unction
+            //
+            // Get an RGB object value of an HTML named color.
+            //
+            // `name2rgb ( 'color name' )`
             name2rgb: function (n) {
                 var v = this.name2hex(n),
                     t = /^[a-fA-F0-9#]{7}$/,
@@ -384,6 +467,11 @@
                 }
             },
 
+            // ## name2hsv function
+            //
+            // Get an HSV object value of an HTML named color.
+            //
+            // `name2hsv ( 'color name' )`
             name2hsv: function (n) {
                 var v = this.name2hex(n),
                     t = /^[a-fA-F0-9#]{7}$/,
@@ -395,6 +483,12 @@
                 }
             },
 
+            // ## complement function
+            //
+            // Get the complementary value of multiple types of input colors.
+            //
+            // ```complement ( '#ffffff' )
+            // complement ( [obj R, G, B] or R, G, B )```
             complement: function (c, g, b) {
                 var cval, rtn;
                 if (typeof c == 'string' && /(#([A-Fa-f0-9]){3}(([A-Fa-f0-9]){3})?)/.test(c)) {
@@ -422,26 +516,37 @@
                 }
             },
 
+            // ## rand function
+            //
+            // Get a random color in either hexadecimal or RGB color modes.
+            //
+            // `rand ( color mode )`
             rand: function (mode) {
                 if (mode === 'hex' || mode === undefined) {
                     var chars = '0123456789abcdef',
                         string_length = 6,
                         hexStr = '',
-                        rnum, i;
+                        rnum,
+                        R,
+                        G,
+                        B,
+                        i;
+
                     for (i = 0; i < string_length; i++) {
                         rnum = Math.floor(Math.random() * chars.length);
                         hexStr += chars.substring(rnum, rnum + 1);
                     }
                     return '#' + hexStr;
                 } else if (mode == 'rgb') {
-                    R = Math.floor(Math.random() * (0 - 255 + 1) + 255), G = Math.floor(Math.random() * (0 - 255 + 1) + 255), B = Math.floor(Math.random() * (0 - 255 + 1) + 255);
+                    R = Math.floor(Math.random() * (0 - 255 + 1) + 255);
+                    G = Math.floor(Math.random() * (0 - 255 + 1) + 255);
+                    B = Math.floor(Math.random() * (0 - 255 + 1) + 255);
                     return Utils.render([R, G, B], 'rgb');
                 }
             }
         };
 
-    window.Colors = Colors;
+    // Expose the public functions to the windoobject
+    window.Colors = window.$c = Colors;
 
-    // Maybe?
-    //window.Colors = window.$C = Colors;
 }(window));
