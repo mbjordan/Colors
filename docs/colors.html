@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>colors.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>colors.js</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="comment">/**
+ * @license Colors JS Library v1.2.2
+ * Copyright 2012 Matt Jordan
+ * Licensed under Creative Commons Attribution-ShareAlike 3.0 Unported. (http://creativecommons.org/licenses/by-sa/3.0/)
+ * http://matthewbj.github.com/Colors/
+*/</span>
+(<span class="function"><span class="keyword">function</span> <span class="params">(window)</span> {</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h2">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <h2>Utility Functions</h2>
+<p>Internal</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="keyword">var</span> Utils = {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <h3>Render Function</h3>
+<p><code>render(map, type)</code></p>
+<p><code>map</code> is an object of data to render, <code>type</code> can be RGB, HSV or HSL</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        render: <span class="function"><span class="keyword">function</span> <span class="params">(map, type)</span> {</span>
+            <span class="keyword">var</span> rtn = {},
+                k;
+            <span class="keyword">if</span> (<span class="keyword">typeof</span> map != <span class="string">'object'</span>) {
+                <span class="keyword">return</span>;
+            }
+            <span class="keyword">if</span> (type === <span class="string">'rgb'</span>) {
+                k = [<span class="string">'R'</span>, <span class="string">'G'</span>, <span class="string">'B'</span>, <span class="string">'RGB'</span>];
+            }
+            <span class="keyword">if</span> (type === <span class="string">'hsv'</span>) {
+                k = [<span class="string">'H'</span>, <span class="string">'S'</span>, <span class="string">'V'</span>, <span class="string">'HSV'</span>];
+            }
+            <span class="keyword">if</span> (type === <span class="string">'hsl'</span>) {
+                k = [<span class="string">'H'</span>, <span class="string">'S'</span>, <span class="string">'L'</span>, <span class="string">'HSL'</span>];
+            }
+            rtn[k[<span class="number">0</span>]] = map[<span class="number">0</span>];
+            rtn[k[<span class="number">1</span>]] = map[<span class="number">1</span>];
+            rtn[k[<span class="number">2</span>]] = map[<span class="number">2</span>];
+            rtn[k[<span class="number">3</span>]] = map[<span class="number">0</span>] + <span class="string">' '</span> + map[<span class="number">1</span>] + <span class="string">' '</span> + map[<span class="number">2</span>];
+            rtn.a = map;
+            <span class="keyword">return</span> rtn;
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h3">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <h3>Padded Hex function</h3>
+<p><code>paddedHex(number)</code></p>
+<p>Creates a hexadecimal number, and adds a zero to the beginning if its only one digit.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        paddedHex: <span class="function"><span class="keyword">function</span> <span class="params">(n)</span> {</span>
+            <span class="keyword">var</span> hex = ((n &lt; <span class="number">10</span>) ? <span class="string">'0'</span> : <span class="string">''</span>) + n.toString(<span class="number">16</span>);
+            <span class="keyword">return</span> (hex.length === <span class="number">1</span>) ? <span class="string">'0'</span> + hex : hex;
+        }
+    },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h2">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <h2>Colors Public Functions</h2>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        Colors = {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h2">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <h2>rgb2hex function</h2>
+<p>Change 3 RGB Ints or a single Int to a Hexadecimal color.</p>
+<p><code>rgb2hex( [multiple Ints: R,G,B] or [single Int: COLOR] )</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            rgb2hex: <span class="function"><span class="keyword">function</span> <span class="params">(r, g, b)</span> {</span>
+                r = Utils.paddedHex(r);
+                g = (g !== <span class="literal">undefined</span>) ? Utils.paddedHex(g) : r;
+                b = (b !== <span class="literal">undefined</span>) ? Utils.paddedHex(b) : r;
+                <span class="keyword">return</span> <span class="string">'#'</span> + r + g + b;
+            },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h2">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <h2>hex2rgb function</h2>
+<p>Change a hexadecimal color string to an RGB color object.</p>
+<p><code>hex2rgb( &#39;hex color string&#39; ).[obj R, G, B, RGB or a]</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            hex2rgb: <span class="function"><span class="keyword">function</span> <span class="params">(h)</span> {</span>
+                h = h.replace(<span class="string">'#'</span>, <span class="string">''</span>);
+                <span class="keyword">if</span> (h.length === <span class="number">6</span>) {
+                    <span class="keyword">return</span> Utils.render([parseInt(h.substr(<span class="number">0</span>, <span class="number">2</span>), <span class="number">16</span>), parseInt(h.substr(<span class="number">2</span>, <span class="number">2</span>), <span class="number">16</span>), parseInt(h.substr(<span class="number">4</span>, <span class="number">2</span>), <span class="number">16</span>)], <span class="string">'rgb'</span>);
+                } <span class="keyword">else</span> {
+                    <span class="keyword">return</span> parseInt(h, <span class="number">16</span>);
+                }
+            },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h2">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <h2>hex2hsv function</h2>
+<p>Change a hexadecimal color string to an HSV color object.</p>
+<p><code>hex2hsv ( &#39;hex color string&#39; ).[obj H, S, V, HSV or a]</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            hex2hsv: <span class="function"><span class="keyword">function</span> <span class="params">(h)</span> {</span>
+                h = (h.charAt(<span class="number">0</span>) == <span class="string">"#"</span>) ? h.substring(<span class="number">1</span>, <span class="number">7</span>) : h;
+                <span class="keyword">var</span> r = parseInt(h.substring(<span class="number">0</span>, <span class="number">2</span>), <span class="number">16</span>) / <span class="number">255</span>,
+                    g = parseInt(h.substring(<span class="number">2</span>, <span class="number">4</span>), <span class="number">16</span>) / <span class="number">255</span>,
+                    b = parseInt(h.substring(<span class="number">4</span>, <span class="number">6</span>), <span class="number">16</span>) / <span class="number">255</span>,
+                    result = {
+                        <span class="string">'h'</span>: <span class="number">0</span>,
+                        <span class="string">'s'</span>: <span class="number">0</span>,
+                        <span class="string">'v'</span>: <span class="number">0</span>
+                    },
+                    minVal = Math.min(r, g, b),
+                    maxVal = Math.max(r, g, b),
+                    delta = (maxVal - minVal),
+                    del_R,
+                    del_G,
+                    del_B;
+
+                result.v = maxVal;
+                <span class="keyword">if</span> (delta === <span class="number">0</span>) {
+                    result.h = <span class="number">0</span>;
+                    result.s = <span class="number">0</span>;
+                } <span class="keyword">else</span> {
+                    result.s = delta / maxVal;
+                    del_R = (((maxVal - r) / <span class="number">6</span>) + (delta / <span class="number">2</span>)) / delta;
+                    del_G = (((maxVal - g) / <span class="number">6</span>) + (delta / <span class="number">2</span>)) / delta;
+                    del_B = (((maxVal - b) / <span class="number">6</span>) + (delta / <span class="number">2</span>)) / delta;
+                    <span class="keyword">if</span> (r == maxVal) {
+                        result.h = del_B - del_G;
+                    } <span class="keyword">else</span> <span class="keyword">if</span> (g == maxVal) {
+                        result.h = (<span class="number">1</span> / <span class="number">3</span>) + del_R - del_B;
+                    } <span class="keyword">else</span> <span class="keyword">if</span> (b == maxVal) {
+                        result.h = (<span class="number">2</span> / <span class="number">3</span>) + del_G - del_R;
+                    }
+                    <span class="keyword">if</span> (result.h &lt; <span class="number">0</span>) {
+                        result.h += <span class="number">1</span>;
+                    }
+                    <span class="keyword">if</span> (result.h &gt; <span class="number">1</span>) {
+                        result.h -= <span class="number">1</span>;
+                    }
+                }
+                <span class="keyword">return</span> Utils.render([Math.round(result.h * <span class="number">360</span>), Math.round(result.s * <span class="number">100</span>), Math.round(result.v * <span class="number">100</span>)], <span class="string">'hsv'</span>);
+            },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h2">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <h2>hsv2rgb function</h2>
+<p>Change an HSV color object or Int string to an RGB color object.</p>
+<p><code>hsv2rgb ([obj H, S, V] or [Int H, S, V]).[obj R, G, B, RGB or a]</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            hsv2rgb: <span class="function"><span class="keyword">function</span> <span class="params">(HSV, S, V)</span> {</span>
+                <span class="keyword">var</span> rgb = [],
+                    h,
+                    s,
+                    v,
+                    hi,
+                    f,
+                    p,
+                    q,
+                    t;
+
+                <span class="keyword">if</span> (<span class="keyword">typeof</span> HSV == <span class="string">'object'</span>) {
+                    h = HSV[<span class="number">0</span>];
+                    s = HSV[<span class="number">1</span>];
+                    v = HSV[<span class="number">2</span>];
+                } <span class="keyword">else</span> {
+                    h = HSV;
+                    s = S;
+                    v = V;
+                }
+                s = s / <span class="number">100</span>;
+                v = v / <span class="number">100</span>;
+                hi = Math.floor((h / <span class="number">60</span>) % <span class="number">6</span>);
+                f = (h / <span class="number">60</span>) - hi;
+                p = v * (<span class="number">1</span> - s);
+                q = v * (<span class="number">1</span> - f * s);
+                t = v * (<span class="number">1</span> - (<span class="number">1</span> - f) * s);
+                <span class="keyword">switch</span> (hi) {
+                <span class="keyword">case</span> <span class="number">0</span>:
+                    rgb = [v, t, p];
+                    <span class="keyword">break</span>;
+                <span class="keyword">case</span> <span class="number">1</span>:
+                    rgb = [q, v, p];
+                    <span class="keyword">break</span>;
+                <span class="keyword">case</span> <span class="number">2</span>:
+                    rgb = [p, v, t];
+                    <span class="keyword">break</span>;
+                <span class="keyword">case</span> <span class="number">3</span>:
+                    rgb = [p, q, v];
+                    <span class="keyword">break</span>;
+                <span class="keyword">case</span> <span class="number">4</span>:
+                    rgb = [t, p, v];
+                    <span class="keyword">break</span>;
+                <span class="keyword">case</span> <span class="number">5</span>:
+                    rgb = [v, p, q];
+                }
+                <span class="keyword">return</span> Utils.render([Math.min(<span class="number">255</span>, Math.floor(rgb[<span class="number">0</span>] * <span class="number">256</span>)), Math.min(<span class="number">255</span>, Math.floor(rgb[<span class="number">1</span>] * <span class="number">256</span>)), Math.min(<span class="number">255</span>, Math.floor(rgb[<span class="number">2</span>] * <span class="number">256</span>))], <span class="string">'rgb'</span>);
+            },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h2">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <h2>rgb2hsl function</h2>
+<p>Change RGB to an HSL object.</p>
+<p><code>rgb2hsl(RGB[, G, B])</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            rgb2hsl: <span class="function"><span class="keyword">function</span> <span class="params">(RGB, G, B)</span> {</span>
+                <span class="keyword">var</span> r,
+                    g,
+                    b,
+                    min,
+                    max,
+                    h,
+                    s,
+                    l = (max + min) / <span class="number">2</span>,
+                    d;
+
+                <span class="keyword">if</span> (<span class="keyword">typeof</span> RGB == <span class="string">'object'</span>) {
+                    r = RGB[<span class="number">0</span>];
+                    g = RGB[<span class="number">1</span>];
+                    b = RGB[<span class="number">2</span>];
+                } <span class="keyword">else</span> {
+                    r = RGB;
+                    g = G;
+                    b = B;
+                }
+                r /= <span class="number">255</span>, g /= <span class="number">255</span>, b /= <span class="number">255</span>;
+                max = Math.max(r, g, b), min = Math.min(r, g, b);
+
+                <span class="keyword">if</span> (max == min) {
+                    h = s = <span class="number">0</span>;
+                } <span class="keyword">else</span> {
+                    d = max - min;
+                    s = l &gt; <span class="number">0.5</span> ? d / (<span class="number">2</span> - max - min) : d / (max + min);
+                    <span class="keyword">switch</span> (max) {
+                    <span class="keyword">case</span> r:
+                        h = (g - b) / d + (g &lt; b ? <span class="number">6</span> : <span class="number">0</span>);
+                        <span class="keyword">break</span>;
+                    <span class="keyword">case</span> g:
+                        h = (b - r) / d + <span class="number">2</span>;
+                        <span class="keyword">break</span>;
+                    <span class="keyword">case</span> b:
+                        h = (r - g) / d + <span class="number">4</span>;
+                    }
+                    h /= <span class="number">6</span>;
+                }
+                <span class="keyword">return</span> Utils.render([Math.floor(h * <span class="number">360</span>), Math.floor(s * <span class="number">100</span>), Math.floor(l * <span class="number">100</span>)], <span class="string">'hsl'</span>);
+            },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-11">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h2">
+                <a class="pilcrow" href="#section-11">&#182;</a>
+              </div>
+              <h2>hsv2hsl function</h2>
+<p>Change HSV to an HSL object</p>
+<p><code>hsv2hsl(HSV[, S, V])</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            hsv2hsl: <span class="function"><span class="keyword">function</span> <span class="params">(HSV, S, V)</span> {</span>
+                <span class="keyword">var</span> h,
+                    s,
+                    l,
+                    _H,
+                    _S,
+                    _L,
+                    hsv,
+                    r1,
+                    g1,
+                    b1,
+                    maxColor,
+                    minColor;
+
+                <span class="keyword">if</span> (<span class="keyword">typeof</span> HSV == <span class="string">'object'</span>) {
+                    h = HSV[<span class="number">0</span>];
+                    s = HSV[<span class="number">1</span>];
+                    l = HSV[<span class="number">2</span>];
+                } <span class="keyword">else</span> {
+                    h = HSV;
+                    s = S;
+                    l = V;
+                }
+
+                hsv = <span class="keyword">this</span>.hsv2rgb(h, s, l);
+                r1 = hsv.R / <span class="number">255</span>;
+                g1 = hsv.G / <span class="number">255</span>;
+                b1 = hsv.B / <span class="number">255</span>;
+                maxColor = Math.max(r1, g1, b1);
+                minColor = Math.min(r1, g1, b1);
+                _L = (maxColor + minColor) / <span class="number">2</span>;
+                _S = <span class="number">0</span>;
+                _H = <span class="number">0</span>;
+                <span class="keyword">if</span> (maxColor != minColor) {
+                    <span class="keyword">if</span> (L &lt; <span class="number">0.5</span>) {
+                        S = (maxColor - minColor) / (maxColor + minColor);
+                    } <span class="keyword">else</span> {
+                        S = (maxColor - minColor) / (<span class="number">2.0</span> - maxColor - minColor);
+                    }
+                    <span class="keyword">if</span> (r1 == maxColor) {
+                        H = (g1 - b1) / (maxColor - minColor);
+                    } <span class="keyword">else</span> <span class="keyword">if</span> (g1 == maxColor) {
+                        H = <span class="number">2.0</span> + (b1 - r1) / (maxColor - minColor);
+                    } <span class="keyword">else</span> {
+                        H = <span class="number">4.0</span> + (r1 - g1) / (maxColor - minColor);
+                    }
+                }
+                _L = _L * <span class="number">100</span>;
+                _S = _S * <span class="number">100</span>;
+                _H = _H * <span class="number">60</span>;
+                <span class="keyword">if</span> (_H &lt; <span class="number">0</span>) {
+                    _H += <span class="number">360</span>;
+                }
+                <span class="keyword">return</span> Utils.render([Math.floor(H), Math.floor(S), Math.floor(V)], <span class="string">'hsl'</span>);
+            },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-12">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h2">
+                <a class="pilcrow" href="#section-12">&#182;</a>
+              </div>
+              <h2>name2hex function</h2>
+<p>Get the hexadecimal value of an HTML color name. Must be one of the 176 HTML color names as defined by the HTML &amp; CSS standards.</p>
+<p><code>name2hex ( &#39;color name&#39; )</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            name2hex: <span class="function"><span class="keyword">function</span> <span class="params">(n)</span> {</span>
+                n = n.toLowerCase();
+                <span class="keyword">var</span> nar = {
+                    <span class="string">'aliceblue'</span>: <span class="string">'#f0f8ff'</span>,
+                    <span class="string">'antiquewhite'</span>: <span class="string">'#faebd7'</span>,
+                    <span class="string">'aqua'</span>: <span class="string">'#00ffff'</span>,
+                    <span class="string">'aquamarine'</span>: <span class="string">'#7fffd4'</span>,
+                    <span class="string">'azure'</span>: <span class="string">'#f0ffff'</span>,
+                    <span class="string">'beige'</span>: <span class="string">'#f5f5dc'</span>,
+                    <span class="string">'bisque'</span>: <span class="string">'#ffe4c4'</span>,
+                    <span class="string">'black'</span>: <span class="string">'#000000'</span>,
+                    <span class="string">'blanchedalmond'</span>: <span class="string">'#ffebcd'</span>,
+                    <span class="string">'blue'</span>: <span class="string">'#0000ff'</span>,
+                    <span class="string">'blueviolet'</span>: <span class="string">'#8a2be2'</span>,
+                    <span class="string">'brown'</span>: <span class="string">'#a52a2a'</span>,
+                    <span class="string">'burlywood'</span>: <span class="string">'#deb887'</span>,
+                    <span class="string">'cadetblue'</span>: <span class="string">'#5f9ea0'</span>,
+                    <span class="string">'chartreuse'</span>: <span class="string">'#7fff00'</span>,
+                    <span class="string">'chocolate'</span>: <span class="string">'#d2691e'</span>,
+                    <span class="string">'coral'</span>: <span class="string">'#ff7f50'</span>,
+                    <span class="string">'cornflowerblue'</span>: <span class="string">'#6495ed'</span>,
+                    <span class="string">'cornsilk'</span>: <span class="string">'#fff8dc'</span>,
+                    <span class="string">'crimson'</span>: <span class="string">'#dc143c'</span>,
+                    <span class="string">'cyan'</span>: <span class="string">'#00ffff'</span>,
+                    <span class="string">'darkblue'</span>: <span class="string">'#00008b'</span>,
+                    <span class="string">'darkcyan'</span>: <span class="string">'#008b8b'</span>,
+                    <span class="string">'darkgoldenrod'</span>: <span class="string">'#b8860b'</span>,
+                    <span class="string">'darkgray'</span>: <span class="string">'#a9a9a9'</span>,
+                    <span class="string">'darkgrey'</span>: <span class="string">'#a9a9a9'</span>,
+                    <span class="string">'darkgreen'</span>: <span class="string">'#006400'</span>,
+                    <span class="string">'darkkhaki'</span>: <span class="string">'#bdb76b'</span>,
+                    <span class="string">'darkmagenta'</span>: <span class="string">'#8b008b'</span>,
+                    <span class="string">'darkolivegreen'</span>: <span class="string">'#556b2f'</span>,
+                    <span class="string">'darkorange'</span>: <span class="string">'#ff8c00'</span>,
+                    <span class="string">'darkorchid'</span>: <span class="string">'#9932cc'</span>,
+                    <span class="string">'darkred'</span>: <span class="string">'#8b0000'</span>,
+                    <span class="string">'darksalmon'</span>: <span class="string">'#e9967a'</span>,
+                    <span class="string">'darkseagreen'</span>: <span class="string">'#8fbc8f'</span>,
+                    <span class="string">'darkslateblue'</span>: <span class="string">'#483d8b'</span>,
+                    <span class="string">'darkslategray'</span>: <span class="string">'#2f4f4f'</span>,
+                    <span class="string">'darkslategrey'</span>: <span class="string">'#2f4f4f'</span>,
+                    <span class="string">'darkturquoise'</span>: <span class="string">'#00ced1'</span>,
+                    <span class="string">'darkviolet'</span>: <span class="string">'#9400d3'</span>,
+                    <span class="string">'deeppink'</span>: <span class="string">'#ff1493'</span>,
+                    <span class="string">'deepskyblue'</span>: <span class="string">'#00bfff'</span>,
+                    <span class="string">'dimgray'</span>: <span class="string">'#696969'</span>,
+                    <span class="string">'dimgrey'</span>: <span class="string">'#696969'</span>,
+                    <span class="string">'dodgerblue'</span>: <span class="string">'#1e90ff'</span>,
+                    <span class="string">'firebrick'</span>: <span class="string">'#b22222'</span>,
+                    <span class="string">'floralwhite'</span>: <span class="string">'#fffaf0'</span>,
+                    <span class="string">'forestgreen'</span>: <span class="string">'#228b22'</span>,
+                    <span class="string">'fuchsia'</span>: <span class="string">'#ff00ff'</span>,
+                    <span class="string">'gainsboro'</span>: <span class="string">'#dcdcdc'</span>,
+                    <span class="string">'ghostwhite'</span>: <span class="string">'#f8f8ff'</span>,
+                    <span class="string">'gold'</span>: <span class="string">'#ffd700'</span>,
+                    <span class="string">'goldenrod'</span>: <span class="string">'#daa520'</span>,
+                    <span class="string">'gray'</span>: <span class="string">'#808080'</span>,
+                    <span class="string">'grey'</span>: <span class="string">'#808080'</span>,
+                    <span class="string">'green'</span>: <span class="string">'#008000'</span>,
+                    <span class="string">'greenyellow'</span>: <span class="string">'#adff2f'</span>,
+                    <span class="string">'honeydew'</span>: <span class="string">'#f0fff0'</span>,
+                    <span class="string">'hotpink'</span>: <span class="string">'#ff69b4'</span>,
+                    <span class="string">'indianred'</span>: <span class="string">'#cd5c5c'</span>,
+                    <span class="string">'indigo'</span>: <span class="string">'#4b0082'</span>,
+                    <span class="string">'ivory'</span>: <span class="string">'#fffff0'</span>,
+                    <span class="string">'khaki'</span>: <span class="string">'#f0e68c'</span>,
+                    <span class="string">'lavender'</span>: <span class="string">'#e6e6fa'</span>,
+                    <span class="string">'lavenderblush'</span>: <span class="string">'#fff0f5'</span>,
+                    <span class="string">'lawngreen'</span>: <span class="string">'#7cfc00'</span>,
+                    <span class="string">'lemonchiffon'</span>: <span class="string">'#fffacd'</span>,
+                    <span class="string">'lightblue'</span>: <span class="string">'#add8e6'</span>,
+                    <span class="string">'lightcoral'</span>: <span class="string">'#f08080'</span>,
+                    <span class="string">'lightcyan'</span>: <span class="string">'#e0ffff'</span>,
+                    <span class="string">'lightgoldenrodyellow'</span>: <span class="string">'#fafad2'</span>,
+                    <span class="string">'lightgray'</span>: <span class="string">'#d3d3d3'</span>,
+                    <span class="string">'lightgrey'</span>: <span class="string">'#d3d3d3'</span>,
+                    <span class="string">'lightgreen'</span>: <span class="string">'#90ee90'</span>,
+                    <span class="string">'lightpink'</span>: <span class="string">'#ffb6c1'</span>,
+                    <span class="string">'lightsalmon'</span>: <span class="string">'#ffa07a'</span>,
+                    <span class="string">'lightseagreen'</span>: <span class="string">'#20b2aa'</span>,
+                    <span class="string">'lightskyblue'</span>: <span class="string">'#87cefa'</span>,
+                    <span class="string">'lightslategray'</span>: <span class="string">'#778899'</span>,
+                    <span class="string">'lightslategrey'</span>: <span class="string">'#778899'</span>,
+                    <span class="string">'lightsteelblue'</span>: <span class="string">'#b0c4de'</span>,
+                    <span class="string">'lightyellow'</span>: <span class="string">'#ffffe0'</span>,
+                    <span class="string">'lime'</span>: <span class="string">'#00ff00'</span>,
+                    <span class="string">'limegreen'</span>: <span class="string">'#32cd32'</span>,
+                    <span class="string">'linen'</span>: <span class="string">'#faf0e6'</span>,
+                    <span class="string">'magenta'</span>: <span class="string">'#ff00ff'</span>,
+                    <span class="string">'maroon'</span>: <span class="string">'#800000'</span>,
+                    <span class="string">'mediumaquamarine'</span>: <span class="string">'#66cdaa'</span>,
+                    <span class="string">'mediumblue'</span>: <span class="string">'#0000cd'</span>,
+                    <span class="string">'mediumorchid'</span>: <span class="string">'#ba55d3'</span>,
+                    <span class="string">'mediumpurple'</span>: <span class="string">'#9370d8'</span>,
+                    <span class="string">'mediumseagreen'</span>: <span class="string">'#3cb371'</span>,
+                    <span class="string">'mediumslateblue'</span>: <span class="string">'#7b68ee'</span>,
+                    <span class="string">'mediumspringgreen'</span>: <span class="string">'#00fa9a'</span>,
+                    <span class="string">'mediumturquoise'</span>: <span class="string">'#48d1cc'</span>,
+                    <span class="string">'mediumvioletred'</span>: <span class="string">'#c71585'</span>,
+                    <span class="string">'midnightblue'</span>: <span class="string">'#191970'</span>,
+                    <span class="string">'mintcream'</span>: <span class="string">'#f5fffa'</span>,
+                    <span class="string">'mistyrose'</span>: <span class="string">'#ffe4e1'</span>,
+                    <span class="string">'moccasin'</span>: <span class="string">'#ffe4b5'</span>,
+                    <span class="string">'navajowhite'</span>: <span class="string">'#ffdead'</span>,
+                    <span class="string">'navy'</span>: <span class="string">'#000080'</span>,
+                    <span class="string">'oldlace'</span>: <span class="string">'#fdf5e6'</span>,
+                    <span class="string">'olive'</span>: <span class="string">'#808000'</span>,
+                    <span class="string">'olivedrab'</span>: <span class="string">'#6b8e23'</span>,
+                    <span class="string">'orange'</span>: <span class="string">'#ffa500'</span>,
+                    <span class="string">'orangered'</span>: <span class="string">'#ff4500'</span>,
+                    <span class="string">'orchid'</span>: <span class="string">'#da70d6'</span>,
+                    <span class="string">'palegoldenrod'</span>: <span class="string">'#eee8aa'</span>,
+                    <span class="string">'palegreen'</span>: <span class="string">'#98fb98'</span>,
+                    <span class="string">'paleturquoise'</span>: <span class="string">'#afeeee'</span>,
+                    <span class="string">'palevioletred'</span>: <span class="string">'#d87093'</span>,
+                    <span class="string">'papayawhip'</span>: <span class="string">'#ffefd5'</span>,
+                    <span class="string">'peachpuff'</span>: <span class="string">'#ffdab9'</span>,
+                    <span class="string">'peru'</span>: <span class="string">'#cd853f'</span>,
+                    <span class="string">'pink'</span>: <span class="string">'#ffc0cb'</span>,
+                    <span class="string">'plum'</span>: <span class="string">'#dda0dd'</span>,
+                    <span class="string">'powderblue'</span>: <span class="string">'#b0e0e6'</span>,
+                    <span class="string">'purple'</span>: <span class="string">'#800080'</span>,
+                    <span class="string">'red'</span>: <span class="string">'#ff0000'</span>,
+                    <span class="string">'rosybrown'</span>: <span class="string">'#bc8f8f'</span>,
+                    <span class="string">'royalblue'</span>: <span class="string">'#4169e1'</span>,
+                    <span class="string">'saddlebrown'</span>: <span class="string">'#8b4513'</span>,
+                    <span class="string">'salmon'</span>: <span class="string">'#fa8072'</span>,
+                    <span class="string">'sandybrown'</span>: <span class="string">'#f4a460'</span>,
+                    <span class="string">'seagreen'</span>: <span class="string">'#2e8b57'</span>,
+                    <span class="string">'seashell'</span>: <span class="string">'#fff5ee'</span>,
+                    <span class="string">'sienna'</span>: <span class="string">'#a0522d'</span>,
+                    <span class="string">'silver'</span>: <span class="string">'#c0c0c0'</span>,
+                    <span class="string">'skyblue'</span>: <span class="string">'#87ceeb'</span>,
+                    <span class="string">'slateblue'</span>: <span class="string">'#6a5acd'</span>,
+                    <span class="string">'slategray'</span>: <span class="string">'#708090'</span>,
+                    <span class="string">'slategrey'</span>: <span class="string">'#708090'</span>,
+                    <span class="string">'snow'</span>: <span class="string">'#fffafa'</span>,
+                    <span class="string">'springgreen'</span>: <span class="string">'#00ff7f'</span>,
+                    <span class="string">'steelblue'</span>: <span class="string">'#4682b4'</span>,
+                    <span class="string">'tan'</span>: <span class="string">'#d2b48c'</span>,
+                    <span class="string">'teal'</span>: <span class="string">'#008080'</span>,
+                    <span class="string">'thistle'</span>: <span class="string">'#d8bfd8'</span>,
+                    <span class="string">'tomato'</span>: <span class="string">'#ff6347'</span>,
+                    <span class="string">'turquoise'</span>: <span class="string">'#40e0d0'</span>,
+                    <span class="string">'violet'</span>: <span class="string">'#ee82ee'</span>,
+                    <span class="string">'wheat'</span>: <span class="string">'#f5deb3'</span>,
+                    <span class="string">'white'</span>: <span class="string">'#ffffff'</span>,
+                    <span class="string">'whitesmoke'</span>: <span class="string">'#f5f5f5'</span>,
+                    <span class="string">'yellow'</span>: <span class="string">'#ffff00'</span>,
+                    <span class="string">'yellowgreen'</span>: <span class="string">'#9acd32'</span>
+                },
+                    r = nar[n];
+                <span class="keyword">if</span> (r === <span class="literal">undefined</span>) {
+                    <span class="keyword">return</span> <span class="string">'Invalid Color Name'</span>;
+                } <span class="keyword">else</span> {
+                    <span class="keyword">return</span> r;
+                }
+            },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-13">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h2">
+                <a class="pilcrow" href="#section-13">&#182;</a>
+              </div>
+              <h2>name2rgb unction</h2>
+<p>Get an RGB object value of an HTML named color.</p>
+<p><code>name2rgb ( &#39;color name&#39; )</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            name2rgb: <span class="function"><span class="keyword">function</span> <span class="params">(n)</span> {</span>
+                <span class="keyword">var</span> v = <span class="keyword">this</span>.name2hex(n),
+                    t = <span class="regexp">/^[a-fA-F0-9#]{7}$/</span>,
+                    icn = <span class="string">'Invalid Color Name'</span>;
+                <span class="keyword">if</span> (t.test(v)) {
+                    <span class="keyword">return</span> <span class="keyword">this</span>.hex2rgb(v);
+                } <span class="keyword">else</span> {
+                    <span class="keyword">return</span> Utils.render([icn, icn, icn], <span class="string">'rgb'</span>);
+                }
+            },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-14">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h2">
+                <a class="pilcrow" href="#section-14">&#182;</a>
+              </div>
+              <h2>name2hsv function</h2>
+<p>Get an HSV object value of an HTML named color.</p>
+<p><code>name2hsv ( &#39;color name&#39; )</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            name2hsv: <span class="function"><span class="keyword">function</span> <span class="params">(n)</span> {</span>
+                <span class="keyword">var</span> v = <span class="keyword">this</span>.name2hex(n),
+                    t = <span class="regexp">/^[a-fA-F0-9#]{7}$/</span>,
+                    icn = <span class="string">'Invalid Color Name'</span>;
+                <span class="keyword">if</span> (t.test(v)) {
+                    <span class="keyword">return</span> <span class="keyword">this</span>.hex2hsv(v);
+                } <span class="keyword">else</span> {
+                    <span class="keyword">return</span> Utils.render([icn, icn, icn], <span class="string">'hsv'</span>);
+                }
+            },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-15">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h2">
+                <a class="pilcrow" href="#section-15">&#182;</a>
+              </div>
+              <h2>complement function</h2>
+<p>Get the complementary value of multiple types of input colors.</p>
+<p><code>complement ( &#39;#ffffff&#39; )
+complement ( [obj R, G, B] or R, G, B )</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            complement: <span class="function"><span class="keyword">function</span> <span class="params">(c, g, b)</span> {</span>
+                <span class="keyword">var</span> cval, rtn;
+                <span class="keyword">if</span> (<span class="keyword">typeof</span> c == <span class="string">'string'</span> &amp;&amp; <span class="regexp">/(#([A-Fa-f0-9]){3}(([A-Fa-f0-9]){3})?)/</span>.test(c)) {
+                    c = c.replace(<span class="string">'#'</span>, <span class="string">''</span>);
+                    rtn = <span class="string">'#'</span>;
+                    <span class="keyword">if</span> (c.length === <span class="number">6</span>) {
+                        rtn += Utils.paddedHex(<span class="number">255</span> - <span class="keyword">this</span>.hex2rgb(c.substr(<span class="number">0</span>, <span class="number">2</span>)));
+                        rtn += Utils.paddedHex(<span class="number">255</span> - <span class="keyword">this</span>.hex2rgb(c.substr(<span class="number">2</span>, <span class="number">2</span>)));
+                        rtn += Utils.paddedHex(<span class="number">255</span> - <span class="keyword">this</span>.hex2rgb(c.substr(<span class="number">4</span>, <span class="number">2</span>)));
+                    }
+                    <span class="keyword">if</span> (c.length === <span class="number">3</span>) {
+                        rtn += Utils.paddedHex(<span class="number">255</span> - <span class="keyword">this</span>.hex2rgb(c.substr(<span class="number">0</span>, <span class="number">1</span>) + c.substr(<span class="number">0</span>, <span class="number">1</span>)));
+                        rtn += Utils.paddedHex(<span class="number">255</span> - <span class="keyword">this</span>.hex2rgb(c.substr(<span class="number">1</span>, <span class="number">1</span>) + c.substr(<span class="number">1</span>, <span class="number">1</span>)));
+                        rtn += Utils.paddedHex(<span class="number">255</span> - <span class="keyword">this</span>.hex2rgb(c.substr(<span class="number">2</span>, <span class="number">1</span>) + c.substr(<span class="number">2</span>, <span class="number">1</span>)));
+                    }
+                    <span class="keyword">return</span> rtn;
+                } <span class="keyword">else</span> {
+                    <span class="keyword">if</span> (c !== <span class="literal">undefined</span> &amp;&amp; g !== <span class="literal">undefined</span> &amp;&amp; b !== <span class="literal">undefined</span>) {
+                        cval = [(<span class="number">255</span> - c), (<span class="number">255</span> - g), (<span class="number">255</span> - b)];
+                    }
+                    <span class="keyword">if</span> (<span class="keyword">typeof</span> c == <span class="string">'object'</span>) {
+                        cval = [(<span class="number">255</span> - c[<span class="number">0</span>]), (<span class="number">255</span> - c[<span class="number">1</span>]), (<span class="number">255</span> - c[<span class="number">2</span>])];
+                    }
+                    <span class="keyword">return</span> Utils.render(cval, <span class="string">'rgb'</span>);
+                }
+            },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-16">
+            <div class="annotation">
+              
+              <div class="pilwrap for-h2">
+                <a class="pilcrow" href="#section-16">&#182;</a>
+              </div>
+              <h2>rand function</h2>
+<p>Get a random color in either hexadecimal or RGB color modes.</p>
+<p><code>rand ( color mode )</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            rand: <span class="function"><span class="keyword">function</span> <span class="params">(mode)</span> {</span>
+                <span class="keyword">if</span> (mode === <span class="string">'hex'</span> || mode === <span class="literal">undefined</span>) {
+                    <span class="keyword">var</span> chars = <span class="string">'0123456789abcdef'</span>,
+                        string_length = <span class="number">6</span>,
+                        hexStr = <span class="string">''</span>,
+                        rnum,
+                        R,
+                        G,
+                        B,
+                        i;
+
+                    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; string_length; i++) {
+                        rnum = Math.floor(Math.random() * chars.length);
+                        hexStr += chars.substring(rnum, rnum + <span class="number">1</span>);
+                    }
+                    <span class="keyword">return</span> <span class="string">'#'</span> + hexStr;
+                } <span class="keyword">else</span> <span class="keyword">if</span> (mode == <span class="string">'rgb'</span>) {
+                    R = Math.floor(Math.random() * (<span class="number">0</span> - <span class="number">255</span> + <span class="number">1</span>) + <span class="number">255</span>);
+                    G = Math.floor(Math.random() * (<span class="number">0</span> - <span class="number">255</span> + <span class="number">1</span>) + <span class="number">255</span>);
+                    B = Math.floor(Math.random() * (<span class="number">0</span> - <span class="number">255</span> + <span class="number">1</span>) + <span class="number">255</span>);
+                    <span class="keyword">return</span> Utils.render([R, G, B], <span class="string">'rgb'</span>);
+                }
+            }
+        };</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-17">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-17">&#182;</a>
+              </div>
+              <p>Expose the public functions to the windoobject</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    window.Colors = window.$c = Colors;
+
+}(window));</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>
