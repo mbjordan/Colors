@@ -1,6 +1,6 @@
 /**
  * @license Colors JS Library v1.2.2
- * Copyright 2012 Matt Jordan
+ * Copyright 2013 Matt Jordan
  * Licensed under Creative Commons Attribution-ShareAlike 3.0 Unported. (http://creativecommons.org/licenses/by-sa/3.0/)
  * http://matthewbj.github.com/Colors/
 */
@@ -546,7 +546,7 @@
             }
         };
 
-    // Expose the public functions to the windoobject
+    // Expose the public functions to the window object
     window.Colors = window.$c = Colors;
 
 }(window));
