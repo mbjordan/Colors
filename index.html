@@ -123,7 +123,7 @@ li {
 </div>
 <section>
   <div id="filebox">
-    <p> Current Version: <strong>1.2.1</strong></p>
+    <p> Current Version: <strong>1.2.2</strong></p>
     <p> <a href="https://github.com/mbjordan/Colors">View Source</a> or <a href="https://raw.github.com/mbjordan/Colors/master/colors.min.js">Download</a> </p>
     <p> Minified: 6.66kb (2.75kb gzipped)</p>
     <p><a href="docs/colors.html">View Annotated Source</a></p>
@@ -140,7 +140,7 @@ li {
     <li> <a href="#rand" class="scroll">Get a random color in RGB or Hexadecimal.</a> </li>
   </ul>
   <h2>Colors is on cdnjs.com</h2>
-  <p><a href="//cdnjs.cloudflare.com/ajax/libs/Colors.js/1.2.1/colors.min.js">//cdnjs.cloudflare.com/ajax/libs/Colors.js/1.2.1/colors.min.js</a></p>
+  <p><a href="//cdnjs.cloudflare.com/ajax/libs/Colors.js/1.2.2/colors.min.js">//cdnjs.cloudflare.com/ajax/libs/Colors.js/1.2.2/colors.min.js</a></p>
   <p> <a href="http://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="license"> <img src="http://i.creativecommons.org/l/by-sa/3.0/88x31.png" width="88" height="31" style="border:0;margin-top:25px" alt="License"></a> &nbsp; <a class="FlattrButton" style="display:none;" rev="flattr;button:compact;" href="http://matthewbj.github.com/Colors/"></a>
     <noscript>
     <a href="http://flattr.com/thing/1036001/Colors-js-JavaScript-Color-Library" target="_blank"><img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0" /></a>
@@ -178,8 +178,8 @@ li {
       <tr>
         <td><strong>Examples:</strong>
           <pre>
-Colors.rgb2hex(153 ,153, 153) // multiple Ints, returns: #999999
-Colors.rgb2hex(153)           // single Int, returns: #999999</pre></td>
+$c.rgb2hex(153 ,153, 153) // multiple Ints, returns: #999999
+$c.rgb2hex(153)           // single Int, returns: #999999</pre></td>
       </tr>
       <tr>
         <td><strong>Changes:</strong><br>
@@ -206,9 +206,9 @@ Colors.rgb2hex(153)           // single Int, returns: #999999</pre></td>
       <tr>
         <td><strong>Examples:</strong>
           <pre>
-Colors.hex2rgb('#ffffff').R   // returns: 255
-Colors.hex2rgb('#ffffff').RGB // returns: 255 255 255
-Colors.hex2rgb('#ffffff').a   // returns: [255, 255, 255] as object.
+$c.hex2rgb('#ffffff').R   // returns: 255
+$c.hex2rgb('#ffffff').RGB // returns: 255 255 255
+$c.hex2rgb('#ffffff').a   // returns: [255, 255, 255] as object.
 </pre></td>
       </tr>
       <tr>
@@ -235,9 +235,9 @@ Colors.hex2rgb('#ffffff').a   // returns: [255, 255, 255] as object.
       <tr>
         <td><strong>Examples:</strong>
           <pre>
-Colors.hex2hsv('#ffffff').H   // returns: 0
-Colors.hex2hsv('#ffffff').HSV // returns: 0 0 100
-Colors.hex2hsv('#ffffff').a   // returns: [0, 0, 100] as object.
+$c.hex2hsv('#ffffff').H   // returns: 0
+$c.hex2hsv('#ffffff').HSV // returns: 0 0 100
+$c.hex2hsv('#ffffff').a   // returns: [0, 0, 100] as object.
 </pre></td>
       </tr>
       <tr>
@@ -267,9 +267,9 @@ Colors.hex2hsv('#ffffff').a   // returns: [0, 0, 100] as object.
       <tr>
         <td><strong>Examples:</strong>
           <pre>
-Colors.hsv2rgb(130, 123, 132).R   // returns: X as R in RGB
-Colors.hsv2rgb(130, 123, 132).RGB  // returns: X X X as RGB in RGB
-Colors.hsv2rgb(130, 123, 132).a    // returns: [X, X, X] as R, G, B as an object in RGB.
+$c.hsv2rgb(130, 123, 132).R   // returns: X as R in RGB
+$c.hsv2rgb(130, 123, 132).RGB  // returns: X X X as RGB in RGB
+$c.hsv2rgb(130, 123, 132).a    // returns: [X, X, X] as R, G, B as an object in RGB.
 </pre></td>
       </tr>
       <tr>
@@ -292,7 +292,7 @@ Colors.hsv2rgb(130, 123, 132).a    // returns: [X, X, X] as R, G, B as an object
       </tr>
       <tr>
         <td><strong>Examples:</strong>
-          <pre>Colors.complement('#ffffff')  // returns: #000000)</pre></td>
+          <pre>$c.complement('#ffffff')  // returns: #000000)</pre></td>
       </tr>
       <tr>
         <td><strong>Changes:</strong><br>
@@ -320,9 +320,9 @@ Colors.hsv2rgb(130, 123, 132).a    // returns: [X, X, X] as R, G, B as an object
       <tr>
         <td><strong>Examples:</strong>
           <pre>
-Colors.complement([0, 0, 0]).R   // returns: 255
-Colors.complement( 0, 0, 0 ).RGB // returns: 255 255 255
-Colors.complement([0, 0, 0]).a   // returns: [255, 255, 255] as object.
+$c.complement([0, 0, 0]).R   // returns: 255
+$c.complement( 0, 0, 0 ).RGB // returns: 255 255 255
+$c.complement([0, 0, 0]).a   // returns: [255, 255, 255] as object.
 </pre></td>
       </tr>
       <tr>
@@ -346,7 +346,7 @@ Colors.complement([0, 0, 0]).a   // returns: [255, 255, 255] as object.
       </tr>
       <tr>
         <td><strong>Examples:</strong>
-          <pre>Colors.name2hex('red')  // returns: '#ff0000'</pre></td>
+          <pre>$c.name2hex('red')  // returns: '#ff0000'</pre></td>
       </tr>
       <tr>
         <td><strong>Changes:</strong><br>
@@ -369,9 +369,9 @@ Colors.complement([0, 0, 0]).a   // returns: [255, 255, 255] as object.
       <tr>
         <td><strong>Examples:</strong>
           <pre>
-Colors.name2rgb('red').R   // returns: 255
-Colors.name2rgb('red').RGB // returns: 255 0 0
-Colors.name2rgb('red').a   // returns: [255, 0, 0]
+$c.name2rgb('red').R   // returns: 255
+$c.name2rgb('red').RGB // returns: 255 0 0
+$c.name2rgb('red').a   // returns: [255, 0, 0]
 </pre></td>
       </tr>
       <tr>
@@ -395,9 +395,9 @@ Colors.name2rgb('red').a   // returns: [255, 0, 0]
       <tr>
         <td><strong>Examples:</strong>
           <pre>
-Colors.name2hsv('red').H   // returns: 0
-Colors.name2hsv('red').HSV // returns: 0 100 100
-Colors.name2hsv('red').a   // returns: [0, 100, 100]
+$c.name2hsv('red').H   // returns: 0
+$c.name2hsv('red').HSV // returns: 0 100 100
+$c.name2hsv('red').a   // returns: [0, 100, 100]
 </pre></td>
       </tr>
       <tr>
@@ -421,11 +421,11 @@ Colors.name2hsv('red').a   // returns: [0, 100, 100]
       <tr>
         <td><strong>Examples:</strong>
           <pre>
-Colors.rand()          // returns: '#xxxxxx'
-Colors.rand('hex')     // returns: '#xxxxxx'
-Colors.rand('rgb').R   // returns: XXX
-Colors.rand('rgb').RGB // returns: XXX XXX XXX
-Colors.rand('rgb').a   // returns: [XXX, XXX, XXX]
+$c.rand()          // returns: '#xxxxxx'
+$c.rand('hex')     // returns: '#xxxxxx'
+$c.rand('rgb').R   // returns: XXX
+$c.rand('rgb').RGB // returns: XXX XXX XXX
+$c.rand('rgb').a   // returns: [XXX, XXX, XXX]
       </pre></td>
       </tr>
       <tr>
@@ -440,7 +440,7 @@ Colors.rand('rgb').a   // returns: [XXX, XXX, XXX]
 /* Minimal Placeholder Plugin V1.4 * Copyright 2011, Matthew B. Jordan * Released under the CC BY 3.0 License (http://creativecommons.org/licenses/by/3.0/) * matthewbjordan.me/mph */
 (function(a){a.fn.placeHolder=function(b){"undefined"==typeof b&&(b="mph-blur",a("head").append('<style type="text/css">.mph-blur{color:#999!important}</style>'));return!a(this).is("input")||!a(this).is("textarea")?this.each(function(){a(this).addClass(b).val(a(this).data("placeholder")).bind({focus:function(){var c=a(this).val(),d=a(this).data("placeholder");c===d&&a(this).val("").removeClass(b)},blur:function(){var c=a(this).val(),d=a(this).data("placeholder");""===c&&a(this).val(d).addClass(b)}})}):
 !1}})(jQuery);
-function addTodo(a){$("#todo_data").html(a.data)}function colors(a){var b=Colors.complement(a,"hex");$("#color").css({"background-color":a,color:b}).text(a);$("#compr").css({"background-color":b,color:a}).text(b)}
+function addTodo(a){$("#todo_data").html(a.data)}function colors(a){var b=$c.complement(a,"hex");$("#color").css({"background-color":a,color:b}).text(a);$("#compr").css({"background-color":b,color:a}).text(b)}
 $(document).ready(function(){$("#newcolor").placeHolder();colors("#77ff33");$("#cchange").bind("click",function(a){a.preventDefault();a=$("#newcolor").val();/(#([A-Fa-f0-9]){3}(([A-Fa-f0-9]){3})?)/i.test(a)?colors(a):alert("Color must be a valid hexadecimal color.\n\nThe pound symbol is required.")});$("a.scroll").on("click",function(a){a.preventDefault();$("html,body").animate({scrollTop:$(this.hash).offset().top-25},900)});$.ajax({url:"http://matthewbjordan.me/colors-todo-list",cache:!0,dataType:"jsonp",
 jsonp:"callback",jsonpCallback:"addTodo"})});var _gaq=_gaq||[];_gaq.push(["_setAccount","UA-10456811-7"]);_gaq.push(["_trackPageview"]);(function(){var a=document.createElement("script");a.type="text/javascript";a.async=!0;a.src=("https:"==document.location.protocol?"https://ssl":"http://www")+".google-analytics.com/ga.js";var b=document.getElementsByTagName("script")[0];b.parentNode.insertBefore(a,b)})();</script> 
 </section>
