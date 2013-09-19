@@ -123,9 +123,9 @@ li {
 </div>
 <section>
   <div id="filebox">
-    <p> Current Version: <strong>1.2.2</strong></p>
+    <p> Current Version: <strong>1.2.3</strong></p>
     <p> <a href="https://github.com/mbjordan/Colors">View Source</a> or <a href="https://raw.github.com/mbjordan/Colors/master/colors.min.js">Download</a> </p>
-    <p> Minified: 6.66kb (2.75kb gzipped)</p>
+    <p> Minified: 6.7KB (2.76KB gzipped)</p>
     <p><a href="docs/colors.html">View Annotated Source</a></p>
   </div>
   <p> Colors aims to be an easy to use color manipulation library that is lightweight and very functional. Check out the <a href="#todo" class="scroll">to do list</a> to see what's in store for the future.. </p>
@@ -201,14 +201,14 @@ $c.rgb2hex(153)           // single Int, returns: #999999</pre></td>
         <td><strong>Return Values:</strong> Returns an object with 5 properties. <br>
           <strong>R, G &amp; B</strong> - A single integer value for any given primary.<br>
           <strong>RGB</strong> - A string with all primaries with spaces, ex. 255 255 255.<br>
-          <strong>a</strong> - an object of the integer values for R, G &amp; B. </td>
+          <strong>a</strong> - an Array of the integer values for R, G &amp; B. </td>
       </tr>
       <tr>
         <td><strong>Examples:</strong>
           <pre>
 $c.hex2rgb('#ffffff').R   // returns: 255
 $c.hex2rgb('#ffffff').RGB // returns: 255 255 255
-$c.hex2rgb('#ffffff').a   // returns: [255, 255, 255] as object.
+$c.hex2rgb('#ffffff').a   // returns: [255, 255, 255] as Array.
 </pre></td>
       </tr>
       <tr>
@@ -230,14 +230,14 @@ $c.hex2rgb('#ffffff').a   // returns: [255, 255, 255] as object.
         <td><strong>Return Values:</strong> Returns an object with 5 properties. <br>
           <strong>H, S &amp; V</strong> - A single integer value for any given property.<br>
           <strong>HSV</strong> - A string with all properties with spaces, ex. 210 51 85.<br>
-          <strong>a</strong> - an object of the integer values for H, S &amp; V. </td>
+          <strong>a</strong> - an Array of the integer values for H, S &amp; V. </td>
       </tr>
       <tr>
         <td><strong>Examples:</strong>
           <pre>
 $c.hex2hsv('#ffffff').H   // returns: 0
 $c.hex2hsv('#ffffff').HSV // returns: 0 0 100
-$c.hex2hsv('#ffffff').a   // returns: [0, 0, 100] as object.
+$c.hex2hsv('#ffffff').a   // returns: [0, 0, 100] as Array.
 </pre></td>
       </tr>
       <tr>
@@ -262,14 +262,14 @@ $c.hex2hsv('#ffffff').a   // returns: [0, 0, 100] as object.
         <td><strong>Return Values:</strong> Returns an object with 5 properties. <br>
           <strong>R, G or B</strong> - A single integer value for any given property.<br>
           <strong>RBG</strong> - A string with all properties with spaces, ex. 210 51 85.<br>
-          <strong>a</strong> - an object of the integer values for H, S &amp; V. </td>
+          <strong>a</strong> - an Array of the integer values for H, S &amp; V. </td>
       </tr>
       <tr>
         <td><strong>Examples:</strong>
           <pre>
 $c.hsv2rgb(130, 123, 132).R   // returns: X as R in RGB
 $c.hsv2rgb(130, 123, 132).RGB  // returns: X X X as RGB in RGB
-$c.hsv2rgb(130, 123, 132).a    // returns: [X, X, X] as R, G, B as an object in RGB.
+$c.hsv2rgb(130, 123, 132).a    // returns: [X, X, X] as R, G, B as an Array in RGB.
 </pre></td>
       </tr>
       <tr>
@@ -315,14 +315,14 @@ $c.hsv2rgb(130, 123, 132).a    // returns: [X, X, X] as R, G, B as an object in 
         <td><strong>Return Values:</strong> Returns an object with 5 properties. <br>
           <strong>R, G &amp; B</strong> - A single integer complimentary value for any given primary.<br>
           <strong>RGB</strong> - A string with all primaries with spaces, ex. 255 255 255.<br>
-          <strong>a</strong> - an object of the complimentary integer values for R, G &amp; B. </td>
+          <strong>a</strong> - an Array of the complimentary integer values for R, G &amp; B. </td>
       </tr>
       <tr>
         <td><strong>Examples:</strong>
           <pre>
 $c.complement([0, 0, 0]).R   // returns: 255
 $c.complement( 0, 0, 0 ).RGB // returns: 255 255 255
-$c.complement([0, 0, 0]).a   // returns: [255, 255, 255] as object.
+$c.complement([0, 0, 0]).a   // returns: [255, 255, 255] as Array.
 </pre></td>
       </tr>
       <tr>
