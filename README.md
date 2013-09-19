@@ -4,8 +4,6 @@ Colors is an easy to use color manipulation library that is lightweight and very
 
 CDN Hosted: [//cdnjs.cloudflare.com/ajax/libs/Colors.js/1.2.2/colors.min.js](//cdnjs.cloudflare.com/ajax/libs/Colors.js/1.2.2/colors.min.js)
 
-[![endorse](https://api.coderwall.com/matthewbj/endorsecount.png)](https://coderwall.com/matthewbj)
-
 Colors can do the following:
 
 * Change RGB to a Hexadecimal color.
