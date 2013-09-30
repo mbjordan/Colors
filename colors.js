@@ -11,7 +11,7 @@
 
     //## Internal Utilities
 
-    // ###Render Function
+    // ###Render method
     //
     // `render(map, type)`
     //
@@ -42,7 +42,7 @@
 
 
 
-    // ### Padded Hex function
+    // ### Padded Hex method
     //
     // `paddedHex(number)`
     //
@@ -55,7 +55,7 @@
 
     // ## The Colors methods
 
-    // ### rgb2hex function
+    // ### rgb2hex method
     //
     // Change 3 RGB Ints or a single Int to a Hexadecimal color.
     //
@@ -67,7 +67,7 @@
         return '#' + r + g + b;
     };
 
-    // ### hex2rgb function
+    // ### hex2rgb method
     //
     // Change a hexadecimal color string to an RGB color object.
     //
@@ -81,7 +81,7 @@
         }
     };
 
-    // ### hex2hsv function
+    // ### hex2hsv method
     //
     // Change a hexadecimal color string to an HSV color object.
     //
@@ -127,7 +127,7 @@
         return Utils.render([Math.round(result.h * 360), Math.round(result.s * 100), Math.round(result.v * 100)], 'hsv');
     };
 
-    // ### hsv2rgb function
+    // ### hsv2rgb method
     //
     // Change an HSV color object or Int string to an RGB color object.
     //
@@ -174,7 +174,7 @@
         return Utils.render([Math.min(255, Math.floor(rgb[0] * 256)), Math.min(255, Math.floor(rgb[1] * 256)), Math.min(255, Math.floor(rgb[2] * 256))], 'rgb');
     };
 
-    // ### rgb2hsl function
+    // ### rgb2hsl method
     //
     // Change RGB to an HSL object.
     //
@@ -215,7 +215,7 @@
         return Utils.render([Math.floor(h * 360), Math.floor(s * 100), Math.floor(l * 100)], 'hsl');
     };
 
-    // ### hsv2hsl function
+    // ### hsv2hsl method
     //
     // Change HSV to an HSL object
     //
@@ -265,7 +265,7 @@
         return Utils.render([Math.floor(H), Math.floor(S), Math.floor(V)], 'hsl');
     };
 
-    // ### name2hex function
+    // ### name2hex method
     //
     // Get the hexadecimal value of an HTML color name. Must be one of the 176 HTML color names as defined by the HTML & CSS standards.
     //
@@ -429,7 +429,7 @@
         return r;
     };
 
-    // ### name2rgb unction
+    // ### name2rgb method
     //
     // Get an RGB object value of an HTML named color.
     //
@@ -446,7 +446,7 @@
         return Utils.render([icn, icn, icn], 'rgb');
     };
 
-    // ### name2hsv function
+    // ### name2hsv method
     //
     // Get an HSV object value of an HTML named color.
     //
@@ -462,7 +462,7 @@
         return Utils.render([icn, icn, icn], 'hsv');
     };
 
-    // ### complement function
+    // ### complement method
     //
     // Get the complementary value of multiple types of input colors.
     //
@@ -495,11 +495,11 @@
         }
     };
 
-    // ### rand function
+    // ### rand method
     //
     // Get a random color in either hexadecimal or RGB color modes.
     //
-    // `rand ( color mode )`
+    // `rand ( [color mode] )`
     Colors.rand = function (mode) {
         var R, G, B;
 
