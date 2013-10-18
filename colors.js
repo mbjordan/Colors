@@ -10,7 +10,6 @@
         Colors = {};
 
     //## Internal Utilities
-
     // ###Render method
     //
     // `render(map, type)`
@@ -18,23 +17,23 @@
     // `map` is an object of data to render, `type` can be RGB, HSV or HSL
     Utils.render = function (map, type) {
         var rtn = {},
-            k;
-        if (typeof map != 'object') {
+            keys;
+        if (typeof map != "object") {
             return;
         }
-        if (type === 'rgb') {
-            k = ['R', 'G', 'B', 'RGB'];
+        if (type === "rgb") {
+            keys = ["R", "G", "B", "RGB"];
         }
-        if (type === 'hsv') {
-            k = ['H', 'S', 'V', 'HSV'];
+        if (type === "hsv") {
+            keys = ["H", "S", "V", "HSV"];
         }
-        if (type === 'hsl') {
-            k = ['H', 'S', 'L', 'HSL'];
+        if (type === "hsl") {
+            keys = ["H", "S", "L", "HSL"];
         }
-        rtn[k[0]] = map[0];
-        rtn[k[1]] = map[1];
-        rtn[k[2]] = map[2];
-        rtn[k[3]] = map[0] + ' ' + map[1] + ' ' + map[2];
+        rtn[keys[0]] = map[0];
+        rtn[keys[1]] = map[1];
+        rtn[keys[2]] = map[2];
+        rtn[keys[3]] = map[0] + " " + map[1] + " " + map[2];
         rtn.a = map;
         return rtn;
     };
@@ -48,13 +47,17 @@
     //
     // Creates a hexadecimal number, and adds a zero to the beginning if its only one digit.
     Utils.paddedHex = function (n) {
-        var hex = ((n < 10) ? '0' : '') + n.toString(16);
-        return (hex.length === 1) ? '0' + hex : hex;
+        var hex = ((n < 10) ? "0" : "") + n.toString(16);
+        return (hex.length === 1) ? "0" + hex : hex;
+    };
+
+    Number.prototype.round = function (points) {
+        points = points || 10;
+        return parseFloat(this.toFixed(points));
     };
 
 
     // ## The Colors methods
-
     // ### rgb2hex method
     //
     // Change 3 RGB Ints or a single Int to a Hexadecimal color.
@@ -64,18 +67,18 @@
         r = Utils.paddedHex(r);
         g = (g !== undefined) ? Utils.paddedHex(g) : r;
         b = (b !== undefined) ? Utils.paddedHex(b) : r;
-        return '#' + r + g + b;
+        return "#" + r + g + b;
     };
 
     // ### hex2rgb method
     //
     // Change a hexadecimal color string to an RGB color object.
     //
-    // `hex2rgb( 'hex color string' ).[obj R, G, B, RGB or a]`
+    // `hex2rgb( "hex color string" ).[obj R, G, B, RGB or a]`
     Colors.hex2rgb = function (h) {
-        h = h.replace('#', '');
+        h = h.replace("#", "");
         if (h.length === 6) {
-            return Utils.render([parseInt(h.substr(0, 2), 16), parseInt(h.substr(2, 2), 16), parseInt(h.substr(4, 2), 16)], 'rgb');
+            return Utils.render([parseInt(h.substr(0, 2), 16), parseInt(h.substr(2, 2), 16), parseInt(h.substr(4, 2), 16)], "rgb");
         } else {
             return parseInt(h, 16);
         }
@@ -85,16 +88,16 @@
     //
     // Change a hexadecimal color string to an HSV color object.
     //
-    // `hex2hsv ( 'hex color string' ).[obj H, S, V, HSV or a]`
+    // `hex2hsv ( "hex color string" ).[obj H, S, V, HSV or a]`
     Colors.hex2hsv = function (h) {
         h = (h.charAt(0) == "#") ? h.substring(1, 7) : h;
         var r = parseInt(h.substring(0, 2), 16) / 255,
             g = parseInt(h.substring(2, 4), 16) / 255,
             b = parseInt(h.substring(4, 6), 16) / 255,
             result = {
-                'h': 0,
-                's': 0,
-                'v': 0
+                "h": 0,
+                "s": 0,
+                "v": 0
             },
             minVal = Math.min(r, g, b),
             maxVal = Math.max(r, g, b),
@@ -124,7 +127,7 @@
                 result.h -= 1;
             }
         }
-        return Utils.render([Math.round(result.h * 360), Math.round(result.s * 100), Math.round(result.v * 100)], 'hsv');
+        return Utils.render([Math.round(result.h * 360), Math.round(result.s * 100), Math.round(result.v * 100)], "hsv");
     };
 
     // ### hsv2rgb method
@@ -136,7 +139,7 @@
         var rgb = [],
             h, s, v, hi, f, p, q, t;
 
-        if (typeof HSV == 'object') {
+        if (typeof HSV == "object") {
             h = HSV[0];
             s = HSV[1];
             v = HSV[2];
@@ -171,7 +174,7 @@
         case 5:
             rgb = [v, p, q];
         }
-        return Utils.render([Math.min(255, Math.floor(rgb[0] * 256)), Math.min(255, Math.floor(rgb[1] * 256)), Math.min(255, Math.floor(rgb[2] * 256))], 'rgb');
+        return Utils.render([Math.min(255, Math.floor(rgb[0] * 256)), Math.min(255, Math.floor(rgb[1] * 256)), Math.min(255, Math.floor(rgb[2] * 256))], "rgb");
     };
 
     // ### rgb2hsl method
@@ -180,10 +183,9 @@
     //
     // `rgb2hsl(RGB[, G, B])`
     Colors.rgb2hsl = function (RGB, G, B) {
-        var r, g, b, min, max, h, s, l = (max + min) / 2,
-            d;
+        var r, g, b, min, max, h, s, l, d;
 
-        if (typeof RGB == 'object') {
+        if (typeof RGB === "object") {
             r = RGB[0];
             g = RGB[1];
             b = RGB[2];
@@ -192,8 +194,14 @@
             g = G;
             b = B;
         }
-        r /= 255, g /= 255, b /= 255;
-        max = Math.max(r, g, b), min = Math.min(r, g, b);
+
+        r /= 255;
+        g /= 255;
+        b /= 255;
+
+        max = Math.max(r, g, b);
+        min = Math.min(r, g, b);
+        l = (max + min) / 2;
 
         if (max == min) {
             h = s = 0;
@@ -212,7 +220,8 @@
             }
             h /= 6;
         }
-        return Utils.render([Math.floor(h * 360), Math.floor(s * 100), Math.floor(l * 100)], 'hsl');
+
+        return Utils.render([Math.floor(h * 360), (s * 100).round(1), (l * 100).round(1)], "hsl");
     };
 
     // ### hsv2hsl method
@@ -220,15 +229,15 @@
     // Change HSV to an HSL object
     //
     // `hsv2hsl(HSV[, S, V])`
-    Colors.hsv2hsl = function (HSV, S, V) {
+    Colors.hsv2hsl = function (H, S, V) {
         var h, s, l, _H, _S, _L, hsv, r1, g1, b1, maxColor, minColor;
 
-        if (typeof HSV == 'object') {
-            h = HSV[0];
-            s = HSV[1];
-            l = HSV[2];
+        if (typeof H == "object") {
+            h = H[0];
+            s = H[1];
+            l = H[2];
         } else {
-            h = HSV;
+            h = H;
             s = S;
             l = V;
         }
@@ -243,7 +252,7 @@
         _S = 0;
         _H = 0;
         if (maxColor != minColor) {
-            if (L < 0.5) {
+            if (_L < 0.5) {
                 S = (maxColor - minColor) / (maxColor + minColor);
             } else {
                 S = (maxColor - minColor) / (2.0 - maxColor - minColor);
@@ -262,168 +271,168 @@
         if (_H < 0) {
             _H += 360;
         }
-        return Utils.render([Math.floor(H), Math.floor(S), Math.floor(V)], 'hsl');
+        return Utils.render([Math.floor(H), Math.floor(S), Math.floor(V)], "hsl");
     };
 
     // ### name2hex method
     //
     // Get the hexadecimal value of an HTML color name. Must be one of the 176 HTML color names as defined by the HTML & CSS standards.
     //
-    // `name2hex ( 'color name' )`
+    // `name2hex ( "color name" )`
     Colors.name2hex = function (n) {
         n = n.toLowerCase();
         var nar = {
-            'aliceblue': '#f0f8ff',
-            'antiquewhite': '#faebd7',
-            'aqua': '#00ffff',
-            'aquamarine': '#7fffd4',
-            'azure': '#f0ffff',
-            'beige': '#f5f5dc',
-            'bisque': '#ffe4c4',
-            'black': '#000000',
-            'blanchedalmond': '#ffebcd',
-            'blue': '#0000ff',
-            'blueviolet': '#8a2be2',
-            'brown': '#a52a2a',
-            'burlywood': '#deb887',
-            'cadetblue': '#5f9ea0',
-            'chartreuse': '#7fff00',
-            'chocolate': '#d2691e',
-            'coral': '#ff7f50',
-            'cornflowerblue': '#6495ed',
-            'cornsilk': '#fff8dc',
-            'crimson': '#dc143c',
-            'cyan': '#00ffff',
-            'darkblue': '#00008b',
-            'darkcyan': '#008b8b',
-            'darkgoldenrod': '#b8860b',
-            'darkgray': '#a9a9a9',
-            'darkgrey': '#a9a9a9',
-            'darkgreen': '#006400',
-            'darkkhaki': '#bdb76b',
-            'darkmagenta': '#8b008b',
-            'darkolivegreen': '#556b2f',
-            'darkorange': '#ff8c00',
-            'darkorchid': '#9932cc',
-            'darkred': '#8b0000',
-            'darksalmon': '#e9967a',
-            'darkseagreen': '#8fbc8f',
-            'darkslateblue': '#483d8b',
-            'darkslategray': '#2f4f4f',
-            'darkslategrey': '#2f4f4f',
-            'darkturquoise': '#00ced1',
-            'darkviolet': '#9400d3',
-            'deeppink': '#ff1493',
-            'deepskyblue': '#00bfff',
-            'dimgray': '#696969',
-            'dimgrey': '#696969',
-            'dodgerblue': '#1e90ff',
-            'firebrick': '#b22222',
-            'floralwhite': '#fffaf0',
-            'forestgreen': '#228b22',
-            'fuchsia': '#ff00ff',
-            'gainsboro': '#dcdcdc',
-            'ghostwhite': '#f8f8ff',
-            'gold': '#ffd700',
-            'goldenrod': '#daa520',
-            'gray': '#808080',
-            'grey': '#808080',
-            'green': '#008000',
-            'greenyellow': '#adff2f',
-            'honeydew': '#f0fff0',
-            'hotpink': '#ff69b4',
-            'indianred': '#cd5c5c',
-            'indigo': '#4b0082',
-            'ivory': '#fffff0',
-            'khaki': '#f0e68c',
-            'lavender': '#e6e6fa',
-            'lavenderblush': '#fff0f5',
-            'lawngreen': '#7cfc00',
-            'lemonchiffon': '#fffacd',
-            'lightblue': '#add8e6',
-            'lightcoral': '#f08080',
-            'lightcyan': '#e0ffff',
-            'lightgoldenrodyellow': '#fafad2',
-            'lightgray': '#d3d3d3',
-            'lightgrey': '#d3d3d3',
-            'lightgreen': '#90ee90',
-            'lightpink': '#ffb6c1',
-            'lightsalmon': '#ffa07a',
-            'lightseagreen': '#20b2aa',
-            'lightskyblue': '#87cefa',
-            'lightslategray': '#778899',
-            'lightslategrey': '#778899',
-            'lightsteelblue': '#b0c4de',
-            'lightyellow': '#ffffe0',
-            'lime': '#00ff00',
-            'limegreen': '#32cd32',
-            'linen': '#faf0e6',
-            'magenta': '#ff00ff',
-            'maroon': '#800000',
-            'mediumaquamarine': '#66cdaa',
-            'mediumblue': '#0000cd',
-            'mediumorchid': '#ba55d3',
-            'mediumpurple': '#9370d8',
-            'mediumseagreen': '#3cb371',
-            'mediumslateblue': '#7b68ee',
-            'mediumspringgreen': '#00fa9a',
-            'mediumturquoise': '#48d1cc',
-            'mediumvioletred': '#c71585',
-            'midnightblue': '#191970',
-            'mintcream': '#f5fffa',
-            'mistyrose': '#ffe4e1',
-            'moccasin': '#ffe4b5',
-            'navajowhite': '#ffdead',
-            'navy': '#000080',
-            'oldlace': '#fdf5e6',
-            'olive': '#808000',
-            'olivedrab': '#6b8e23',
-            'orange': '#ffa500',
-            'orangered': '#ff4500',
-            'orchid': '#da70d6',
-            'palegoldenrod': '#eee8aa',
-            'palegreen': '#98fb98',
-            'paleturquoise': '#afeeee',
-            'palevioletred': '#d87093',
-            'papayawhip': '#ffefd5',
-            'peachpuff': '#ffdab9',
-            'peru': '#cd853f',
-            'pink': '#ffc0cb',
-            'plum': '#dda0dd',
-            'powderblue': '#b0e0e6',
-            'purple': '#800080',
-            'red': '#ff0000',
-            'rosybrown': '#bc8f8f',
-            'royalblue': '#4169e1',
-            'saddlebrown': '#8b4513',
-            'salmon': '#fa8072',
-            'sandybrown': '#f4a460',
-            'seagreen': '#2e8b57',
-            'seashell': '#fff5ee',
-            'sienna': '#a0522d',
-            'silver': '#c0c0c0',
-            'skyblue': '#87ceeb',
-            'slateblue': '#6a5acd',
-            'slategray': '#708090',
-            'slategrey': '#708090',
-            'snow': '#fffafa',
-            'springgreen': '#00ff7f',
-            'steelblue': '#4682b4',
-            'tan': '#d2b48c',
-            'teal': '#008080',
-            'thistle': '#d8bfd8',
-            'tomato': '#ff6347',
-            'turquoise': '#40e0d0',
-            'violet': '#ee82ee',
-            'wheat': '#f5deb3',
-            'white': '#ffffff',
-            'whitesmoke': '#f5f5f5',
-            'yellow': '#ffff00',
-            'yellowgreen': '#9acd32'
+            "aliceblue": "#f0f8ff",
+            "antiquewhite": "#faebd7",
+            "aqua": "#00ffff",
+            "aquamarine": "#7fffd4",
+            "azure": "#f0ffff",
+            "beige": "#f5f5dc",
+            "bisque": "#ffe4c4",
+            "black": "#000000",
+            "blanchedalmond": "#ffebcd",
+            "blue": "#0000ff",
+            "blueviolet": "#8a2be2",
+            "brown": "#a52a2a",
+            "burlywood": "#deb887",
+            "cadetblue": "#5f9ea0",
+            "chartreuse": "#7fff00",
+            "chocolate": "#d2691e",
+            "coral": "#ff7f50",
+            "cornflowerblue": "#6495ed",
+            "cornsilk": "#fff8dc",
+            "crimson": "#dc143c",
+            "cyan": "#00ffff",
+            "darkblue": "#00008b",
+            "darkcyan": "#008b8b",
+            "darkgoldenrod": "#b8860b",
+            "darkgray": "#a9a9a9",
+            "darkgrey": "#a9a9a9",
+            "darkgreen": "#006400",
+            "darkkhaki": "#bdb76b",
+            "darkmagenta": "#8b008b",
+            "darkolivegreen": "#556b2f",
+            "darkorange": "#ff8c00",
+            "darkorchid": "#9932cc",
+            "darkred": "#8b0000",
+            "darksalmon": "#e9967a",
+            "darkseagreen": "#8fbc8f",
+            "darkslateblue": "#483d8b",
+            "darkslategray": "#2f4f4f",
+            "darkslategrey": "#2f4f4f",
+            "darkturquoise": "#00ced1",
+            "darkviolet": "#9400d3",
+            "deeppink": "#ff1493",
+            "deepskyblue": "#00bfff",
+            "dimgray": "#696969",
+            "dimgrey": "#696969",
+            "dodgerblue": "#1e90ff",
+            "firebrick": "#b22222",
+            "floralwhite": "#fffaf0",
+            "forestgreen": "#228b22",
+            "fuchsia": "#ff00ff",
+            "gainsboro": "#dcdcdc",
+            "ghostwhite": "#f8f8ff",
+            "gold": "#ffd700",
+            "goldenrod": "#daa520",
+            "gray": "#808080",
+            "grey": "#808080",
+            "green": "#008000",
+            "greenyellow": "#adff2f",
+            "honeydew": "#f0fff0",
+            "hotpink": "#ff69b4",
+            "indianred": "#cd5c5c",
+            "indigo": "#4b0082",
+            "ivory": "#fffff0",
+            "khaki": "#f0e68c",
+            "lavender": "#e6e6fa",
+            "lavenderblush": "#fff0f5",
+            "lawngreen": "#7cfc00",
+            "lemonchiffon": "#fffacd",
+            "lightblue": "#add8e6",
+            "lightcoral": "#f08080",
+            "lightcyan": "#e0ffff",
+            "lightgoldenrodyellow": "#fafad2",
+            "lightgray": "#d3d3d3",
+            "lightgrey": "#d3d3d3",
+            "lightgreen": "#90ee90",
+            "lightpink": "#ffb6c1",
+            "lightsalmon": "#ffa07a",
+            "lightseagreen": "#20b2aa",
+            "lightskyblue": "#87cefa",
+            "lightslategray": "#778899",
+            "lightslategrey": "#778899",
+            "lightsteelblue": "#b0c4de",
+            "lightyellow": "#ffffe0",
+            "lime": "#00ff00",
+            "limegreen": "#32cd32",
+            "linen": "#faf0e6",
+            "magenta": "#ff00ff",
+            "maroon": "#800000",
+            "mediumaquamarine": "#66cdaa",
+            "mediumblue": "#0000cd",
+            "mediumorchid": "#ba55d3",
+            "mediumpurple": "#9370d8",
+            "mediumseagreen": "#3cb371",
+            "mediumslateblue": "#7b68ee",
+            "mediumspringgreen": "#00fa9a",
+            "mediumturquoise": "#48d1cc",
+            "mediumvioletred": "#c71585",
+            "midnightblue": "#191970",
+            "mintcream": "#f5fffa",
+            "mistyrose": "#ffe4e1",
+            "moccasin": "#ffe4b5",
+            "navajowhite": "#ffdead",
+            "navy": "#000080",
+            "oldlace": "#fdf5e6",
+            "olive": "#808000",
+            "olivedrab": "#6b8e23",
+            "orange": "#ffa500",
+            "orangered": "#ff4500",
+            "orchid": "#da70d6",
+            "palegoldenrod": "#eee8aa",
+            "palegreen": "#98fb98",
+            "paleturquoise": "#afeeee",
+            "palevioletred": "#d87093",
+            "papayawhip": "#ffefd5",
+            "peachpuff": "#ffdab9",
+            "peru": "#cd853f",
+            "pink": "#ffc0cb",
+            "plum": "#dda0dd",
+            "powderblue": "#b0e0e6",
+            "purple": "#800080",
+            "red": "#ff0000",
+            "rosybrown": "#bc8f8f",
+            "royalblue": "#4169e1",
+            "saddlebrown": "#8b4513",
+            "salmon": "#fa8072",
+            "sandybrown": "#f4a460",
+            "seagreen": "#2e8b57",
+            "seashell": "#fff5ee",
+            "sienna": "#a0522d",
+            "silver": "#c0c0c0",
+            "skyblue": "#87ceeb",
+            "slateblue": "#6a5acd",
+            "slategray": "#708090",
+            "slategrey": "#708090",
+            "snow": "#fffafa",
+            "springgreen": "#00ff7f",
+            "steelblue": "#4682b4",
+            "tan": "#d2b48c",
+            "teal": "#008080",
+            "thistle": "#d8bfd8",
+            "tomato": "#ff6347",
+            "turquoise": "#40e0d0",
+            "violet": "#ee82ee",
+            "wheat": "#f5deb3",
+            "white": "#ffffff",
+            "whitesmoke": "#f5f5f5",
+            "yellow": "#ffff00",
+            "yellowgreen": "#9acd32"
         },
             r = nar[n];
         if (r === undefined) {
-            return 'Invalid Color Name';
+            return "Invalid Color Name";
         }
 
         return r;
@@ -433,46 +442,46 @@
     //
     // Get an RGB object value of an HTML named color.
     //
-    // `name2rgb ( 'color name' )`
+    // `name2rgb ( "color name" )`
     Colors.name2rgb = function (n) {
         var v = this.name2hex(n),
             t = /^[a-fA-F0-9#]{7}$/,
-            icn = 'Invalid Color Name';
+            icn = "Invalid Color Name";
 
         if (t.test(v)) {
             return this.hex2rgb(v);
         }
 
-        return Utils.render([icn, icn, icn], 'rgb');
+        return Utils.render([icn, icn, icn], "rgb");
     };
 
     // ### name2hsv method
     //
     // Get an HSV object value of an HTML named color.
     //
-    // `name2hsv ( 'color name' )`
+    // `name2hsv ( "color name" )`
     Colors.name2hsv = function (n) {
         var v = this.name2hex(n),
             t = /^[a-fA-F0-9#]{7}$/,
-            icn = 'Invalid Color Name';
+            icn = "Invalid Color Name";
         if (t.test(v)) {
             return this.hex2hsv(v);
         }
 
-        return Utils.render([icn, icn, icn], 'hsv');
+        return Utils.render([icn, icn, icn], "hsv");
     };
 
     // ### complement method
     //
     // Get the complementary value of multiple types of input colors.
     //
-    // ```complement ( '#ffffff' )
+    // ```complement ( "#ffffff" )
     // complement ( [obj R, G, B] or R, G, B )```
     Colors.complement = function (c, g, b) {
         var cval, rtn;
-        if (typeof c == 'string' && /(#([A-Fa-f0-9]){3}(([A-Fa-f0-9]){3})?)/.test(c)) {
-            c = c.replace('#', '');
-            rtn = '#';
+        if (typeof c == "string" && /(#([A-Fa-f0-9]){3}(([A-Fa-f0-9]){3})?)/.test(c)) {
+            c = c.replace("#", "");
+            rtn = "#";
             if (c.length === 6) {
                 rtn += Utils.paddedHex(255 - this.hex2rgb(c.substr(0, 2)));
                 rtn += Utils.paddedHex(255 - this.hex2rgb(c.substr(2, 2)));
@@ -488,10 +497,10 @@
             if (c !== undefined && g !== undefined && b !== undefined) {
                 cval = [(255 - c), (255 - g), (255 - b)];
             }
-            if (typeof c == 'object') {
+            if (typeof c == "object") {
                 cval = [(255 - c[0]), (255 - c[1]), (255 - c[2])];
             }
-            return Utils.render(cval, 'rgb');
+            return Utils.render(cval, "rgb");
         }
     };
 
@@ -503,22 +512,22 @@
     Colors.rand = function (mode) {
         var R, G, B;
 
-        if (mode === 'hex' || mode === undefined) {
-            var chars = '0123456789abcdef',
+        if (mode === "hex" || mode === undefined) {
+            var chars = "0123456789abcdef",
                 string_length = 6,
-                hexStr = '',
+                hexStr = "",
                 rnum, i;
 
             for (i = 0; i < string_length; i++) {
                 rnum = Math.floor(Math.random() * chars.length);
                 hexStr += chars.substring(rnum, rnum + 1);
             }
-            return '#' + hexStr;
-        } else if (mode == 'rgb') {
+            return "#" + hexStr;
+        } else if (mode == "rgb") {
             R = Math.floor(Math.random() * (0 - 255 + 1) + 255);
             G = Math.floor(Math.random() * (0 - 255 + 1) + 255);
             B = Math.floor(Math.random() * (0 - 255 + 1) + 255);
-            return Utils.render([R, G, B], 'rgb');
+            return Utils.render([R, G, B], "rgb");
         }
     };
 
