@@ -1,6 +1,6 @@
 # Colors.js
 
-Colors is an easy to use color manipulation library that is lightweight and very functional.
+A lightweight and easy to use color manipulation library.
 
 CDN Hosted: [//cdnjs.cloudflare.com/ajax/libs/Colors.js/1.2.3/colors.min.js](//cdnjs.cloudflare.com/ajax/libs/Colors.js/1.2.3/colors.min.js)
 
