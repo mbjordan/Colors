@@ -1,9 +1,9 @@
 {
   "name": "Colors.js",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "homepage": "http://matthewbjordan.me/Colors/",
   "description": "An easy to use color manipulation library that is lightweight and very functional.",
-  "main": "colors.min.js",
+  "main": "./colors.js",
   "keywords": [
     "colors",
     "color"
