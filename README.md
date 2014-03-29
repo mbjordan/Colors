@@ -22,7 +22,3 @@ For usage instructions, go to http://mbjordan.github.com/Colors/
 This work is licensed under a [Creative Commons Attribution-ShareAlike 3.0 Unported License][1].
  
  [1]: http://creativecommons.org/licenses/by-sa/3.0/
-
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/mbjordan/colors/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-

@@ -523,7 +523,9 @@
                 hexStr += chars.substring(rnum, rnum + 1);
             }
             return "#" + hexStr;
-        } else if (mode == "rgb") {
+        }
+
+        if (mode == "rgb") {
             R = Math.floor(Math.random() * (0 - 255 + 1) + 255);
             G = Math.floor(Math.random() * (0 - 255 + 1) + 255);
             B = Math.floor(Math.random() * (0 - 255 + 1) + 255);
