@@ -2,9 +2,30 @@
 
 A lightweight and easy to use color manipulation library.
 
-CDN Hosted: [//cdnjs.cloudflare.com/ajax/libs/Colors.js/1.2.3/colors.min.js](//cdnjs.cloudflare.com/ajax/libs/Colors.js/1.2.3/colors.min.js)
+### How to Install
 
-Colors can do the following:
+Via cdnJS:
+
+[//cdnjs.cloudflare.com/ajax/libs/Colors.js/1.2.3/colors.min.js](//cdnjs.cloudflare.com/ajax/libs/Colors.js/1.2.3/colors.min.js)
+
+Via Bower:
+
+	bower install Colors.js
+	
+Via npm:
+
+	npm install colors.js
+	
+Use in Node.js:
+
+```javascript
+var Colors = require("colors.js");
+console.log( Colors.rand() );
+```
+
+---
+
+Just a tidbit of what Colors.js can do:
 
 * Change RGB to a Hexadecimal color.
 * Change Hexadecimal to an RGB color.
