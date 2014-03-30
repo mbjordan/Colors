@@ -6,7 +6,7 @@ A lightweight and easy to use color manipulation library.
 
 Via cdnJS:
 
-[//cdnjs.cloudflare.com/ajax/libs/Colors.js/1.2.3/colors.min.js](//cdnjs.cloudflare.com/ajax/libs/Colors.js/1.2.3/colors.min.js)
+[//cdnjs.cloudflare.com/ajax/libs/Colors.js/1.2.4/colors.min.js](//cdnjs.cloudflare.com/ajax/libs/Colors.js/1.2.4/colors.min.js)
 
 Via Bower:
 
