@@ -11,11 +11,11 @@ Via cdnJS:
 Via Bower:
 
 	bower install Colors.js
-	
+
 Via npm:
 
 	npm install colors.js
-	
+
 Use in Node.js:
 
 ```javascript
@@ -34,12 +34,10 @@ Just a tidbit of what Colors.js can do:
 * Get the complementary value of an RGB color.
 * Named color to an RGB object, HSV object or Hexadecimal string.
 * Get a random color in RGB or Hexadecimal.
-* Plus a whole lot more... 
+* Plus a whole lot more...
 
 For usage instructions, go to http://mbjordan.github.com/Colors/
 
 * * *
 
-This work is licensed under a [Creative Commons Attribution-ShareAlike 3.0 Unported License][1].
- 
- [1]: http://creativecommons.org/licenses/by-sa/3.0/
+__NOTE:__ The license has been changed from Creative Commons Attribution-ShareAlike 3.0 Unported License to the MIT License!

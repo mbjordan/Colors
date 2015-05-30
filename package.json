@@ -13,14 +13,5 @@
     "bugs": {
         "url": "https://github.com/mbjordan/Colors/issues"
     },
-    "homepage": "https://github.com/mbjordan/Colors",
-
-
-    "npmName": "colors.js",
-    "npmFileMap": [{
-        "basePath": "/",
-        "files": [
-            "*.min.js"
-            ]
-    }]
+    "homepage": "http://honyovk.com/Colors/"
 }

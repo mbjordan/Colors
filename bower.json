@@ -1,7 +1,7 @@
 {
   "name": "Colors.js",
   "version": "1.2.4",
-  "homepage": "http://matthewbjordan.me/Colors/",
+  "homepage": "http://honyovk.com/Colors/",
   "description": "An easy to use color manipulation library that is lightweight and very functional.",
   "main": "./colors.js",
   "keywords": [
@@ -11,7 +11,7 @@
   "authors": [
     "Matt Jordan"
   ],
-  "license": "CC-BY-SA-3.0",
+  "license": "MIT",
   "ignore": [
     "**/.*",
     "node_modules",
