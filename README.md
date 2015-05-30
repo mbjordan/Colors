@@ -40,4 +40,4 @@ For usage instructions, go to http://mbjordan.github.com/Colors/
 
 * * *
 
-__NOTE:__ The license has been changed from Creative Commons Attribution-ShareAlike 3.0 Unported License to the MIT License!
+__NOTE:__ The license has been changed from Creative Commons Attribution-ShareAlike 3.0 Unported License to the [MIT License](https://github.com/mbjordan/Colors/blob/master/LICENSE.txt)!
