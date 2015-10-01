@@ -1,6 +1,17 @@
-global.window = {};
+var Colors = require('./src/index');
 
-require("./colors.js");
+if ('undefined' === typeof window) {
+    if ('undefined' !== typeof module && module.exports) {
+        module.exports = Colors;
+        return;
+    }
+}
 
-module.exports = window.Colors;
+if ('function' === typeof define && define.amd) {
+    define(function() {
+        return Colors;
+    });
+    return;
+}
 
+window.ColorsTmp = Colors;
