@@ -6,7 +6,7 @@ A lightweight and easy to use color manipulation library.
 
 Via cdnJS:
 
-[//cdnjs.cloudflare.com/ajax/libs/Colors.js/1.2.4/colors.min.js](//cdnjs.cloudflare.com/ajax/libs/Colors.js/1.2.4/colors.min.js)
+[//cdnjs.cloudflare.com/ajax/libs/Colors.js/2.0.0/colors.min.js](//cdnjs.cloudflare.com/ajax/libs/Colors.js/2.0.0/colors.min.js)
 
 Via npm:
 
@@ -36,4 +36,4 @@ For usage instructions, go to http://mbjordan.github.com/Colors/
 
 * * *
 
-__NOTE:__ The license has been changed from Creative Commons Attribution-ShareAlike 3.0 Unported License to the [MIT License](https://github.com/mbjordan/Colors/blob/master/LICENSE.txt)!
+[MIT License](https://github.com/mbjordan/Colors/blob/master/LICENSE.txt)!
