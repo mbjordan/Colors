@@ -1,4 +1,5 @@
 var Utils = require('./utils');
+var hsv2rgb = require('./hsv2rgb');
 
 // ### hsv2hsl method
 //
@@ -18,7 +19,7 @@ function hsv2hsl(H, S, V) {
         l = V;
     }
 
-    hsv = this.hsv2rgb(h, s, l);
+    hsv = hsv2rgb(h, s, l);
     r1 = hsv.R / 255;
     g1 = hsv.G / 255;
     b1 = hsv.B / 255;

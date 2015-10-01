@@ -1,4 +1,6 @@
 var Utils = require('./utils');
+var name2hex = require('./name2hex');
+var hex2hsv = require('./hex2hsv');
 
 // ### name2hsv method
 //
@@ -6,11 +8,11 @@ var Utils = require('./utils');
 //
 // `name2hsv ( 'color name' )`
 function name2hsv(n) {
-    var v = this.name2hex(n),
+    var v = name2hex(n),
         t = /^[a-fA-F0-9#]{7}$/,
         icn = 'Invalid Color Name';
     if (t.test(v)) {
-        return this.hex2hsv(v);
+        return hex2hsv(v);
     }
 
     return Utils.render([icn, icn, icn], 'hsv');

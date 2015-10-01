@@ -1,4 +1,5 @@
 var Utils = require('./utils');
+var hex2rgb = require('./hex2rgb');
 
 function stringHandler(c) {
     var returnString = '#';
@@ -6,14 +7,14 @@ function stringHandler(c) {
     c = c.replace(/^\x23/, '');
 
     if (c.length === 6) {
-        returnString += Utils.paddedHex(255 - this.hex2rgb(c.substr(0, 2)));
-        returnString += Utils.paddedHex(255 - this.hex2rgb(c.substr(2, 2)));
-        returnString += Utils.paddedHex(255 - this.hex2rgb(c.substr(4, 2)));
+        returnString += Utils.paddedHex(255 - hex2rgb(c.substr(0, 2)));
+        returnString += Utils.paddedHex(255 - hex2rgb(c.substr(2, 2)));
+        returnString += Utils.paddedHex(255 - hex2rgb(c.substr(4, 2)));
     }
     if (c.length === 3) {
-        returnString += Utils.paddedHex(255 - this.hex2rgb(c.substr(0, 1) + c.substr(0, 1)));
-        returnString += Utils.paddedHex(255 - this.hex2rgb(c.substr(1, 1) + c.substr(1, 1)));
-        returnString += Utils.paddedHex(255 - this.hex2rgb(c.substr(2, 1) + c.substr(2, 1)));
+        returnString += Utils.paddedHex(255 - hex2rgb(c.substr(0, 1) + c.substr(0, 1)));
+        returnString += Utils.paddedHex(255 - hex2rgb(c.substr(1, 1) + c.substr(1, 1)));
+        returnString += Utils.paddedHex(255 - hex2rgb(c.substr(2, 1) + c.substr(2, 1)));
     }
 
     return returnString;

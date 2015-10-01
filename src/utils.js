@@ -6,7 +6,7 @@
 // `map` is an object of data to render, `type` can be RGB, HSV or HSL
 //
 // TODO: This function is outdated and could be written better
-module.render = function render(map, type) {
+exports.render = function render(map, type) {
     var rtn = {};
     var keys;
 
@@ -41,7 +41,7 @@ module.render = function render(map, type) {
 // `paddedHex(number)`
 //
 // Creates a hexadecimal number, and adds a zero to the beginning if its only one digit.
-module.paddedHex = function paddedHex(n) {
+exports.paddedHex = function paddedHex(n) {
     var hex = (n < 10) ? '0' : '';
 
     hex += n.toString(16);
@@ -49,11 +49,11 @@ module.paddedHex = function paddedHex(n) {
     return (hex.length === 1) ? '0' + hex : hex;
 };
 
-module.round = function round(points) {
+exports.round = function round(points) {
     points = points || 10;
     return parseFloat(this.toFixed(points));
 };
 
-module.hexRegexMatch = function hexRegexMatch(c) {
+exports.hexRegexMatch = function hexRegexMatch(c) {
     return /^\x23[a-f0-9]{3}([a-f0-9]{3})?$/i.test(c);
 };
