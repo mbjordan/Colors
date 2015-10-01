@@ -8,10 +8,6 @@ Via cdnJS:
 
 [//cdnjs.cloudflare.com/ajax/libs/Colors.js/1.2.4/colors.min.js](//cdnjs.cloudflare.com/ajax/libs/Colors.js/1.2.4/colors.min.js)
 
-Via Bower:
-
-	bower install Colors.js
-
 Via npm:
 
 	npm install colors.js
@@ -19,7 +15,7 @@ Via npm:
 Use in Node.js:
 
 ```javascript
-var Colors = require("colors.js");
+var Colors = require('colors.js');
 console.log( Colors.rand() );
 ```
 

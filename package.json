@@ -1,17 +1,35 @@
 {
-    "name": "colors.js",
-    "version": "1.2.4",
-    "description": "A simple color manipulation javascript library.",
-    "main": "index.js",
-    "repository": {
-        "type": "git",
-        "url": "git://github.com/mbjordan/Colors.git"
-    },
-    "keywords": ["colors", "color"],
-    "author": "Matt Jordan",
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/mbjordan/Colors/issues"
-    },
-    "homepage": "http://honyovk.com/Colors/"
+  "name": "colors.js",
+  "version": "1.2.4",
+  "description": "A simple color manipulation javascript library.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mbjordan/Colors.git"
+  },
+  "keywords": [
+    "colors",
+    "color"
+  ],
+  "author": "Matt Jordan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mbjordan/Colors/issues"
+  },
+  "homepage": "http://honyovk.com/Colors/",
+  "devDependencies": {
+    "browserify": "^11.2.0",
+    "globby": "^3.0.1",
+    "gulp": "^3.9.0",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-uglify": "^1.4.1",
+    "gulp-util": "^3.0.6",
+    "reactify": "^1.1.1",
+    "through2": "^2.0.0",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0"
+  },
+  "dependencies": {
+    "require-directory": "^2.1.1"
+  }
 }
