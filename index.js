@@ -14,4 +14,4 @@ if ('function' === typeof define && define.amd) {
     return;
 }
 
-window.ColorsTmp = Colors;
+window.Colors = window.$c = Colors;
