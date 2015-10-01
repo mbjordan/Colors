@@ -2,7 +2,7 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 16px;
     color: #333;
-    background: #f5f5f5 url(http://cds.matthewbjordan.me/assets/images/body-bg.jpg) repeat;
+    background-color: #f5f5f5;
     overflow-y: scroll
 }
 
