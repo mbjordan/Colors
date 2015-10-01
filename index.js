@@ -1,8 +1,10 @@
 var Colors = require('./src/index');
 
-if ('undefined' !== typeof module && module.exports) {
-    module.exports = Colors;
-    return;
+if ('undefined' === typeof window) {
+    if ('undefined' !== typeof module && module.exports) {
+        module.exports = Colors;
+        return;
+    }
 }
 
 if ('function' === typeof define && define.amd) {
@@ -12,4 +14,4 @@ if ('function' === typeof define && define.amd) {
     return;
 }
 
-window.Colors = Colors;
+window.ColorsTmp = Colors;

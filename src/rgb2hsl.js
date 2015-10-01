@@ -44,7 +44,7 @@ function rgb2hsl(RGB, G, B) {
         h /= 6;
     }
 
-    return Utils.render([Math.floor(h * 360), (s * 100).round(1), (l * 100).round(1)], 'hsl');
+    return Utils.render([Math.floor(h * 360), Utils.round((s * 100), 1), Utils.round((l * 100), 1)], 'hsl');
 }
 
 module.exports = rgb2hsl;

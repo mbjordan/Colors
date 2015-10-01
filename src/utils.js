@@ -30,7 +30,6 @@ exports.render = function render(map, type) {
     rtn[keys[1]] = map[1];
     rtn[keys[2]] = map[2];
     rtn[keys[3]] = map[0] + ' ' + map[1] + ' ' + map[2];
-
     rtn.a = map;
 
     return rtn;
@@ -49,9 +48,9 @@ exports.paddedHex = function paddedHex(n) {
     return (hex.length === 1) ? '0' + hex : hex;
 };
 
-exports.round = function round(points) {
+exports.round = function round(num, points) {
     points = points || 10;
-    return parseFloat(this.toFixed(points));
+    return parseFloat(num.toFixed(points));
 };
 
 exports.hexRegexMatch = function hexRegexMatch(c) {

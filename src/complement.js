@@ -27,7 +27,7 @@ function complement(c, g, b) {
         return stringHandler(c);
     }
 
-    if (!!c && !!g && !!b) {
+    if ('undefined' !== c && 'undefined' !== g && 'undefined' !== b) {
         colorValue = [(255 - c), (255 - g), (255 - b)];
     }
 
