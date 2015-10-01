@@ -9,7 +9,7 @@ var gutil = require('gulp-util');
 gulp.task('build', function() {
     // set up the browserify instance on a task basis
     var b = browserify({
-            entries: './colors.js',
+            entries: './index.js',
             debug: true
         }).bundle()
         .pipe(source('colors.min.js'))
