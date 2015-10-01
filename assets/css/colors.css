@@ -1,0 +1,124 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    color: #333;
+    background: #f5f5f5 url(http://cds.matthewbjordan.me/assets/images/body-bg.jpg) repeat;
+    overflow-y: scroll
+}
+
+p {
+    margin: 13px 0;
+    line-height: 1.2em
+}
+
+a {
+    color: #069;
+    text-decoration: none
+}
+
+.title-box {
+    margin: 0 auto;
+    padding: 8px;
+    min-width: 750px;
+    max-width: 1100px;
+    width: expression(document.body.clientWidth < 750? "750px": document.body.clientWidth>1100? "1100px": "auto")
+}
+
+h1, h2 {
+    color: #09c;
+    color: rgba(0, 153, 204, 0.8);
+    text-shadow: 1px 4px 6px #f5f5f5, 0 0 0 #333, 1px 4px 6px #f5f5f5
+}
+
+.wf-loading h1, .wf-loading h2 {
+    font-family: Arial, Helvetica, sans-serif
+}
+
+.wf-active h1, .wf-active h2, .wf-inactive {
+    font-family: Kaushan Script, Arial, Helvetica, sans-serif
+}
+
+section {
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 8px;
+    min-width: 750px;
+    max-width: 1100px;
+    width: expression(document.body.clientWidth < 750? "750px": document.body.clientWidth>1100? "1100px": "auto");
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    behavior: url(/PIE.htc)
+}
+
+#filebox {
+    text-align: right;
+    float: right;
+    font-size: small;
+    margin: 0 0 0 8px;
+    background-color: #eefbff;
+    border: 1px solid #bef;
+    padding: 3px 8px;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    behavior: url(/pie.htc)
+}
+
+#filebox p {
+    padding: 0;
+    margin: 3px 0
+}
+
+footer {
+    margin: 0 auto;
+    color: #999;
+    text-align: right;
+    margin-top: 75px;
+    font-size: x-small;
+    padding: 8px;
+    min-width: 750px;
+    max-width: 1100px;
+    width: expression(document.body.clientWidth < 750? "750px": document.body.clientWidth>1100? "1100px": "auto")
+}
+
+li {
+    margin: 3px 35px
+}
+
+.cboxes {
+    padding: 95px 0;
+    width: 225px;
+    text-align: center;
+    border: 1px solid #666;
+    background-color: #f0f0f0;
+    margin: 15px
+}
+
+#newcolor {
+    width: 250px;
+    padding: 3px;
+    font-size: 1.1em;
+    vertical-align: baseline
+}
+
+.fblock {
+    border: 1px dashed #999;
+    padding: 5px;
+    margin: 25px 0
+}
+
+.fblock pre {
+    background-color: #f5f5f5;
+    display: block;
+    padding: 5px
+}
+
+.ftitle {
+    font-weight: bold;
+    font-family: "Courier New", Courier, monospace
+}
+
+.fdat td {
+    padding: 5px 16px
+}
