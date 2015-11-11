@@ -4,35 +4,8 @@
 // `render(map, type)`
 //
 // `map` is an object of data to render, `type` can be RGB, HSV or HSL
-//
-// TODO: This function is outdated and could be written better
 exports.render = function render(map, type) {
-    var rtn = {};
-    var keys;
-
-    if (typeof map != 'object') {
-        return;
-    }
-
-    if (type === 'rgb') {
-        keys = ['R', 'G', 'B', 'RGB'];
-    }
-
-    if (type === 'hsv') {
-        keys = ['H', 'S', 'V', 'HSV'];
-    }
-
-    if (type === 'hsl') {
-        keys = ['H', 'S', 'L', 'HSL'];
-    }
-
-    rtn[keys[0]] = map[0];
-    rtn[keys[1]] = map[1];
-    rtn[keys[2]] = map[2];
-    rtn[keys[3]] = map[0] + ' ' + map[1] + ' ' + map[2];
-    rtn.a = map;
-
-    return rtn;
+    return map;
 };
 
 // ### Padded Hex method

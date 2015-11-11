@@ -8,10 +8,9 @@ if ('undefined' === typeof window) {
 }
 
 if ('function' === typeof define && define.amd) {
-    define(function() {
+    return define(function() {
         return Colors;
     });
-    return;
 }
 
 window.Colors = window.$c = Colors;

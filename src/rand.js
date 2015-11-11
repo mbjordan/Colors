@@ -1,4 +1,18 @@
-var Utils = require('./utils');
+var hexChars = '0123456789abcdef';
+
+function hexMode() {
+    var returnString = '';
+    var idx = 0;
+    var randChar;
+
+    while (idx < 6) {
+        randChar = Math.floor(Math.random() * hexChars.length);
+        returnString += hexChars.substring(randChar, randChar + 1);
+        idx += 1;
+    }
+
+    return '#' + returnString;
+}
 
 // ### rand method
 //
@@ -6,28 +20,13 @@ var Utils = require('./utils');
 //
 // `rand ( [color mode] )`
 function rand(mode) {
-    var R, G, B;
+    if (!mode || mode === 'hex') return hexMode();
 
-    if (mode === 'hex' || mode === undefined) {
-        var chars = '0123456789abcdef',
-            string_length = 6,
-            hexStr = '',
-            rnum, i;
-
-        for (i = 0; i < string_length; i++) {
-            rnum = Math.floor(Math.random() * chars.length);
-            hexStr += chars.substring(rnum, rnum + 1);
-        }
-        return '#' + hexStr;
-    }
-
-    if (mode == 'rgb') {
-        R = Math.floor(Math.random() * (0 - 255 + 1) + 255);
-        G = Math.floor(Math.random() * (0 - 255 + 1) + 255);
-        B = Math.floor(Math.random() * (0 - 255 + 1) + 255);
-        return Utils.render([R, G, B], 'rgb');
-    }
+    return [
+        Math.floor(Math.random() * (0 - 255 + 1) + 255),
+        Math.floor(Math.random() * (0 - 255 + 1) + 255),
+        Math.floor(Math.random() * (0 - 255 + 1) + 255)
+    ];
 }
-
 
 module.exports = rand;

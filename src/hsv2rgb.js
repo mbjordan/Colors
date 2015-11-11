@@ -1,5 +1,3 @@
-var Utils = require('./utils');
-
 // ### hsv2rgb method
 //
 // Change an HSV color object or Int string to an RGB color object.
@@ -44,7 +42,12 @@ function hsv2rgb(HSV, S, V) {
         case 5:
             rgb = [v, p, q];
     }
-    return Utils.render([Math.min(255, Math.floor(rgb[0] * 256)), Math.min(255, Math.floor(rgb[1] * 256)), Math.min(255, Math.floor(rgb[2] * 256))], 'rgb');
+
+    return [
+        Math.min(255, Math.floor(rgb[0] * 256)),
+        Math.min(255, Math.floor(rgb[1] * 256)),
+        Math.min(255, Math.floor(rgb[2] * 256))
+    ];
 }
 
 module.exports = hsv2rgb;

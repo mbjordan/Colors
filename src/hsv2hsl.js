@@ -1,4 +1,3 @@
-var Utils = require('./utils');
 var hsv2rgb = require('./hsv2rgb');
 
 // ### hsv2hsl method
@@ -48,7 +47,12 @@ function hsv2hsl(H, S, V) {
     if (_H < 0) {
         _H += 360;
     }
-    return Utils.render([Math.floor(H), Math.floor(S), Math.floor(V)], 'hsl');
+
+    return [
+        Math.floor(H),
+        Math.floor(S),
+        Math.floor(V)
+    ];
 }
 
 module.exports = hsv2hsl;

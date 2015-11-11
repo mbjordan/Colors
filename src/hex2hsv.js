@@ -42,13 +42,11 @@ function hex2hsv(h) {
         }
     }
 
-    map = [
+    return [
         Utils.round(result.h * 360),
         Utils.round(result.s * 100),
         Utils.round(result.v * 100)
     ];
-
-    return Utils.render(map, 'hsv');
 }
 
 module.exports = hex2hsv;
