@@ -1,4 +1,4 @@
-function hex2rgb(h) {
+var hex2rgb = function(h) {
     h = h.replace(/^\#/, '');
 
     if (h.length === 6) {
@@ -10,6 +10,6 @@ function hex2rgb(h) {
     }
 
     return parseInt(h, 16);
-}
+};
 
 module.exports = hex2rgb;

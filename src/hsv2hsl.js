@@ -1,12 +1,18 @@
 var hsv2rgb = require('./hsv2rgb');
 
-// ### hsv2hsl method
-//
-// Change HSV to an HSL object
-//
-// `hsv2hsl(HSV[, S, V])`
-function hsv2hsl(H, S, V) {
-    var h, s, l, _H, _S, _L, hsv, r1, g1, b1, maxColor, minColor;
+var hsv2hsl = function(H, S, V) {
+    var h;
+    var s;
+    var l;
+    var _H;
+    var _S;
+    var _L;
+    var hsv;
+    var r1;
+    var g1;
+    var b1;
+    var maxColor;
+    var minColor;
 
     if (typeof H == 'object') {
         h = H[0];
@@ -53,6 +59,6 @@ function hsv2hsl(H, S, V) {
         Math.floor(S),
         Math.floor(V)
     ];
-}
+};
 
 module.exports = hsv2hsl;

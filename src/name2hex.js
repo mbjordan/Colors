@@ -148,15 +148,10 @@ var nameArray = {
     'yellowgreen': '#9acd32'
 };
 
-// ### name2hex method
-//
-// Get the hexadecimal value of an HTML color name. Must be one of the 176 HTML color names as defined by the HTML & CSS standards.
-//
-// `name2hex ( 'color name' )`
-function name2hex(n) {
+var name2hex = function(n) {
     n = n.toLowerCase();
     if (!nameArray[n]) return 'Invalid Color Name';
     return nameArray[n];
-}
+};
 
 module.exports = name2hex;

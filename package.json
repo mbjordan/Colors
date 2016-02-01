@@ -1,6 +1,6 @@
 {
   "name": "colors.js",
-  "version": "1.2.4",
+  "version": "2.0.0",
   "description": "A simple color manipulation javascript library.",
   "main": "index.js",
   "repository": {
@@ -20,12 +20,10 @@
   "devDependencies": {
     "browserify": "^11.2.0",
     "gulp": "^3.9.0",
+    "gulp-insert": "^0.5.0",
     "gulp-uglify": "^1.4.1",
     "gulp-util": "^3.0.6",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"
-  },
-  "dependencies": {
-    "require-directory": "^2.1.1"
   }
 }
