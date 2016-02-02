@@ -32,15 +32,6 @@ describe('complement', function() {
         done();
     });
 
-    it('Should return a matching Array when passed an Array', function(done) {
-        var arr = ['A1', 'A2', 'A3'];
-
-        complement.__set__('subFrom255', simpleReturnFn);
-
-        expect(complement(arr)).toEqual(arr);
-        done();
-    });
-
     it('Should return an Array when passed a 3 args', function(done) {
         var arr = ['A1', 'A2', 'A3'];
 

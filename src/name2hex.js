@@ -1,3 +1,5 @@
+var Utils = require('./utils');
+
 var names = {
     'aliceblue': '#f0f8ff',
     'antiquewhite': '#faebd7',
@@ -150,7 +152,7 @@ var names = {
 
 var validateN = function(n) {
     if (!names.hasOwnProperty(n)) {
-        throw new Error('Invalid Color Name');
+        Utils.err('Invalid Color Name');
     }
 
     return n;

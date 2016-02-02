@@ -13,9 +13,9 @@ var getColorSubset = function(color, idx) {
     );
 };
 
-var stringHandler = function(color) {
+var stringHandler = function(hexR) {
     var returnString = '#';
-    var hex = Utils.parseHexColor(color);
+    var hex = Utils.parseHexColor(hexR);
     returnString += getColorSubset(hex, 0);
     returnString += getColorSubset(hex, 2);
     returnString += getColorSubset(hex, 4);
@@ -30,17 +30,13 @@ var getFormattedArr = function(a0, a1, a2) {
     ];
 };
 
-var complement = function(color, g, b) {
-    if (typeof color === 'string' && Utils.hexRegexMatch(color)) {
-        return stringHandler(color);
+var complement = function(hexR, g, b) {
+    if (typeof hexR === 'string' && Utils.hexRegexMatch(hexR)) {
+        return stringHandler(hexR);
     }
 
-    if (typeof color === 'object') {
-        return getFormattedArr(color[0], color[1], color[2]);
-    }
-
-    if (color && g && b) {
-        return getFormattedArr(color, g, b);
+    if (hexR && g && b) {
+        return getFormattedArr(hexR, g, b);
     }
 
     Utils.err('Method complement called with invalid arguments');
