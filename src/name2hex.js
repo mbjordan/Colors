@@ -1,4 +1,4 @@
-var nameArray = {
+var names = {
     'aliceblue': '#f0f8ff',
     'antiquewhite': '#faebd7',
     'aqua': '#00ffff',
@@ -148,10 +148,16 @@ var nameArray = {
     'yellowgreen': '#9acd32'
 };
 
+var validateN = function(n) {
+    if (!names.hasOwnProperty(n)) {
+        throw new Error('Invalid Color Name');
+    }
+
+    return n;
+};
+
 var name2hex = function(n) {
-    n = n.toLowerCase();
-    if (!nameArray[n]) return 'Invalid Color Name';
-    return nameArray[n];
+    return names[validateN(n.toLowerCase())];
 };
 
 module.exports = name2hex;

@@ -7,6 +7,21 @@ var buffer = require('vinyl-buffer');
 var source = require('vinyl-source-stream');
 var insert = require('gulp-insert');
 var pack = require('./package.json');
+var jasmine = require('gulp-jasmine');
+var reporter = require('jasmine-reporters');
+
+var testFn = function() {
+    return gulp
+        .src('./test/**.test.js')
+        .pipe(jasmine({
+            'verbose': true,
+            'includeStackTrace': true,
+            // 'reporter': new reporter.JUnitXmlReporter({
+            //     'savePath': './test-reports',
+            //     'consolidateAll': false
+            // })
+        }));
+};
 
 var getLicense = function() {
     var fmt = util.format;
@@ -43,4 +58,6 @@ var buildFn = function() {
         .pipe(gulp.dest('./dist/'));
 };
 
+
+gulp.task('test', testFn);
 gulp.task('build', buildFn);

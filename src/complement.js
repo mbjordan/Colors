@@ -1,38 +1,63 @@
 var Utils = require('./utils');
 var hex2rgb = require('./hex2rgb');
 
-var stringHandler = function(c) {
-    var returnString = '#';
+var subFrom255 = function(int) {
+    return 255 - int;
+};
 
-    c = c.replace(/^\x23/, '');
+var getColorSubset = function(color, idx) {
+    return Utils.paddedHex(
+        subFrom255(
+            hex2rgb(color.substr(idx, 2))
+        )
+    );
+};
 
-    if (c.length === 6) {
-        returnString += Utils.paddedHex(255 - hex2rgb(c.substr(0, 2)));
-        returnString += Utils.paddedHex(255 - hex2rgb(c.substr(2, 2)));
-        returnString += Utils.paddedHex(255 - hex2rgb(c.substr(4, 2)));
-    } else if (c.length === 3) {
-        returnString += Utils.paddedHex(255 - hex2rgb(c.substr(0, 1) + c.substr(0, 1)));
-        returnString += Utils.paddedHex(255 - hex2rgb(c.substr(1, 1) + c.substr(1, 1)));
-        returnString += Utils.paddedHex(255 - hex2rgb(c.substr(2, 1) + c.substr(2, 1)));
+var threeDigitColorMatch = function() {
+    return /^([a-f0-9]{1})([a-f0-9]{1})([a-f0-9]{1})$/i;
+};
+
+var parseHexColor = function(color) {
+    color = color.replace(/^\#/, '');
+
+    if (color.length === 3) {
+        return color.replace(/^(\#)?/, '').replace(threeDigitColorMatch(), '$1$1$2$2$3$3');
     }
 
+    return color;
+};
+
+var stringHandler = function(color) {
+    var returnString = '#';
+    color = parseHexColor(color);
+    returnString += getColorSubset(color, 0);
+    returnString += getColorSubset(color, 2);
+    returnString += getColorSubset(color, 4);
     return returnString;
 };
 
-var complement = function(c, g, b) {
-    var colorValue;
+var getFormattedArr = function(a0, a1, a2) {
+    return [
+        subFrom255(a0),
+        subFrom255(a1),
+        subFrom255(a2)
+    ];
+};
 
-    if (typeof c === 'string' && Utils.hexRegexMatch(c)) return stringHandler(c);
-
-    if ('undefined' !== c && 'undefined' !== g && 'undefined' !== b) {
-        colorValue = [(255 - c), (255 - g), (255 - b)];
+var complement = function(color, g, b) {
+    if (typeof color === 'string' && Utils.hexRegexMatch(color)) {
+        return stringHandler(color);
     }
 
-    if (typeof c == 'object') {
-        colorValue = [(255 - c[0]), (255 - c[1]), (255 - c[2])];
+    if (typeof color === 'object') {
+        return getFormattedArr(color[0], color[1], color[2]);
     }
 
-    return colorValue;
+    if (color && g && b) {
+        return getFormattedArr(color, g, b);
+    }
+
+    Utils.err('Method complement called with invalid arguments');
 };
 
 module.exports = complement;

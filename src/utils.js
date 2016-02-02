@@ -18,3 +18,7 @@ exports.round = function round(num, points) {
 exports.hexRegexMatch = function hexRegexMatch(comparator) {
     return /^\x23[a-f0-9]{3}([a-f0-9]{3})?$/i.test(comparator);
 };
+
+exports.err = function(message) {
+    throw new Error('[colors.js]: ' + message);
+};
