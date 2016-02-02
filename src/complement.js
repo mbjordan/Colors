@@ -1,41 +1,45 @@
 var Utils = require('./utils');
 var hex2rgb = require('./hex2rgb');
 
-function stringHandler(c) {
+var subFrom255 = function(int) {
+    return 255 - int;
+};
+
+var getColorSubset = function(color, idx) {
+    return Utils.paddedHex(
+        subFrom255(
+            hex2rgb(color.substr(idx, 2))
+        )
+    );
+};
+
+var stringHandler = function(hexR) {
     var returnString = '#';
-
-    c = c.replace(/^\x23/, '');
-
-    if (c.length === 6) {
-        returnString += Utils.paddedHex(255 - hex2rgb(c.substr(0, 2)));
-        returnString += Utils.paddedHex(255 - hex2rgb(c.substr(2, 2)));
-        returnString += Utils.paddedHex(255 - hex2rgb(c.substr(4, 2)));
-    }
-    if (c.length === 3) {
-        returnString += Utils.paddedHex(255 - hex2rgb(c.substr(0, 1) + c.substr(0, 1)));
-        returnString += Utils.paddedHex(255 - hex2rgb(c.substr(1, 1) + c.substr(1, 1)));
-        returnString += Utils.paddedHex(255 - hex2rgb(c.substr(2, 1) + c.substr(2, 1)));
-    }
-
+    var hex = Utils.parseHexColor(hexR);
+    returnString += getColorSubset(hex, 0);
+    returnString += getColorSubset(hex, 2);
+    returnString += getColorSubset(hex, 4);
     return returnString;
-}
+};
 
-function complement(c, g, b) {
-    var colorValue;
+var getFormattedArr = function(a0, a1, a2) {
+    return [
+        subFrom255(a0),
+        subFrom255(a1),
+        subFrom255(a2)
+    ];
+};
 
-    if (typeof c === 'string' && Utils.hexRegexMatch(c)) {
-        return stringHandler(c);
+var complement = function(hexR, g, b) {
+    if (typeof hexR === 'string' && Utils.hexRegexMatch(hexR)) {
+        return stringHandler(hexR);
     }
 
-    if ('undefined' !== c && 'undefined' !== g && 'undefined' !== b) {
-        colorValue = [(255 - c), (255 - g), (255 - b)];
+    if (hexR && g && b) {
+        return getFormattedArr(hexR, g, b);
     }
 
-    if (typeof c == 'object') {
-        colorValue = [(255 - c[0]), (255 - c[1]), (255 - c[2])];
-    }
-
-    return Utils.render(colorValue, 'rgb');
-}
+    Utils.err('Method complement called with invalid arguments');
+};
 
 module.exports = complement;

@@ -1,11 +1,6 @@
 var Utils = require('./utils');
 
-// ### rgb2hsl method
-//
-// Change RGB to an HSL object.
-//
-// `rgb2hsl(RGB[, G, B])`
-function rgb2hsl(RGB, G, B) {
+var rgb2hsl = function(RGB, G, B) {
     var r, g, b, min, max, h, s, l, d;
 
     if (typeof RGB === 'object') {
@@ -44,7 +39,11 @@ function rgb2hsl(RGB, G, B) {
         h /= 6;
     }
 
-    return Utils.render([Math.floor(h * 360), Utils.round((s * 100), 1), Utils.round((l * 100), 1)], 'hsl');
-}
+    return [
+        Math.floor(h * 360),
+        Utils.round((s * 100), 1),
+        Utils.round((l * 100), 1)
+    ];
+};
 
 module.exports = rgb2hsl;

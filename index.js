@@ -1,17 +1,16 @@
-var Colors = require('./src/index');
+var colors = require('./src/index');
 
 if ('undefined' === typeof window) {
     if ('undefined' !== typeof module && module.exports) {
-        module.exports = Colors;
+        module.exports = colors;
         return;
     }
 }
 
 if ('function' === typeof define && define.amd) {
-    define(function() {
-        return Colors;
+    return define(function() {
+        return colors;
     });
-    return;
 }
 
-window.Colors = window.$c = Colors;
+window.Colors = window.$c = colors;

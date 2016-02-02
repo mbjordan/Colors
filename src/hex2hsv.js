@@ -1,6 +1,6 @@
 var Utils = require('./utils');
 
-function hex2hsv(h) {
+var hex2hsv = function(h) {
     h = (h.charAt(0) == '#') ? h.substring(1, 7) : h;
     var r = parseInt(h.substring(0, 2), 16) / 255;
     var g = parseInt(h.substring(2, 4), 16) / 255;
@@ -42,13 +42,11 @@ function hex2hsv(h) {
         }
     }
 
-    map = [
+    return [
         Utils.round(result.h * 360),
         Utils.round(result.s * 100),
         Utils.round(result.v * 100)
     ];
-
-    return Utils.render(map, 'hsv');
-}
+};
 
 module.exports = hex2hsv;
