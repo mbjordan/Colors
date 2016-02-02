@@ -1,23 +1,30 @@
-var hex2rgb = function(h) {
-    h = h.replace(/^\#/, '');
+var Utils = require('./utils');
 
-    if (h.length === 6) {
-        return [
-            parseInt(h.substr(0, 2), 16),
-            parseInt(h.substr(2, 2), 16),
-            parseInt(h.substr(4, 2), 16)
-        ];
+var hexToInt = function(hex) {
+    return parseInt(hex, 16);
+};
+
+var getRgbSubset = function(hex, idx) {
+    return hexToInt(hex.substr(idx, 2));
+};
+
+var formatRgb = function(hex) {
+    return [
+        getRgbSubset(hex, 0),
+        getRgbSubset(hex, 2),
+        getRgbSubset(hex, 4)
+    ];
+};
+
+var hex2rgb = function(str) {
+    var hex = Utils.parseHexColor(str);
+
+    if (hex.length === 2) {
+        // Internal use, mostly
+        return hexToInt(hex);
     }
 
-    if (h.length === 3) {
-        return [
-            parseInt(h.substr(0, 1) + h.substr(0, 1), 16),
-            parseInt(h.substr(1, 1) + h.substr(1, 1), 16),
-            parseInt(h.substr(2, 1) + h.substr(2, 1), 16)
-        ];
-    }
-
-    return parseInt(h, 16);
+    return formatRgb(hex);
 };
 
 module.exports = hex2rgb;

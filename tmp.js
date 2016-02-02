@@ -1,4 +1,3 @@
- var x = require('./src/complement');
+ var x = require('./src/utils');
 
- console.log(x('#ffffff'));
- console.log(x('#fff'));
+ console.log(x.parseHexColor('eedabc'));

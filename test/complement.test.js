@@ -12,7 +12,7 @@ describe('complement', function() {
     });
 
     it('Should be a function', function(done) {
-        expect(typeof complement).toBe('function');
+        expect(complement).toEqual(jasmine.any(Function));
         done();
     });
 
@@ -125,47 +125,15 @@ describe('complement', function() {
         });
     });
 
-    describe('threeDigitColorMatch', function() {
-        var threeDigitColorMatch;
-
-        beforeEach(function() {
-            threeDigitColorMatch = complement.__get__('threeDigitColorMatch');
-        });
-
-        it('Should match the give string', function(done) {
-            var color = '00f';
-            expect(threeDigitColorMatch().test(color)).toBe(true);
-            done();
-        });
-    });
-
-    describe('parseHexColor', function() {
-        var parseHexColor;
-
-        beforeEach(function() {
-            parseHexColor = complement.__get__('parseHexColor');
-        });
-
-        it('Should remove the hash and return same color when 6-len', function(done) {
-            var color = '000fff';
-            expect(parseHexColor('#' + color)).toBe(color);
-            done();
-        });
-
-        it('Should remove the hash and return a formatted color when 3-len', function(done) {
-            var color = '00f';
-            var expectedColor = '0000ff';
-            expect(parseHexColor('#' + color)).toBe(expectedColor);
-            done();
-        });
-    });
-
     describe('stringHandler', function() {
         var stringHandler;
 
         beforeEach(function() {
             stringHandler = complement.__get__('stringHandler');
             complement.__set__('getColorSubset', simpleReturnFn);
+            complement.__set__('Utils', {
+                'parseHexColor': simpleReturnFn
+            });
         });
 
         it('Should return a string with the passed string appended twice with a hash prepended', function(done) {

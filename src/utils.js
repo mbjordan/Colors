@@ -19,6 +19,19 @@ exports.hexRegexMatch = function hexRegexMatch(comparator) {
     return /^\x23[a-f0-9]{3}([a-f0-9]{3})?$/i.test(comparator);
 };
 
+exports.parseHexColor = function(color) {
+    color = color.replace(/^\#/, '');
+
+    if (color.length === 3) {
+        color = color.replace(
+            /^([a-f0-9]{1})([a-f0-9]{1})([a-f0-9]{1})$/i,
+            '$1$1$2$2$3$3'
+        );
+    }
+
+    return color;
+};
+
 exports.err = function(message) {
     throw new Error('[colors.js]: ' + message);
 };

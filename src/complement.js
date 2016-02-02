@@ -13,26 +13,12 @@ var getColorSubset = function(color, idx) {
     );
 };
 
-var threeDigitColorMatch = function() {
-    return /^([a-f0-9]{1})([a-f0-9]{1})([a-f0-9]{1})$/i;
-};
-
-var parseHexColor = function(color) {
-    color = color.replace(/^\#/, '');
-
-    if (color.length === 3) {
-        return color.replace(/^(\#)?/, '').replace(threeDigitColorMatch(), '$1$1$2$2$3$3');
-    }
-
-    return color;
-};
-
 var stringHandler = function(color) {
     var returnString = '#';
-    color = parseHexColor(color);
-    returnString += getColorSubset(color, 0);
-    returnString += getColorSubset(color, 2);
-    returnString += getColorSubset(color, 4);
+    var hex = Utils.parseHexColor(color);
+    returnString += getColorSubset(hex, 0);
+    returnString += getColorSubset(hex, 2);
+    returnString += getColorSubset(hex, 4);
     return returnString;
 };
 
