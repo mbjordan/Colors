@@ -37,6 +37,7 @@ describe('utils', function() {
             expect(parseHexColor('e1d')).toBe('ee11dd');
             done();
         });
+
         it('Should take a 3 digit hex and return a 6 digit hex - w/ hash', function(done) {
             expect(parseHexColor('#f0a')).toBe('ff00aa');
             done();
@@ -46,6 +47,7 @@ describe('utils', function() {
             expect(parseHexColor('dd22cc')).toBe('dd22cc');
             done();
         });
+
         it('Should take a 6 digit hex and return the same 6 digit hex - w/ hash', function(done) {
             expect(parseHexColor('#aa66ff')).toBe('aa66ff');
             done();
