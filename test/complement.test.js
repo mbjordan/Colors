@@ -51,11 +51,6 @@ describe('complement', function() {
         done();
     });
 
-    it('Should return with [0, 0, 0] when passed [255, 255, 255]', function(done) {
-        expect(complement([255, 255, 255])).toEqual([0, 0, 0]);
-        done();
-    });
-
     it('Should return with [0, 0, 0] when passed (255, 255, 255)', function(done) {
         expect(complement(255, 255, 255)).toEqual([0, 0, 0]);
         done();
